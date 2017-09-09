@@ -1,0 +1,35 @@
+---CHAPTER 1---
+in console.log(b), log is the function, and console is the object reference where the log() function is located
+var = prompt("Prompt message") will query the user for input and save in var. shortcut over implementing html form element
+= is the assignment operator
+2 is a literal value expression
+b is a variable expression
+b * 2 is an arithmetic expression
+a = b * 2 is an assignment expressions
+math operators are + - * /
+compound assignment operators are += -= *=/=
+inc/dec operators are ++ --
+object property access operator is . (like console.log())
+equality operators: == (loose-equals) === (strict-equals) != (loose not-equals) !== (strict not-equals)
+comparison < > <= >= (less than or greater than loose-equals)
+logical && ||
+values included directly in the source code are called literals, and string literals are enclosed in single or double-quotes. number and boolean literals are presented as-is
+it's called coercion when you convert a number to a string to print on the screen. the same when you convert a string to a number. you coerce the string to a number. you are coercing between types
+if you use a built-in function to coerce between types, it's called an explicit coercion. implicit coercion is when you don't convert between types yourself, but for example loosely equate one literal value to one of a different type
+comments should explain why, not what. they can optionally explain how if that's particularly confusing.
+Static typing, otherwise known as type enforcement, prevents unintended value conversions.
+Weak typing, otherwise known as dynamic typing, allows a variable to hold any type of value at any time. It allows flexibility.
+JavaScript uses dynammic typing, so no type enforcement.
+state is tracking the changes to values as your program runs
+Javascript constants are usually capitalized with underscores between words
+toFixed() is a function that can be accessed as an object property on any number value variables, allowing you to format the number to a specific number of decimal places
+a block is one or a series statments wrapped inside a curly-brace pair
+a standalone block is actually valid JS code, but isn't commonly seen, as they are typically attached to some other control statement, such as an if conditional or a loop
+unlike most other statements like console.log(amount); , a block statement does not need a semicolon to conclude it
+certain values are considered "falsy" because they become false when coerced to a boolean, such as 0 and "". Any value not on the "falsy" list is automatically "truthy".
+a loop includes a test condition as well as a block, typically as { .. }. each time a loop block executes, that's called in iteration
+the for loop has 3 clauses, the initialization clause, the conditional test clause, and the update clause to be ran after each loop block iteration
+functions can optionall take arguments (aka paramaters)
+scope (technically called lexical scope) is basically a collection of variables as well as the rules for how those variables are accessed by name
+each function gets its own scope. only code inside that function can access its scoped variables
+lexical scope rules say that code in one scope can access variables of either that scope or any scope outside of it
