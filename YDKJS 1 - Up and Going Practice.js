@@ -8,21 +8,20 @@ var accessories = 0;
 var totalCost = 0;
 
 function calculateTotalCost(input) {
-	while (totalCost < BANK_BALANCE); {
-		totalCost = totalCost + PHONE_PRICE;
-		phones = phones + 1;
-		alert(totalCost);
-	}
-	
-	while ((totalCost < SPEND_THRESH) && (accessories < phones)) {
-		totalCost = totalCost + ACCESSORY_PRICE;
-		accessories = accessories + 1;
-	}
-	
-	totalCost = totalCost * SALES_TAX;
-	console.log(totalCost);
-	console.log(phones);
-	console.log(accessories);
+  while (totalCost < BANK_BALANCE) {
+    totalCost = totalCost + PHONE_PRICE;
+    phones = phones + 1;
+  }
+
+  while ((totalCost < SPEND_THRESH) && (accessories < phones)) {
+    totalCost = totalCost + ACCESSORY_PRICE;
+    accessories = accessories + 1;
+  }
+
+  totalCost = totalCost * SALES_TAX;
+  console.log(totalCost);
+  console.log(phones);
+  console.log(accessories);
 }
 
-console.log(calculateTotalCost(prompt("input")));
+console.log(calculateTotalCost(prompt('input')));
