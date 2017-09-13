@@ -29,7 +29,14 @@ unlike most other statements like console.log(amount); , a block statement does 
 certain values are considered "falsy" because they become false when coerced to a boolean, such as 0 and "". Any value not on the "falsy" list is automatically "truthy".
 a loop includes a test condition as well as a block, typically as { .. }. each time a loop block executes, that's called in iteration
 the for loop has 3 clauses, the initialization clause, the conditional test clause, and the update clause to be ran after each loop block iteration
-functions can optionall take arguments (aka paramaters)
+functions can optional take arguments (aka paramaters)
 scope (technically called lexical scope) is basically a collection of variables as well as the rules for how those variables are accessed by name
 each function gets its own scope. only code inside that function can access its scoped variables
 lexical scope rules say that code in one scope can access variables of either that scope or any scope outside of it
+
+---CHAPTER 2---
+typeof a is not getting the type of the variable, but of the value it contains. variables themselves do not have types.
+typeof null erroneously returns "object", but this bug will likely never be fixed as there is too much code in existence that relies on the bug.
+object properties are referred to as keys when accessed via bracket notation
+arrays and functions are object subtypes, rather than proper built-in types
+functions can have properties, but you will only use them in limited cases
