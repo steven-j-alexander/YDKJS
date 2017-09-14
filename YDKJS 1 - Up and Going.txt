@@ -40,3 +40,17 @@ typeof null erroneously returns "object", but this bug will likely never be fixe
 object properties are referred to as keys when accessed via bracket notation
 arrays and functions are object subtypes, rather than proper built-in types
 functions can have properties, but you will only use them in limited cases
+the primitive string type has an object wrapper called String (typically called a "native") paired with it that defines built-in type methods on its prototype. when you use a primitive value as an object by referencing a property or method, JS automatically "boxes" the value to its object wrapper counterpart (hidden).
+checking for true or false in comparison operations with non-boolean values utilizes implicit coercion
+falsy values: "", 0, -0, NaN, null, undefined, false
+truthy values: "hello", 42, true, [], [1, 2], {}, {a: 42}, function foo() { .. }
+the == (loose-equality operator) checks for value equality while allowing implicit coercion to take place, and === (strict equality) checks for value equality without allowing coercion
+!= and !== (non-equality operators) should not be confused with inequality
+in the case of a loose-equality comparison with two loosely equal values of different types, there are two ways in which a == b could be true via coercion. you could either implicitly coerce a to the type of b, or b to the type of a. in the case of "42" == 42, "42" would become 42. the process that leads you to this will become more important in complex cases.
+handy es5 language guide: http://www.ecma-international.org/ecma-262/5.1/
+as a general rule, use strict equality when either value could be the true or false value, either value could be any of these (0, "" or [] -- empty array). if you can't be certain about the values, use ===. in all other cases you are safe to use ==, and likely should as it will improve code readability.
+when using strict or loose comparisons, comparing two non-primitive values such as objects will only check whether the references to the values match, not the values themselves.
+inequality operators are referred to as "relational comparison" in the specification
+similar coercion rules (although not identical) are applied to relational/inequality operators. there are no "strict inequality" operators, so coercion will always be allowed with relational/inequality operators.
+string relational comparisons are done lexicographically (alphabetically like a dictionary), but if one or both is not a string, then both values are implicitly coerced to numbers.
+if different value types are coerced into numbers during a comparison and one value is not coerced into a valid number (NaN), all comparisons will resolve to a value of false, as NaN is neither greater-than nor less-than any other value.
