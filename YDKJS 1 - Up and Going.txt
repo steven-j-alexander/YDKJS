@@ -59,3 +59,4 @@ hoisting is the behavior that takes place when you declare a variable or functio
 it's not common or recommended to rely on variable hoisting as it can be confusing to look at, although it is much more common and accepted to use hoisted function declarations to make calls before they are formally declared.
 if you try to set a variable that hasn't been declared, you'll either end up creating a variable in the top-level global scope or getting an error, depending on whether strict mode has been set or not, so always remember to formally declare your variables.
 the ES6 let keyword allows you to declare variables to belong to the individual { blocks } they are contained in, with scoping rules roughly the same as that of functions.
+one key difference with strict mode is that it disallows implicit automatic global variable declaration when you assign a value to a var without using "var"
