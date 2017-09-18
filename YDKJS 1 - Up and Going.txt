@@ -60,3 +60,9 @@ it's not common or recommended to rely on variable hoisting as it can be confusi
 if you try to set a variable that hasn't been declared, you'll either end up creating a variable in the top-level global scope or getting an error, depending on whether strict mode has been set or not, so always remember to formally declare your variables.
 the ES6 let keyword allows you to declare variables to belong to the individual { blocks } they are contained in, with scoping rules roughly the same as that of functions.
 one key difference with strict mode is that it disallows implicit automatic global variable declaration when you assign a value to a var without using "var"
+a function is basically just a variable declared in the outer enclosing that's given a reference to the function being declared. that function is a value itself, just like any other value, so it can be assigned to variables or passed to/returned from other functions
+immediately invoked function expressions (IIFE) are called by declaring the function inside parenthesis and then falling it up with an immediate call using another set of parenthesis like this:
+	(function IIFE(){
+		console.log( "test" );
+	})();
+IIFEs are frequently used to declare variables that won't affect the surrounding code outside of the IIFE unless via return values
