@@ -70,3 +70,6 @@ you can think of closures as a way to remember and continue to access a function
 with the module pattern (which use closures), you can define private implementation variables and functions that are hidden from the outside, as well as a public API.
 if a function has a 'this' reference in it, it usually points to an object, but the object it points to depends on the functino that was called. it does not refer to the function itself
 calling a function that references a 'this' var that only exists outside of function scope will work in non-strict mode, but would be undefined in strict mode
+if you reference a property that doesn't exist on an object, JS will use that object's internal prototype reference to find a different object to locate that property. prototype linkage is commonly used (abused) to emulate or fake a class mechanism with inheritance. a more natural way of applying prototypes is to use a pattern called behavior delegation, where linked objects are designed with the ability to delegate from one to the other for parts of the needed behavior.
+polyfilling is a term used to refer to the taking of a newer feature definition and creating a snippet of code that is the equivalent in behavior to be used in older JS environments.
+Vetted set of polyfills: (https://github.com/es-shims/es5-shim) and ES6-Shim (https://github.com/es-shims/es6-shim)
