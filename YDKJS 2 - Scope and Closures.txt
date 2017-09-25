@@ -1,0 +1,8 @@
+===Chapter 1===
+
+-Compiler Theory-
+JS is technically a compiled language. Here is a broad, simplified version of what the JS engine is doing during compilation:
+Tokenizing/lexing: A compiled language is tokenized/lexed, which breaks each string of characters into chunks called tokens. If the tokenizer invokes stateful parsing rules to check if a token should be considered distinct or part of another token, this would be called lexing.
+Parsing: Takes a stream (array) of tokens and turning them into a tree of nested elements that represent the grammatical structure of the program. The tree is called an AST (Abstract Syntax Tree).
+Code-Generation: This process takes the AST and turns into into executable code. This will vary greatly between language used and target platform. This step would create the actual variables in memory on the host machine, store values, run machine code, etc.
+JS doesn't have plenty of time to optimize, as it is compiled right before being used, so it uses a lot of tricks (like JITs) to ensure the fastest possible performance.
