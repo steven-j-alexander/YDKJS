@@ -6,3 +6,8 @@ Tokenizing/lexing: A compiled language is tokenized/lexed, which breaks each str
 Parsing: Takes a stream (array) of tokens and turning them into a tree of nested elements that represent the grammatical structure of the program. The tree is called an AST (Abstract Syntax Tree).
 Code-Generation: This process takes the AST and turns into into executable code. This will vary greatly between language used and target platform. This step would create the actual variables in memory on the host machine, store values, run machine code, etc.
 JS doesn't have plenty of time to optimize, as it is compiled right before being used, so it uses a lot of tricks (like JITs) to ensure the fastest possible performance.
+
+-Understanding Scope-
+Engine: start-to-finish compilation and execution.
+Compiler: handles parsing and code generation for engine.
+Scope: collects and maintains LUT for all declared identifiers and based on that enforces a set of rules of how code can be accessed.
