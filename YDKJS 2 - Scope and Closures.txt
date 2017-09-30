@@ -11,3 +11,9 @@ JS doesn't have plenty of time to optimize, as it is compiled right before being
 Engine: start-to-finish compilation and execution.
 Compiler: handles parsing and code generation for engine.
 Scope: collects and maintains LUT for all declared identifiers and based on that enforces a set of rules of how code can be accessed.
+
+-Back and Forth-
+How the engine approaches a var declaration
+1. Compiler checks if there is already a var of that name within the same scope. If so, it ignores the declaration. Otherwise, it asks Scope to declare a new var for that collection.
+2. Compiler produces the code for Engine to later execute. Engine will ping Scope to see if there is a var with the same name in the Scope collection. If not, it looks elsewhere (using nested scope). It then makes an assignment if one was specified in the original code.
+
