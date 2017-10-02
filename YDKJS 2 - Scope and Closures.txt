@@ -17,3 +17,7 @@ How the engine approaches a var declaration
 1. Compiler checks if there is already a var of that name within the same scope. If so, it ignores the declaration. Otherwise, it asks Scope to declare a new var for that collection.
 2. Compiler produces the code for Engine to later execute. Engine will ping Scope to see if there is a var with the same name in the Scope collection. If not, it looks elsewhere (using nested scope). It then makes an assignment if one was specified in the original code.
 
+-Compiler Speak-
+Looking up a var is an LHS (left-hand side) lookup. An RHS lookup would retrieve the source value of a given var container.
+console.log(a) would be an RHS lookup, as you are looking up the value of a. a = 2 would be an LHS lookup, as you are searching for variable 'a' as a target to assign the value of 2 to.
+The compiler handles function code in such a way that it both declares and defines the value in code generation, so that no assignment (or LHS lookup) is required during engine execution.
