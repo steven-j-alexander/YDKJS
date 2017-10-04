@@ -23,7 +23,6 @@ console.log(a) would be an RHS lookup, as you are looking up the value of a. a =
 The compiler handles function code in such a way that it both declares and defines the value in code generation, so that no assignment (or LHS lookup) is required during engine execution.
 
 -Quiz-
-
 function foo(a) {
 	var b = a;
 	return a + b;
@@ -41,3 +40,12 @@ foo( 2 ) {
 = a
 return a
 + b
+
+-Errors-
+When conducting an RHS lookup, if no matching variable is found in the nested scopes, the engine will throw a ReferenceError (of type ReferenceError).
+If you cannot find a matching var when using an LHS lookup while not in strict mode (which disables automatic implicit global var creation), a global variable of the same name will be created automatically by the global scope before passing it back to the JS engine.
+If you find a variable using an RHS lookup, but do something with the value that is impossible such as trying to run a non-function value as a function or reference a property on a null/undefined val, the JS engine will throw a TypeError.
+ReferenceError = Scope-level failure
+TypeError = Scope-level success, illegal action occurred
+
+
