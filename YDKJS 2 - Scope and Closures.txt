@@ -48,4 +48,9 @@ If you find a variable using an RHS lookup, but do something with the value that
 ReferenceError = Scope-level failure
 TypeError = Scope-level success, illegal action occurred
 
+-Review-
+LHS reference: for assigning to variable
+RHS reference: for retrieving variable value
+When the engine first compiles a piece of code such as 'var a = 2', it first tokenizes/lexes the code into the statements 'var a', which is a scope declaration, and secondarily, 'a = 2', which is an LHS lookup of variable a (if found), followed by an assignment operation.
+Reference lookups start at the currently-executed scope and work their way up the nest until they reach the global scope, either locating the reference or not.
 
