@@ -1,4 +1,5 @@
-===Chapter 1===
+===========================================Chapter 1===========================================
+What is Scope?
 
 -Compiler Theory-
 JS is technically a compiled language. Here is a broad, simplified version of what the JS engine is doing during compilation:
@@ -54,3 +55,10 @@ RHS reference: for retrieving variable value
 When the engine first compiles a piece of code such as 'var a = 2', it first tokenizes/lexes the code into the statements 'var a', which is a scope declaration, and secondarily, 'a = 2', which is an LHS lookup of variable a (if found), followed by an assignment operation.
 Reference lookups start at the currently-executed scope and work their way up the nest until they reach the global scope, either locating the reference or not.
 
+===========================================Chapter 2===========================================
+Lexical Scope
+
+-Lex-Time-
+Lexical scope is scope that is defined during lexing, which means it is based on where variables are blocks of scope are authored during writing. Scope is mostly set in stone by the time the code is being lexed.
+There are ways to modify scope after lexing, but it is best practice to avoid this and stick to lex-scoping.
+Function parameters are included in the nested scope contained within that function.
