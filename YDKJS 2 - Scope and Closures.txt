@@ -69,3 +69,13 @@ Global variables are automatically properties of the global object ('window' in 
 Non-global shadowed vars cannot be accessed.
 Lexical scope of functions are only defined by their location
 The lexical scope lookup process is only applied to first-class identifiers like a, b, c, etc. Referencing identifiers as properties like foo.bar.baz will result in the first identifier being looked up using lexical scope, with the remaining sub-identifiers being accessed as properties using object-property access rules.
+
+-Cheating Lexical: eval-
+Cheating lexical scope is frowned upon for its use and leads to poorer performance.
+The eval function takes a string argument and treats the generated code as if it had been authored at that point in the program. This allows you to modify the lexical scope environment after author-time by dynamically inserting new values.
+You essentially modify a layer or multiple layers of lexical scope by calling a block/function while passing a string containing a variable declaration as an argument to be used in an eval.
+In strict mode, eval only modifies the scope contained within the eval itself, and does not modify its enclosing scope.
+setTimeout() and setInterval() also allow for the usage of the first argument to be a string which will then be eval'ed, which could be put towards the modification of scope, but these are deprecated behaviors.
+The new Function() function takes the last argument as a string to be turned into dynamically-generated code. It's a function constructor that is somewhat safer to use than eval, but should still be avoided.
+The use cases for these are very rare, as the performance degredation involved is not worth it.
+
