@@ -79,3 +79,9 @@ setTimeout() and setInterval() also allow for the usage of the first argument to
 The new Function() function takes the last argument as a string to be turned into dynamically-generated code. It's a function constructor that is somewhat safer to use than eval, but should still be avoided.
 The use cases for these are very rare, as the performance degredation involved is not worth it.
 
+-Cheating Lexical: with-
+The (now-deprecated) 'with' keyword allows one to reference multiple properties of an object without repeating the object reference itself each time.
+If you pass an object to a function and modify its properties (existent or not) on that passed object using 'with', that object will be treated as its own lexical scope. This does not apply to normal var declarations, which will just be scoped to the containing function.
+Instead of modifying existing lexical scope as when using the eval keyword, the with keyword allows you to create an entirely new scope using passed objects.
+When using with, if you run a lookup on an identifier in that newly-created scope does not already exist in the object used, normal lexical scope rules apply. In non-strict mode, you would travel up the layers of scope until you either found a match or you did not, resulting in the automatic creation of that identifier as a new global variable. The with keyword is outright disallowed in strict mode.
+
