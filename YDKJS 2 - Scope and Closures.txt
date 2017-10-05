@@ -62,3 +62,10 @@ Lexical Scope
 Lexical scope is scope that is defined during lexing, which means it is based on where variables are blocks of scope are authored during writing. Scope is mostly set in stone by the time the code is being lexed.
 There are ways to modify scope after lexing, but it is best practice to avoid this and stick to lex-scoping.
 Function parameters are included in the nested scope contained within that function.
+
+-Look-ups-
+Shadowing is when the same identifier is specified in multiple levels of nested scope (the inner identifier shadows the outer one).
+Global variables are automatically properties of the global object ('window' in browsers), so can be referenced as properties of that global object. This allows access to global properties that may otherwise be shadowed by identifiers of the same name located in deeper layers of scope.
+Non-global shadowed vars cannot be accessed.
+Lexical scope of functions are only defined by their location
+The lexical scope lookup process is only applied to first-class identifiers like a, b, c, etc. Referencing identifiers as properties like foo.bar.baz will result in the first identifier being looked up using lexical scope, with the remaining sub-identifiers being accessed as properties using object-property access rules.
