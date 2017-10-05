@@ -91,3 +91,11 @@ The JS engine performs several performance optimizations during compilation, suc
 -Review-
 In the opinion of the author, don't use with or eval() if you want to keep your JS code optimized, as they defeat the purpose of using lexical scope to keep the act of lexing and building lookup tables out of run-time.
 
+===========================================Chapter 3===========================================
+Function vs. Block Scope
+
+-Scope From Functions-
+With function scope, it does not matter exactly where in a scope a declaration appears, only that it belongs to that function.
+
+-Hiding In Plain Scope-
+One useful way of approaching functions is to think of hiding sections of code from exposure by wrapping them in a function if they do not need to be exposed, rather than just writing functions to add code to. This arises from the software design 'Principle of Least Priviledge'. Only expose what is minimally necessary on that particular scope layer.
