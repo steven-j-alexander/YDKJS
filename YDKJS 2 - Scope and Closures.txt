@@ -99,3 +99,10 @@ With function scope, it does not matter exactly where in a scope a declaration a
 
 -Hiding In Plain Scope-
 One useful way of approaching functions is to think of hiding sections of code from exposure by wrapping them in a function if they do not need to be exposed, rather than just writing functions to add code to. This arises from the software design 'Principle of Least Priviledge'. Only expose what is minimally necessary on that particular scope layer.
+
+-Collision Avoidance-
+One way to avoid collisions is to use global namespaces. Libraries often create a single variable, usually an object, in global scope. This variable/object is used as the global namespace for the respective library, exposing all library functionality as properties of that namespace.
+Another option for collision avoidance is to use modules, using any of the various dependency managers. When you use these, no libraries add identifiers to the global scope. Instead, each library's identifiers are explicitly imported into another specific scope through the dependency manager's various mechanisms. 
+Dependency managers do not do anything special other than enforce scoping rules to ensure that no two identifiers are injected into any shared scope, but rather kept in private, individual scopes, to prevent collisions.
+According to the author, if you code defensively, you can avoid the usage of dependency managers entirely and get the same results.
+
