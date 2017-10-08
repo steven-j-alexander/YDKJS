@@ -135,3 +135,7 @@ Block scoping extends the Principle of Least Exposure to hide information in blo
 -with-
 The 'with' statement is a form of block scoping, although frowned upon by many. The scope created from the with object only exists for the lifetime of the with statement.
 
+-try/catch-
+As of Javascript ES3, the variable declaration in the catch clause of a try/catch is block-scoped to the catch block.
+For some reason, linters commonly complain when there is more than one catch clause in the same scope using identifiers with the same name, even though they are safely block-scoped. To avoid this, some devs will add numbers to the end of their 'err' identifier names, or disable duplicate var name checking in their linter.
+
