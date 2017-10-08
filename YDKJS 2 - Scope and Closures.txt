@@ -152,3 +152,11 @@ You can explicitly block-scope memory-heavy variables using the let keyword to l
 You can use let in a for-loop heading when declaring your numerical loop value. It will bind the variable to the scope of that for-loop body and then re-bind it for each iteration of the loop.
 Be careful when refactoring code inside of statements or blocks that contain block-scoped variables, as you have to pay extra attention to keep the variables bound to the same scope of the blocks that depend on them.
 
+-const-
+ES6 also introduced const, which creates a block-scoped variable whose value is fixed. Any attempt to change it will result in an error.
+
+-Review-
+Functions are the most common unit of scope in JS, but you can also use block-scoping to hide variables and functions within an arbitrary block.
+You can hide variables from enclosing scope in blocks by using keywords such as let and const.
+According to author, block scope should note entirely replace the use of vars and function scope. Use what produces better and more readable/maintanable code in the given situation.
+
