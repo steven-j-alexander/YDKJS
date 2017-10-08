@@ -128,3 +128,10 @@ You can pass arguments into the invoking parenthesis just as you would any stand
 One usage of the IIFE pattern is that you can name a parameter 'undefined' and pass no argument to it in order to protect your function from any incorrect overwriting of the default undefined variable that may have taken place outside of the function. This guarantees that undefined identifier actually resolves to the unidentified value in your block of code.
 The UMD (Universal Module Definition) pattern is similar to IIFE but differs in that it is slightly more verbose but also a bit more readable. The function to execute is given after its invocation and passing of parameters. You define your function expression in the second half of the snippet (enclosed in its own ( ) pair), passing it as a parameter to the IIFE function in the first half. Within that initial function, you invoke the parameter function, passing any arguments as defined by the passed function you are referencing.
 
+-Blocks As Scopes-
+For loops, if statements, etc. scope themselves to the enclosing scope. For example, if you declare a var inside of an if statement, it still belongs to the enclosing scope of that if statement. Same for the head of a for loop. It is only stylistic, fake block-scoping, and requires self-enforcement to not accidentally use that variable in another place within that enclosing scope.
+Block scoping extends the Principle of Least Exposure to hide information in blocks of code rather than only functions.
+
+-with-
+The 'with' statement is a form of block scoping, although frowned upon by many. The scope created from the with object only exists for the lifetime of the with statement.
+
