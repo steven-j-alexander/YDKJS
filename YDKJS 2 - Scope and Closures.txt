@@ -121,3 +121,10 @@ While anonymous functions are often encouraged by many libraries and tools, ther
 	3. A descriptive identifier name can help to self-document the code it refers to.
 According to author, the best practice for inline functions or functions as callbacks is to use a name. They aren't necessary, but will help avoid the above drawbacks.
 
+-Invoking Function Expressions Immediately-
+You execute a function expression by immediately adding another ( ) pair on the end. This pattern is called an IIFE (Immediately Invoked Function Expression).
+You can include the invoking ( ) pair on the inside or outside of the outer ( ) wrapping pair. It makes no difference.
+You can pass arguments into the invoking parenthesis just as you would any standard function declaration.
+One usage of the IIFE pattern is that you can name a parameter 'undefined' and pass no argument to it in order to protect your function from any incorrect overwriting of the default undefined variable that may have taken place outside of the function. This guarantees that undefined identifier actually resolves to the unidentified value in your block of code.
+The UMD (Universal Module Definition) pattern is similar to IIFE but differs in that it is slightly more verbose but also a bit more readable. The function to execute is given after its invocation and passing of parameters. You define your function expression in the second half of the snippet (enclosed in its own ( ) pair), passing it as a parameter to the IIFE function in the first half. Within that initial function, you invoke the parameter function, passing any arguments as defined by the passed function you are referencing.
+
