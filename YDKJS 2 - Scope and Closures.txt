@@ -113,3 +113,11 @@ If the word "function" is positioned as the very first thing in a statement, it'
 With a function expression, the identifier is bound within its own function, rather than its enclosing scope. Otherwise, it would be a standard declaration.
 This hides the function identifier within its own scope, rather than unnecessarily polluting the enclosing scope.
 
+-Anonymous vs. Named-
+Function expressions can be anonymous, but standard function declarations must be named.
+While anonymous functions are often encouraged by many libraries and tools, there are drawbacks:
+	1. They have no useful name to display in stack traces, making debugging more difficult.
+	2. If the function needs to refer to itself for recursion/etc., the deprecated arguments.callee reference is required. You would also need a self-reference if you wanted to unbind an event handler function after it fires.
+	3. A descriptive identifier name can help to self-document the code it refers to.
+According to author, the best practice for inline functions or functions as callbacks is to use a name. They aren't necessary, but will help avoid the above drawbacks.
+
