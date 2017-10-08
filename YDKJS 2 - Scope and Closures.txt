@@ -106,3 +106,10 @@ Another option for collision avoidance is to use modules, using any of the vario
 Dependency managers do not do anything special other than enforce scoping rules to ensure that no two identifiers are injected into any shared scope, but rather kept in private, individual scopes, to prevent collisions.
 According to the author, if you code defensively, you can avoid the usage of dependency managers entirely and get the same results.
 
+-Functions As Scopes-
+While you can effectively hide a snippet of code from the current scope by using a function, two downsides are that it pollutes the enclosing scope with an identifier, and you need to actually call that identifier to execute the code.
+You can circumvent these two things by converting the standard function declaration into a function-expression that immediately calls itself.
+If the word "function" is positioned as the very first thing in a statement, it's a declaration. Otherwise, it's an expression. 
+With a function expression, the identifier is bound within its own function, rather than its enclosing scope. Otherwise, it would be a standard declaration.
+This hides the function identifier within its own scope, rather than unnecessarily polluting the enclosing scope.
+
