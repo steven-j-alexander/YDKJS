@@ -145,3 +145,10 @@ The let keyword declares a variable and (somewhat) implicitly makes it available
 It can help to create specific blocks for block-scoping to avoid confusion with code that could be later refactored. Explicit block-scoping in this style is preferred and fits more naturally with how block-scoping works in other languages.
 Of important note, declarations made with the let keyword will not hoist into the entirety of the enclosing scope-block. They will not exist until they are declared.
 
+-Garbage Collection-
+You can explicitly block-scope memory-heavy variables using the let keyword to let the JS engine know when something can be garbage collected.
+
+-let Loops-
+You can use let in a for-loop heading when declaring your numerical loop value. It will bind the variable to the scope of that for-loop body and then re-bind it for each iteration of the loop.
+Be careful when refactoring code inside of statements or blocks that contain block-scoped variables, as you have to pay extra attention to keep the variables bound to the same scope of the blocks that depend on them.
+
