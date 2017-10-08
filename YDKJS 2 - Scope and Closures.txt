@@ -139,3 +139,9 @@ The 'with' statement is a form of block scoping, although frowned upon by many. 
 As of Javascript ES3, the variable declaration in the catch clause of a try/catch is block-scoped to the catch block.
 For some reason, linters commonly complain when there is more than one catch clause in the same scope using identifiers with the same name, even though they are safely block-scoped. To avoid this, some devs will add numbers to the end of their 'err' identifier names, or disable duplicate var name checking in their linter.
 
+-let-
+The previous examples of block scoping were pretty much all JS had until ES6, which introduced the keyword 'let', which sits alongside var as another way to declare variables.
+The let keyword declares a variable and (somewhat) implicitly makes it available only to the block it's contained in, usually a { } curly bracket pair.
+It can help to create specific blocks for block-scoping to avoid confusion with code that could be later refactored. Explicit block-scoping in this style is preferred and fits more naturally with how block-scoping works in other languages.
+Of important note, declarations made with the let keyword will not hoist into the entirety of the enclosing scope-block. They will not exist until they are declared.
+
