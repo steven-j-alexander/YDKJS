@@ -166,3 +166,14 @@ Hoisting
 -The Compiler Strikes Again-
 Variable and function declarations are processed during compilation phase (hoisted to the top of the code in its scope), while assignments are left in place for the execution phase. The declaration will come before the assignment. Only declarations are hoisted.
 Unlike function declarations, function expressions are not hoisted. Its variable identifier will be hoisted, but you will get a TypeError if you try to call it before it is defined. Since the function identifier is not exposed to the enclosing scope, it will also remain unhoisted.
+
+-Functions First-
+Function declarations are hoisted before var declarations.
+Duplicate var declarations are ignored, so if you declared both a function and var with the same identifier, the function declaration would be hoisted and the var declaration ignored. If you declared multiple vars of the same identifier name, only the first one would be hoisted, while the others would be ignored.
+On the other hand, duplicate function declarations will override previous ones.
+As of current versions of JS, function declarations that appear inside normal blocks will hoist to the enclosing scope, so conditional function declarations can still be overridden to result in the last declaration being hoisted, regardless of conditions.
+This being said, try and avoid duplicate definitions in the same scope.
+
+-Review-
+Declarations = Compiler phase
+Assignments = Execution phase
