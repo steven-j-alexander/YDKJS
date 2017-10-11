@@ -177,3 +177,12 @@ This being said, try and avoid duplicate definitions in the same scope.
 -Review-
 Declarations = Compiler phase
 Assignments = Execution phase
+
+===========================================Chapter 5===========================================
+Scope Closure
+
+-Nitty Gritty-
+"Closure is when a function is able to remember and access its lexical scope even when that function is executing outside its lexical scope."
+Technically, a nested function closes over its enclosing scope up in layers until (and including) global scope, but this is not the entirety of what closures are referring to and usually this phenomena is just observed to be the result of lexical scoping rules.
+A more complete example of closure as an observable exercise is when you take a function that contains variables used by an enclosed function that returns the enclosed function, assign it to a variable, and then call that variable outside of its declared lexical scope (the initial function). The inner and outer function will be saved in memory in order to be called by the variable the outer function was assigned to (which is the same, just with a new identifier), because both are still needed in order to call the inner function. It only exists to serve its enclosed scope. The inner function's reference to the scope of the outer function is a closure.
+Closure gives functions continued access to the scope it was defined in at author-time. Closures can be observed when a function relying on an enclosing scope is passed as a value and invoked in another location. No matter how the inner function is transported outside of its lexical scope, it will maintain a scope reference to where it was originally declared, and the closure will be exercised when executed.
