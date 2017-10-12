@@ -158,7 +158,7 @@ ES6 also introduced const, which creates a block-scoped variable whose value is 
 -Review-
 Functions are the most common unit of scope in JS, but you can also use block-scoping to hide variables and functions within an arbitrary block.
 You can hide variables from enclosing scope in blocks by using keywords such as let and const.
-According to author, block scope should note entirely replace the use of vars and function scope. Use what produces better and more readable/maintanable code in the given situation.
+According to author, block scope should not entirely replace the use of vars and function scope. Use what produces better and more readable/maintanable code in the given situation.
 
 ===========================================Chapter 4===========================================
 Hoisting
@@ -186,3 +186,7 @@ Scope Closure
 Technically, a nested function closes over its enclosing scope up in layers until (and including) global scope, but this is not the entirety of what closures are referring to and usually this phenomena is just observed to be the result of lexical scoping rules.
 A more complete example of closure as an observable exercise is when you take a function that contains variables used by an enclosed function that returns the enclosed function, assign it to a variable, and then call that variable outside of its declared lexical scope (the initial function). The inner and outer function will be saved in memory in order to be called by the variable the outer function was assigned to (which is the same, just with a new identifier), because both are still needed in order to call the inner function. It only exists to serve its enclosed scope. The inner function's reference to the scope of the outer function is a closure.
 Closure gives functions continued access to the scope it was defined in at author-time. Closures can be observed when a function relying on an enclosing scope is passed as a value and invoked in another location. No matter how the inner function is transported outside of its lexical scope, it will maintain a scope reference to where it was originally declared, and the closure will be exercised when executed.
+
+-Now I Can See-
+Whenever functions that access their own lexical scope are passed as first-class values, you will likely see them exercise closure. This applies to anything where you pass a callback function, such as timers, event handlers, Ajax requests, cross-window messaging, web workers, and asynch/synchronous tasks.
+IIFEs that take a parameter from the same scope are not a complete example of closure, as the function is not executed outside of its lexical scope and does not provide a strictly observable example of closure. They are heavily related though, as they create scope, and it's a common tool to be used to create scope to be closed over.
