@@ -190,3 +190,9 @@ Closure gives functions continued access to the scope it was defined in at autho
 -Now I Can See-
 Whenever functions that access their own lexical scope are passed as first-class values, you will likely see them exercise closure. This applies to anything where you pass a callback function, such as timers, event handlers, Ajax requests, cross-window messaging, web workers, and asynch/synchronous tasks.
 IIFEs that take a parameter from the same scope are not a complete example of closure, as the function is not executed outside of its lexical scope and does not provide a strictly observable example of closure. They are heavily related though, as they create scope, and it's a common tool to be used to create scope to be closed over.
+
+-Loops + Closure-
+Linters often complain when you put functions inside of loops, as their developers often do not understand closures.
+Since simple for loops take barely any time to run, running a setTimeout function with a delay inside the loop that iterates through and prints an index will most likely result in them all outputting once the loop terminates, returning the same result for each timeout function callback, rather than printing its own unique copy of the index. This is because each of those functions is closed over the same scope, which contains only one copy of the index at any given time. All the for loop is doing is updating the value of the lone index variable after each iteration.
+In order to get separate returning values from the for loop as desired, you would need to close each iteration of the function call in its own scope. A good way to do this is to use an IIFE in order to create scope, and then pass it the index variable. This way, closures are formed for each iteration of the IIFE, which gives each timeout function its own scope iteration to access when called, each containing their own correct and unique iteration index value.
+
