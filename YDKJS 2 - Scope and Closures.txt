@@ -258,3 +258,6 @@ let (a = 2) {
 
 This mirrors the approach used in function-scoping patterns where all var declarations are manually moved/hoisted to the top of the function. This makes block-scoping definitions easier to define and maintain.
 let blocks are not natively supported in ES6 or with transpilation tools such as Traceur. You can either go back to using blocks and write more disciplined ES6-valid code, ensuring your let declarations are kept at the top of the block, or you can use the tool that the book author craftily plugged called let-er, which will transpile let blocks into valid pre-ES6 or ES6 code, depending on how it's configured.
+
+-Performance-
+According the the author, the performance of try/catch is currently slower than just using an IIFE, but it may not necessarily remain that way. The official TC-39-approved ES6 transpiler uses try/catch, and the Traceur team has asked Google to improve its performance in Chrome, so there is a strong motivation for this to change. It's also not a 1:1 comparison, seeing that using an IIFE would change the meaning of that code to some degrees when using keywords such as this, return, break, and continue. It could only be used manually in certain cases.
