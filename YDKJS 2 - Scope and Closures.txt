@@ -214,3 +214,14 @@ A powerful variation of the module pattern is to name the return object as your 
 -Modern Modules-
 A simple illustration of how modern module dependency loaders/managers work is that they take the previous example of a module pattern that returns a named public API object, but they include the functionality to define new modules, each with their own defined set of dependencies, and store the internal API of the module into an internal list of modules tracked by name. This means all publicly exposed modules will be externally accessed from the dependency loader's public API as a starting point, with any of its contained, property-assigned functions having closure over any internal module or outside dependency scope that contain values referenced.
 In simpler words, you maintain the module pattern while invoking a function definition wrapper and keep its return values as the API for that module.
+
+-Future Modules-
+ES6 adds first-class syntax support for modules. When loaded via this syntax, ES6 treats files as seperate modules. These modules can import other modules or specific API members as dependencies and expose their own public API members.
+The compiler doesn't recognize function-based modules (they aren't statically recognized), so their semantics are not considered until run-time. This means you can modify a module's API during run-time.
+With ES6-specific syntax, modules are static and do not change at run-time. Because of this, the compiler will actually check (during file loading and compilation) to ensure that members referenced in module imports actually exist. If one isn't found, it will throw an earlier compile-time error, rather than relying upon dynamic run-time resolution to handle it.
+Since there is no inline-format supported, you must define each module in a separate file. Browser engines have a default module loader (overridable) that synchronously loads a module file when imported.
+To import a specific member, you would use the syntax: import boundVarName from "moduleFileName";
+To load an entire module, you would use the syntax: module boundModuleName from "moduleFileName";
+To avail a module or its specific members to be accessible and loaded externally using the import or module keywords, its identifiers would need to exported internally using the export keyword.
+The import keyword imports one or more members from a module's API into the current scope, each to a bound variable. The module keyword does the same for an entire module API.
+The contents inside the module file are treated as an enclosed scope closure, just like the previously seen function-closure modules.
