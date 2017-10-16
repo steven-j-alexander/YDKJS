@@ -225,3 +225,7 @@ To load an entire module, you would use the syntax: module boundModuleName from 
 To avail a module or its specific members to be accessible and loaded externally using the import or module keywords, its identifiers would need to exported internally using the export keyword.
 The import keyword imports one or more members from a module's API into the current scope, each to a bound variable. The module keyword does the same for an entire module API.
 The contents inside the module file are treated as an enclosed scope closure, just like the previously seen function-closure modules.
+
+-Review-
+Closure is when a function can recall its lexical scope even when invoked outside of its lexical scope.
+Closure requires an outer wrapping function to be invoked to create the enclosing scope and the return value of that wrapping function must reference at least one inner function that would then have closure over the private inner scope of the wrapper.
