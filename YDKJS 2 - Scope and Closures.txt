@@ -244,3 +244,17 @@ The 'this' keyword is also run-time, but cares how a function was called.
 Polyfilling Block Scope
 
 If you want to use block-scoping in pre-ES6 environments, you can use try/catch to forcibly throw an error by passing your undefined variable identifier to catch, call that variable, and have the try throw an error value equal to that which you want to assign to your undefined variable. It will do so while keeping that variable enclosed in the try/catch block scope, essentially allowing this to be used as a polyfill for the ES6 block-scoping funtionality using the let keyword. This is a way that a transpiler can take ES6 code and produce something usable in a pre-ES6 environment when deployed.
+
+-Traceur-
+Traceur is a Google-maintained transpiler that is an example of a tool that will convert your ES6 let block-scope syntax into try/catch style pre-ES6 snippets.
+
+-Implicit vs. Explicit Blocks-
+
+let blocks/statements allow you to explicitly create a block to bind let to, rather than implicitly hijacking the block enclosing the let variable. This makes its scope more explicitly readable and generally easier to refactor, forcing all declarations to the top of the block like so:
+
+let (a = 2) {
+	console.log( a ); // 2
+}
+
+This mirrors the approach used in function-scoping patterns where all var declarations are manually moved/hoisted to the top of the function. This makes block-scoping definitions easier to define and maintain.
+let blocks are not natively supported in ES6 or with transpilation tools such as Traceur. You can either go back to using blocks and write more disciplined ES6-valid code, ensuring your let declarations are kept at the top of the block, or you can use the tool that the book author craftily plugged called let-er, which will transpile let blocks into valid pre-ES6 or ES6 code, depending on how it's configured.
