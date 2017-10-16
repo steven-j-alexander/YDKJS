@@ -240,3 +240,7 @@ Lexical scope: Write-time. Scope hierarchy is determined by where a function was
 Dynamic scope: Run-time. Scope hierarchy is determined by where a function was executed/called from, tracing its way back up the call stack and its series of jumps into and across various scopes.
 The 'this' keyword is also run-time, but cares how a function was called.
 
+===========================================Appendix B===========================================
+Polyfilling Block Scope
+
+If you want to use block-scoping in pre-ES6 environments, you can use try/catch to forcibly throw an error by passing your undefined variable identifier to catch, call that variable, and have the try throw an error value equal to that which you want to assign to your undefined variable. It will do so while keeping that variable enclosed in the try/catch block scope, essentially allowing this to be used as a polyfill for the ES6 block-scoping funtionality using the let keyword. This is a way that a transpiler can take ES6 code and produce something usable in a pre-ES6 environment when deployed.
