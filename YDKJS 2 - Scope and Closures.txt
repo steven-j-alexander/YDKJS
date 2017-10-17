@@ -261,3 +261,8 @@ let blocks are not natively supported in ES6 or with transpilation tools such as
 
 -Performance-
 According the the author, the performance of try/catch is currently slower than just using an IIFE, but it may not necessarily remain that way. The official TC-39-approved ES6 transpiler uses try/catch, and the Traceur team has asked Google to improve its performance in Chrome, so there is a strong motivation for this to change. It's also not a 1:1 comparison, seeing that using an IIFE would change the meaning of that code to some degrees when using keywords such as this, return, break, and continue. It could only be used manually in certain cases.
+
+===========================================Appendix C===========================================
+Lexical-this
+
+ES6 includes the ability to use arrow functions, which introduces a new behavior called lexical-this that changes the way the 'this' keyword binds. Instead of the usual 'this' binding rules, scopes will automatically take on the 'this' keyword of its immediately enclosing lexical scope. While this makes for shorter code, the author opines that adding lexical scoping rules to the 'this' keyword confounds the point of using it in the first place, recommending the avoidance of fat arrow functions along with the continued use of the old bind method in order to avoid this confusion and to avoid the pitfalls of using anonymous functions.
