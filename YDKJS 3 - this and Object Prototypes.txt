@@ -1,0 +1,6 @@
+===========================================Chapter 1===========================================
+this Or That?
+
+-Why this?-
+The 'this' keyword allows functions to be reused against multi-context objects, instead of needing a separate function for each object.
+The 'this' mechanism provides an elegant way to implicitly pass an object reference, which leads to cleaner and more reusable API design. Passing along parameters in increasingly complex usage patterns becomes cumbersome and messier than simply passing things through the 'this' context.
