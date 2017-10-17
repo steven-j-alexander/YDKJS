@@ -4,3 +4,11 @@ this Or That?
 -Why this?-
 The 'this' keyword allows functions to be reused against multi-context objects, instead of needing a separate function for each object.
 The 'this' mechanism provides an elegant way to implicitly pass an object reference, which leads to cleaner and more reusable API design. Passing along parameters in increasingly complex usage patterns becomes cumbersome and messier than simply passing things through the 'this' context.
+
+-Confusions: Itself-
+'this' does not refer to or root in the enclosing function itself.
+You can add a property to a function but using 'this' to access a property of the same name will not necessarily refer to that function object.
+Devs who fail to understand the 'this' keyword often fall back onto lexical scope at this point and just create a new object.
+If you need to access a function's object, you can use a named function and refer to it using its identifier.
+Do not use anonymous functions if they will be referring to themselves. There is an arguments.callee reference that was used in anonymous functions, but it is now deprecated. Use a named function expression instead.
+To use 'this' in such a situation, you would force 'this' to point to the function object using the call() method on the function, which executes the function while allowing you to provide a value to 'this' (in this case, the function you want to refer to).
