@@ -12,3 +12,7 @@ Devs who fail to understand the 'this' keyword often fall back onto lexical scop
 If you need to access a function's object, you can use a named function and refer to it using its identifier.
 Do not use anonymous functions if they will be referring to themselves. There is an arguments.callee reference that was used in anonymous functions, but it is now deprecated. Use a named function expression instead.
 To use 'this' in such a situation, you would force 'this' to point to the function object using the call() method on the function, which executes the function while allowing you to provide a value to 'this' (in this case, the function you want to refer to).
+
+-Confusions: Its Scope-
+'this' does not in any way refer to a functions lexical scope. While internally, scope is sort of like an object with properties of each available identifier, this is only accessible to the JS engine itself, and not the code.
+You cannot bridge two scopes together by invoking one from the other leading with the 'this' keyword.
