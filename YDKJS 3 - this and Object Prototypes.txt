@@ -16,3 +16,8 @@ To use 'this' in such a situation, you would force 'this' to point to the functi
 -Confusions: Its Scope-
 'this' does not in any way refer to a functions lexical scope. While internally, scope is sort of like an object with properties of each available identifier, this is only accessible to the JS engine itself, and not the code.
 You cannot bridge two scopes together by invoking one from the other leading with the 'this' keyword.
+
+-What's this?-
+'this' is a run-time binding, rather than an author-time binding. It has everything to do with how a function is called.
+When you invoke a function, an activation record (or execution context) is created. It contains info on where the function was called from (the call-stack), how it was invoked, what parameters were passed, etc. One of the properties of this record is the 'this' reference that will be used for the duration of that function's execution.
+Finding a function's call-site will determine how its execution will bind 'this'.
