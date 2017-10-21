@@ -1,5 +1,5 @@
 ===========================================Chapter 1===========================================
-this Or That?
+'this' Or That?
 
 -Why this?-
 The 'this' keyword allows functions to be reused against multi-context objects, instead of needing a separate function for each object.
@@ -21,3 +21,11 @@ You cannot bridge two scopes together by invoking one from the other leading wit
 'this' is a run-time binding, rather than an author-time binding. It has everything to do with how a function is called.
 When you invoke a function, an activation record (or execution context) is created. It contains info on where the function was called from (the call-stack), how it was invoked, what parameters were passed, etc. One of the properties of this record is the 'this' reference that will be used for the duration of that function's execution.
 Finding a function's call-site will determine how its execution will bind 'this'.
+
+===========================================Chapter 2===========================================
+'this' All Makes Sense Now!
+
+-Call-site-
+The call-stack is essentially the chain of functions called in order to get to whatever location your code is currently at in execution.
+The call-site is the location (function or global) in which the function you have currently stepped into was invoked.
+You can use a JS debugger in your browser by setting a breakpoint at the beginning of a function or insert a 'debugger;' statement in the same location to cause the debugger to pause and show you the call-site/stack for each invocation of that function when the code is executed.
