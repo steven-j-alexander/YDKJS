@@ -29,3 +29,10 @@ Finding a function's call-site will determine how its execution will bind 'this'
 The call-stack is essentially the chain of functions called in order to get to whatever location your code is currently at in execution.
 The call-site is the location (function or global) in which the function you have currently stepped into was invoked.
 You can use a JS debugger in your browser by setting a breakpoint at the beginning of a function or insert a 'debugger;' statement in the same location to cause the debugger to pause and show you the call-site/stack for each invocation of that function when the code is executed.
+
+-Nothing But Rules: Default Binding-
+Variables declared in global scope are synonymous with global-object properties of the same name.
+The default binding applies to the function call, so if the function was called from global, then 'this' would point to the global object.
+When a function is called with a plain, undecorated function reference, default binding is the only type that would apply.
+In strict mode, the global object is not eligible for default binding. 'this' would be set to undefined in a function with a global call-site. This would only apply if your function contents were set to strict mode. The state of the call-site is irrelevant.
+Author opines that you should not mix non-strict with strict mode, although sometimes this is unavoidable due to the inclusion of third-party libraries.
