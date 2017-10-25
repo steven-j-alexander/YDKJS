@@ -36,3 +36,9 @@ The default binding applies to the function call, so if the function was called 
 When a function is called with a plain, undecorated function reference, default binding is the only type that would apply.
 In strict mode, the global object is not eligible for default binding. 'this' would be set to undefined in a function with a global call-site. This would only apply if your function contents were set to strict mode. The state of the call-site is irrelevant.
 Author opines that you should not mix non-strict with strict mode, although sometimes this is unavoidable due to the inclusion of third-party libraries.
+
+-Implicit Binding-
+If the call-site has a context object (an object reference precedes the function call), you could say the context 'owns' or 'contains' the function reference at the time the function is called.
+The implicit binding rule demands that the context object is what should be used for the function call's 'this' binding.
+'this.a' would be synonymous with 'obj.a'
+Only the last or top level of the object reference property chain matters to the call-site when determining what should be used for the 'this' binding.
