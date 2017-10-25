@@ -65,3 +65,14 @@ In ES6, any function produced by the bind(..) method should have a .name propert
 -API Call "Contexts"-
 Many library functions and new built-in JS functions provide a parameter, usually called "context", that is designed as a work-around to using bind(..).
 Internally, these functions most likely use call(..) or apply(..) to explicitly bind behind the scenes to ensure a callback function uses a specified 'this'.
+
+-'new' Binding-
+The code pattern to use the 'new' operator in JS looks pretty much identical to the way it would be used in a class-oriented language, which would call the constructor for a newly instantiated class. However, JS does not have any connection to class-oriented functionality when using 'new'.
+In JS, a constructor is basically just a function that is called with a 'new' operator in front of it. They are not attached to nor do they instantiate a class. They are regular functions that are hijacked by the use of 'new' in their invocation.
+Pretty much any function, including built-in ones such as Number(..) can be called with 'new' in front of it, and that makes the function call a constructor call. There is no such thing as a constructor function, only a constructor call of a function.
+When you invoke a function with new in front of it, also known as invoking a constructor call: 
+	1. A brand new object is created (constructed), initialized by the function you called. 
+	2. The newly-constructed object is [[Prototype]]-linked. 
+	3. The newly-constructed object is set as the 'this' binding for that function call. 
+	4. Unless the function returns its own alternate object, the 'new'-invoked function call will automatically return the newly-constructed object.
+'new' is the final way that a function's 'this' can be bound, hence the name of 'new' binding'.
