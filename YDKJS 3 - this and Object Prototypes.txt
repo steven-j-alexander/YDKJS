@@ -47,3 +47,10 @@ Only the last or top level of the object reference property chain matters to the
 If you create a new reference to the previous function call that is preceded by an object reference and then call that reference in a plain, undecorated fashion, default binding rules will apply. This is because the new reference is really just another reference to the function call itself. The call-site is what matters, so if it's simply a global, undecorated function call, you would have a value of global or undefined bound to that function's 'this' value, depending on your strict mode settings.
 The same rule applies when passing a callback function. The preceding object reference in the passed function is essentially stripped out. Parameter passing is just an implicit assignment, so passing a function is an implicit reference assignment.
 Another way 'this' can be of surprise is when functions you've passed your callback to intentionally change the 'this' reference for the call. Event handlers in popular JS libraries will frequently force your callback to have a 'this' which points to something such as the DOM element that triggered the event.
+
+-Explicit Binding-
+Explicit binding allows you to force a function call to use a specific object for the 'this' binding without putting a property reference on the object, like you would do with implicit binding.
+The vast majority of functions have some utilities made available to them via their [[Prototype]] that can be useful for this, specifically the call(..) and apply(..) methods. Both of these methods take an object to use for 'this' as their first parameter, and then invoke it using the specified 'this'. This is an example of explicit binding.
+If you pass a primitive value of type 'string', 'boolean', or 'number' as the 'this' binding, the primitive value is wrapped in its object form (new String(..), new Boolean(..), etc). This is commonly referred to as "boxing".
+'call' and 'apply' are identical in respect to 'this' binding, although they do behave differently with their additional parameters.
+
