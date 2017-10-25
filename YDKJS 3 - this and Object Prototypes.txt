@@ -61,3 +61,7 @@ The most common way to wrap a function with a hard binding is to use the apply m
 Another way to express the hard binding pattern is to create a re-usable helper. This helper function would take both the function to be bound and the object to bind as parameters and would return a function that would bind them together and pass any additional arguments provided using the apply method. You'd then assign this bind function to a var and pass any of your additional arguments when you call that function.
 This feature is actually a built-in method in ES5 as bind(..), which returns a new function that is hard-coded to call the original function using whatever object parameter you passed as the 'this' context.
 In ES6, any function produced by the bind(..) method should have a .name property that provides you the original target function. For example, `bar = foo.bind` would result in bar.name giving a value of "bound foo".
+
+-API Call "Contexts"-
+Many library functions and new built-in JS functions provide a parameter, usually called "context", that is designed as a work-around to using bind(..).
+Internally, these functions most likely use call(..) or apply(..) to explicitly bind behind the scenes to ensure a callback function uses a specified 'this'.
