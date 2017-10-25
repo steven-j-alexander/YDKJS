@@ -84,3 +84,10 @@ Explicit binding always takes precedence over implicit binding.
 'new' and call/apply cannot be used together, but you can use hard binding to (less directly) test explicit binding against 'new' binding.
 Recall that hard binding uses Function.prototype.bind(..) to create a new wrapper function that eschews its own 'this' binding in exchange for one that is manually provided.
 The prototype bind(..) function has code built into it that gives 'new' binding more precedence over explicit binding. This is useful because you can still use the capability of bind(..) to pass arguments after the first 'this'-binding argument that will then be defaulted as standard arguments to the underlying function, while ignoring the 'this' hard-binding. This technique is called "partial application", which is a subset of "currying".
+
+-Determining 'this'-
+1. Is the function called with the 'new'? If so, 'this' is the newly constructed object (new binding).
+2. Is the function called with the 'call' or 'apply' methods, or hidden inside a 'bind' hard binding? If so, 'this' is an explicitly specified object (explicit binding).
+3. Is the function called with a context, otherwise known as an owning or containing (or preceding) object? If so, 'this' is that context object (implicit binding).
+4. Otherwise, default the 'this'. If in strict mode, it will be undefined. If in non-strict mode, 'this' will be the global object.
+
