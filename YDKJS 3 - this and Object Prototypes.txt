@@ -76,3 +76,11 @@ When you invoke a function with new in front of it, also known as invoking a con
 	3. The newly-constructed object is set as the 'this' binding for that function call. 
 	4. Unless the function returns its own alternate object, the 'new'-invoked function call will automatically return the newly-constructed object.
 'new' is the final way that a function's 'this' can be bound, hence the name of 'new' binding'.
+
+-Everything In Order-
+When dealing with a situation where multiple rules are applied, default binding is the lowest-priority rule of the four bindings.
+Explicit binding always takes precedence over implicit binding.
+'new' binding is more precedent than implicit binding.
+'new' and call/apply cannot be used together, but you can use hard binding to (less directly) test explicit binding against 'new' binding.
+Recall that hard binding uses Function.prototype.bind(..) to create a new wrapper function that eschews its own 'this' binding in exchange for one that is manually provided.
+The prototype bind(..) function has code built into it that gives 'new' binding more precedence over explicit binding. This is useful because you can still use the capability of bind(..) to pass arguments after the first 'this'-binding argument that will then be defaulted as standard arguments to the underlying function, while ignoring the 'this' hard-binding. This technique is called "partial application", which is a subset of "currying".
