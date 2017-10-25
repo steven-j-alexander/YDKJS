@@ -91,3 +91,8 @@ The prototype bind(..) function has code built into it that gives 'new' binding 
 3. Is the function called with a context, otherwise known as an owning or containing (or preceding) object? If so, 'this' is that context object (implicit binding).
 4. Otherwise, default the 'this'. If in strict mode, it will be undefined. If in non-strict mode, 'this' will be the global object.
 
+-Binding Exceptions: Ignored 'this'-
+There are some exceptions to the above rules that will result with the default binding rule being applied unexpectedly.
+If you pass null or undefined as a 'this' binding parameter to the call/apply/bind methods, those values will be ignored and default binding rules will apply. This is sometimes used as the apply method is commonly used to spread out arrays of values as parameters to a function call. bind(..) can also curry out values as parameters in a similar fashion. 'null' works as a placeholder value in these applications where changing the 'this' binding is inconsequential.
+ES6 now uses the spread operator '...' which allow you to syntactically spread out an array as parameters without the need for the more generalized apply(..) method. There is still no ES6 substitute for currying with the bind(..) method, so this still needs to be kept in mind.
+The downside to passing null to these methods as a 'this' binding is that if it gets passed to a function (for example a third-party library function that you don't understand or is subject to change) and it does make a 'this' reference, the default binding rule means it may inadvertently reference (or even mutate) the global object (which is window in the browser).
