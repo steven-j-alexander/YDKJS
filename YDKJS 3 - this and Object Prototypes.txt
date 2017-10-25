@@ -54,3 +54,10 @@ The vast majority of functions have some utilities made available to them via th
 If you pass a primitive value of type 'string', 'boolean', or 'number' as the 'this' binding, the primitive value is wrapped in its object form (new String(..), new Boolean(..), etc). This is commonly referred to as "boxing".
 'call' and 'apply' are identical in respect to 'this' binding, although they do behave differently with their additional parameters.
 
+-Hard Binding-
+Explicit binding alone does not address the previous issue of a function losing its intended 'this' binding, being superceded by a framework, etc, but the hard binding variation of explicit binding does take care of this.
+To hard bind, you create a function that forcibly invokes your target function using the call(..) or apply(..) method, explicitly binding its 'this' keyword to the object you specify. No matter how you later invoke the containing function, it will always manually invoke your target function with the object you specified bound to 'this'. This is called hard binding, which is both explicit and robust.
+The most common way to wrap a function with a hard binding is to use the apply method to create a pass-thru of any received value: (apply( obj, arguments ))
+Another way to express the hard binding pattern is to create a re-usable helper. This helper function would take both the function to be bound and the object to bind as parameters and would return a function that would bind them together and pass any additional arguments provided using the apply method. You'd then assign this bind function to a var and pass any of your additional arguments when you call that function.
+This feature is actually a built-in method in ES5 as bind(..), which returns a new function that is hard-coded to call the original function using whatever object parameter you passed as the 'this' context.
+In ES6, any function produced by the bind(..) method should have a .name property that provides you the original target function. For example, `bar = foo.bind` would result in bar.name giving a value of "bound foo".
