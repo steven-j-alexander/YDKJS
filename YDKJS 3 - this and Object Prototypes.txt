@@ -101,3 +101,7 @@ The downside to passing null to these methods as a 'this' binding is that if it 
 A better alternative to passing 'null' as a this binding in scenarios that require these methods is to instead create an empty, non-delegated, placeholder object and pass that, circumventing any potential problematic side-effects that could have happened upon the global object.
 Author names this object with the lowercase mathematical symbol for an empty set (ø) which can be entered in Windows by typing ALT+0248. It also stylistically conveys "I want this empty" better than just using 'null'.
 The easiest way to set the object up as totally empty is by using Object.create(null), which is similar to { }, but without the delegation to Object.prototype, essentially making it "more empty" than { }.
+
+-Indirection-
+It is possible to create "indirect references" to functions, which then result in default binding rules being applied when that function is invoked.
+One way an indirect reference might be made is with an assignment expression that assigns implicitly bound function to another implicitly bound function. This would result in value that is just a reference to the underlying function object, giving it a plain, undecorated call-site, which would utilize default binding rules.
