@@ -170,3 +170,9 @@ Functions with `this` references referring to the object reference at the call-s
 Even if you access a property and receive a function in return, that still qualifies as "property access", rather than "method access", as they are only associated by reference.
 Because of this, "function" and "method" are probably interchangeable in JavaScript.
 ES6 adds the `super` reference which is typically going to be used with `class`. It uses static binding rather than using the traditional `this`, and gives nuance that a `super`-bound function is more method than function, but this is again a matter of debatable semantics.
+
+-Arrays-
+Arrays assume numeric indexing, which means values are stored in locations, called indices, at non-negative integers.
+Arrays are objects, which means that even though each index is a positive integer, you can still add properties onto the array. Doing so will not change the reported length of the array.
+You could add properties onto an array and never add any numeric indices, although you might as well use objects since arrays have special behaviors and optimizations specific to their purpose, just as plain objects do.
+Be aware that when adding a property to an array with a name that resembles a number, the property value will instead end up being appended at the numeric index specified in the property name.
