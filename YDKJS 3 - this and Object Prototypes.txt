@@ -134,3 +134,9 @@ Objects
 Objects come in the declarative (literal) form and the constructed form. Both of these result in the same sort of object, with the only difference being that you can add multiple key/value pairs at once using the literal form, whereas you have to add properties individually when using the constructed form.
 It's extremely uncommon to use the constructed form. You pretty much always want to use literal syntax. The same applies for built-in objects.
 
+-Type-
+Objects are one of 6 of the primary JS types (called "language types" in the specification), which also includes string, number, boolean, null, and undefined.
+The simple primitives (the 5 other primary language types) are not themselves objects. `null` is sometimes referred to as an object type, but this is a misconception based on a bug in the language that causes `typeof null` to return a string "object" incorrectly. `null` is its own primitive type.
+Everything in JavaScript is not an object.
+There are a few special object sub-types, which will be referred to as "complex primitives". `function` is a sub-type that is technically a "callable object". Functions are said to be "first class" in JS, which means they are basically just normal, primary objects with the callable behavior semantics added on. They can be handled like any other regular object.
+Arrays are also a form of object, with additional behaviors. The organization is slightly more structured than that of a regular object.
