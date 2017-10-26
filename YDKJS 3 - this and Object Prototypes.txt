@@ -140,3 +140,15 @@ The simple primitives (the 5 other primary language types) are not themselves ob
 Everything in JavaScript is not an object.
 There are a few special object sub-types, which will be referred to as "complex primitives". `function` is a sub-type that is technically a "callable object". Functions are said to be "first class" in JS, which means they are basically just normal, primary objects with the callable behavior semantics added on. They can be handled like any other regular object.
 Arrays are also a form of object, with additional behaviors. The organization is slightly more structured than that of a regular object.
+
+-Built-in Objects-
+There are other object subtypes referred to as built-in objects. The relationship of the ones that share a name with their primitives is one of complexity and less-than-direct relation: String, Number, Boolean, Object, Function, Array, Date, RegExp, Error.
+They have the appearance of being actual types or even classes if you compare them to other languages, but in JS, they are simply built-in functions. Each of them can be used as a constructor (a function call with a `new` operator), resulting in a newly-constructed object of the sub-type specified.
+So basically, the built-in objects are object subtypes that construct the primitive or sub-type that their name refers to.
+A string value such as "this is a string" is not an object but in fact a primitive literal and immutable value. To perform operations on it, such as checking its length, accessing individual characters, etc., you would do this via a String object.
+The language automatically coerces a string primitive to a String object when necessary, meaning you almost never have to explicity create the built-in Object form. The majority strongly prefer to use the literal form for a value, allowing for implicit coercion over using the explicit constructed form. You can simply call a property or method on a string primitive and have it automatically coerce to a String object so that the property/method access works.
+The same coercion occurs between the other literal primitives and their object wrappers.
+`null` and `undefined` have no object wrappers, only primitive values.
+`Date` values can only be created with their constructed object form, as they have no literal counterpart.
+`Object`, `Array`, `Function`, and `RegExp` only exist as objects whether referred to in literal or constructed form. While the constructed form does offer more options in way of object creation, the simpler literal form is almost universally preferred. Only use the constructed form if you need these extra options.
+`Error` objects are rarely created explicitly in code. They can be created with the constructed form `new Error(..)`, but this is not usually necessary.
