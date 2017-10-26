@@ -105,3 +105,7 @@ The easiest way to set the object up as totally empty is by using Object.create(
 -Indirection-
 It is possible to create "indirect references" to functions, which then result in default binding rules being applied when that function is invoked.
 One way an indirect reference might be made is with an assignment expression that assigns implicitly bound function to another implicitly bound function. This would result in value that is just a reference to the underlying function object, giving it a plain, undecorated call-site, which would utilize default binding rules.
+
+-Softening Binding-
+While hard binding prevents a function call from falling back to default binding (unless you use the 'new' operator), it reduces the flexibility of a function by preventing the use implicit or explicit overrides.
+One way around this restriction is to construct a custom soft binding utility that allows you to set a different default instead of the usual global/undefined, while also allowing manual binding via the explicit and implicit binding techniques. You would wrap your specified function in logic that checks 'this' at call-time, check for global/undefined, and if found, replace it with a pre-defined default object. Otherwise, 'this' would be left untouched. You could also include the same currying functionality that is offered with bind(..).
