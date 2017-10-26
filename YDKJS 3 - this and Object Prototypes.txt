@@ -117,3 +117,12 @@ The lexical binding of an arrow-function can not be overridden, even by 'new'.
 Arrow functions will most commonly be used in callbacks such as timers and event handlers.
 A pre-ES6 pattern used to disable the traditional `this` mechanism in favor of lexical scoping was to create a variable reference to `this` in the enclosing function, and then using that variable in place of any `this` reference within your enclosed function.
 Author opines that it's best not to mix lexical and `this` mechanisms in the same functions or even types of look-ups.
+
+-Review-
+Determining `this` binding:
+1. Called with `new`? Use the newly constructed object.
+2. Called with `call` or `apply`? Use the object specified.
+3. Called with context object owning the call? Use the specified context object.
+4. Default is `undefined` in strict mode, otherwise global object.
+Beware of unintentionally invoking the default binding rule. To safely ignore a `this` binding, you can create a DMZ-like object (ø = Object.create(null)) as a placeholder value to protect global from unintended misuse.
+ES6 arrow functions throw traditional `this` binding rules out the window in favor of lexical scoping rules, adopting `this` binding from the enclosing function call. They are a replacement of the `self = this` trick used in pre-ES6 coding.
