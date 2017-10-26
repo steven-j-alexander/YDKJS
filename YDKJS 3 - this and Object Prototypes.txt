@@ -188,5 +188,10 @@ Special characteristics on a property, like `writeable`, are not preserved using
 -Property Descriptors-
 As of ES5, all properties are described in terms of a property descriptor. To get the property descriptor, you use Object.getOwnPropertyDescriptor( myObj, key );
 A property descriptor that is only for holding a data value is called a data descriptor.
-Other than the value, property descriptors also contain three other characteristics, `writeable`, `enumerable`, and `configurable`.
+Other than the value, property descriptors also contain three other characteristics, `writable`, `enumerable`, and `configurable`.
 You can use Object.defineProperty(..) to add a new property or modify existing ones (if `configurable`). You normally wouldn't manually add a property in this way unless you wanted to modify one of its descriptor characteristics differently than normal.
+
+-Writable-
+`writable` is the ability to change a property.
+If you attempt to modify a non-writable property in strict mode, a TypeError will be thrown. In non-strict mode, the change will just silently fail.
+`writable:false` is somewhat equivelent to if you defined a no-op setter, but would need to throw a TypeError when called to be conformant to `writeable:false`.
