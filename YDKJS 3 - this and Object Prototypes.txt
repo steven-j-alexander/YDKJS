@@ -152,3 +152,9 @@ The same coercion occurs between the other literal primitives and their object w
 `Date` values can only be created with their constructed object form, as they have no literal counterpart.
 `Object`, `Array`, `Function`, and `RegExp` only exist as objects whether referred to in literal or constructed form. While the constructed form does offer more options in way of object creation, the simpler literal form is almost universally preferred. Only use the constructed form if you need these extra options.
 `Error` objects are rarely created explicitly in code. They can be created with the constructed form `new Error(..)`, but this is not usually necessary.
+
+-Contents-
+The contents of objects are not necessarily stored inside the object itself, as the engine stores values in implementation-dependent ways in which they may not store them inside of an object container. The property names are stored in their respective objects, which act as pointers (or references, technically) to where the values are stored.
+To access a location in an object, you need to either use the . operator (this syntax commonly referred to as property access) or the [ ] operator (commonly referred to as key access).
+The `.` operator requires an Identifier-compatible property name after it, whereas the `[".."]` syntax can basically take any UTF-8/unicode-compatible string as the property name, so you would have to use the latter syntax if the property name had extraneous characters that were not acceptable as an Identifier property name.
+Using any value other than a string in a property name will result in an attempt to implicitly coerce the value into a string primitive. This can be used to your advantage as you can feed a variable as a key, but it can also cause problems if you for instance confuse using a number as an index (like you would with an array) instead of as a string value.
