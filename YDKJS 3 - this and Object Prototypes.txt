@@ -126,3 +126,11 @@ Determining `this` binding:
 4. Default is `undefined` in strict mode, otherwise global object.
 Beware of unintentionally invoking the default binding rule. To safely ignore a `this` binding, you can create a DMZ-like object (ø = Object.create(null)) as a placeholder value to protect global from unintended misuse.
 ES6 arrow functions throw traditional `this` binding rules out the window in favor of lexical scoping rules, adopting `this` binding from the enclosing function call. They are a replacement of the `self = this` trick used in pre-ES6 coding.
+
+===========================================Chapter 3===========================================
+Objects
+
+-Syntax-
+Objects come in the declarative (literal) form and the constructed form. Both of these result in the same sort of object, with the only difference being that you can add multiple key/value pairs at once using the literal form, whereas you have to add properties individually when using the constructed form.
+It's extremely uncommon to use the constructed form. You pretty much always want to use literal syntax. The same applies for built-in objects.
+
