@@ -109,3 +109,11 @@ One way an indirect reference might be made is with an assignment expression tha
 -Softening Binding-
 While hard binding prevents a function call from falling back to default binding (unless you use the 'new' operator), it reduces the flexibility of a function by preventing the use implicit or explicit overrides.
 One way around this restriction is to construct a custom soft binding utility that allows you to set a different default instead of the usual global/undefined, while also allowing manual binding via the explicit and implicit binding techniques. You would wrap your specified function in logic that checks 'this' at call-time, check for global/undefined, and if found, replace it with a pre-defined default object. Otherwise, 'this' would be left untouched. You could also include the same currying functionality that is offered with bind(..).
+
+-Lexical 'this'-
+ES6 introduces a new special type of function that does not follow the previous 4 binding rules that were covered: The arrow function.
+Arrow functions lexically adopt the binding of the enclosing (function or global) scope created at call-time and bind it to 'this'.
+The lexical binding of an arrow-function can not be overridden, even by 'new'.
+Arrow functions will most commonly be used in callbacks such as timers and event handlers.
+A pre-ES6 pattern used to disable the traditional `this` mechanism in favor of lexical scoping was to create a variable reference to `this` in the enclosing function, and then using that variable in place of any `this` reference within your enclosed function.
+Author opines that it's best not to mix lexical and `this` mechanisms in the same functions or even types of look-ups.
