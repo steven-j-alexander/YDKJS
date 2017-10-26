@@ -163,3 +163,10 @@ Using any value other than a string in a property name will result in an attempt
 While you can easily use the myObj[..] property-access syntax to easily use a computed expression value as a key name, it doesn't provide any utility in the declaration of objects using object-literal syntax.
 With ES6, you can now utilize computed property names, which allow you to specify an expression, using brackets [ ] to surround it, in place of the key name in an object-literal declaration.
 The most common usage will likely be for the new ES6 Symbols, which are a new primitive data type likely described in the ES6 book.
+
+-Property vs. Method-
+In JS, functions never "belong" to objects, so a function that is accessed on an object reference isn't really automatically a method. It's easy to think otherwise, as in other languages, functions which belong to objects (classes), are referred to as methods.
+Functions with `this` references referring to the object reference at the call-site are not any more a "method" than any other function, as `this` is dynamically bound at run-time, at the call-site. Its relationship to the object is fairly indirect.
+Even if you access a property and receive a function in return, that still qualifies as "property access", rather than "method access", as they are only associated by reference.
+Because of this, "function" and "method" are probably interchangeable in JavaScript.
+ES6 adds the `super` reference which is typically going to be used with `class`. It uses static binding rather than using the traditional `this`, and gives nuance that a `super`-bound function is more method than function, but this is again a matter of debatable semantics.
