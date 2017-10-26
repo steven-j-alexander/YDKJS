@@ -195,3 +195,9 @@ You can use Object.defineProperty(..) to add a new property or modify existing o
 `writable` is the ability to change a property.
 If you attempt to modify a non-writable property in strict mode, a TypeError will be thrown. In non-strict mode, the change will just silently fail.
 `writable:false` is somewhat equivelent to if you defined a no-op setter, but would need to throw a TypeError when called to be conformant to `writeable:false`.
+
+-Configurable-
+If a property is not currently configurable, you will not be able to modify its descriptor definition using the Object.defineProperty(..) utility. Any attempt to do so will throw a TypeError, regardless of strict mode settings. The only exception is that writable can be changed from true to false without error (does not apply for changing it from false to true).
+Setting a property to be non-configurable is a one-way action that cannot be undone.
+`configurable:false` also prevents the ability to use the `delete` operator to remove the property. An attempt to delete in this situation will silently fail in non-strict mode and throw a TypeError in strict mode.
+If an object property is the last remaining reference to an object, and you `delete` it, the now unreferenced object can be garbage collected. According to author, it is not proper to think of `delete` as a memory-freeing tool, as it is in other languages, but rather a simple object property removal operation.
