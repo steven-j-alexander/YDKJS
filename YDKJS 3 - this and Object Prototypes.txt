@@ -205,3 +205,7 @@ If an object property is the last remaining reference to an object, and you `del
 -Enumerable-
 This property characteristic determines whether a property will show up in particular object-property enumerations, such as `for..in` loops.
 All user-defined properties are defaulted to `enumerable`.
+
+-Immutability-
+ES5 adds support for making objects and properties immutable. All of the approaches availed create shallow immutability, only affecting the object and its direct property characteristics. The contents of references to other objects will remain mutable.
+According to author, it is not common to create deep immutable objects in JS, and not advisable as a heavy-use design pattern.
