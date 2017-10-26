@@ -184,3 +184,9 @@ Various JS frameworks interpret this problem differently and implement their own
 One solution is that ensure your object is JSON-safe (can be serialized to a JSON string and re-parsed to an object with the same structure and values), which is not always easy to do.
 Because a shallow copy is easier to understand and less issue-prone, ES6 has introduced Object.assign(..). Object.assign(..) takes a target as its first parameter, and one or multiple sources for the following parameters. It iterates through all enumerable, owned keys (immediately present), and copies them via = assignment to target, and then returns that target.
 Special characteristics on a property, like `writeable`, are not preserved using the shallow `=`-style assignment of Object.assign(..).
+
+-Property Descriptors-
+As of ES5, all properties are described in terms of a property descriptor. To get the property descriptor, you use Object.getOwnPropertyDescriptor( myObj, key );
+A property descriptor that is only for holding a data value is called a data descriptor.
+Other than the value, property descriptors also contain three other characteristics, `writeable`, `enumerable`, and `configurable`.
+You can use Object.defineProperty(..) to add a new property or modify existing ones (if `configurable`). You normally wouldn't manually add a property in this way unless you wanted to modify one of its descriptor characteristics differently than normal.
