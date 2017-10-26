@@ -176,3 +176,11 @@ Arrays assume numeric indexing, which means values are stored in locations, call
 Arrays are objects, which means that even though each index is a positive integer, you can still add properties onto the array. Doing so will not change the reported length of the array.
 You could add properties onto an array and never add any numeric indices, although you might as well use objects since arrays have special behaviors and optimizations specific to their purpose, just as plain objects do.
 Be aware that when adding a property to an array with a name that resembles a number, the property value will instead end up being appended at the numeric index specified in the property name.
+
+-Duplicating Objects-
+When copying an object, you want to consider whether you want to create a shallow copy (just a new object, but any object references contained within still reference the same objects) or a deep copy (where the object and all object references contained are copied).
+A problem that could come up is that one of the reference objects points to the main object that referred to it, create an infinite circular reference, causing endless duplication if being deep copied.
+Various JS frameworks interpret this problem differently and implement their own solutions.
+One solution is that ensure your object is JSON-safe (can be serialized to a JSON string and re-parsed to an object with the same structure and values), which is not always easy to do.
+Because a shallow copy is easier to understand and less issue-prone, ES6 has introduced Object.assign(..). Object.assign(..) takes a target as its first parameter, and one or multiple sources for the following parameters. It iterates through all enumerable, owned keys (immediately present), and copies them via = assignment to target, and then returns that target.
+Special characteristics on a property, like `writeable`, are not preserved using the shallow `=`-style assignment of Object.assign(..).
