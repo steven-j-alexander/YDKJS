@@ -228,3 +228,9 @@ You could recursively iterate through an object's references and call Object.fre
 When you access a property via dot or bracket notation, you are not just looking for a property of that name in the object. You are actually performing a [[Get]] operation (sort of like a function call) on the object. 
 By default, the operation first checks the object for a property of that name, and then returns the value if it is found.
 If [[Get]] cannot come up with a value, it instead returns `undefined`. This contrasts variable identifier lookups, which throws a `ReferenceError` instead.
+
+-[[Put]]-
+[[Put]] is the operation for setting a property value.
+[[Put]]'s behavior is based on whether the property it's trying to assign a value to is already present or not.
+If the property is present, [[Put]] will first check if it's an accessor descriptor and call the setter if so. Otherwise, it will check if the property is a data accessor with `writeable:false` and silent error or TypeError based on strict mode settings. If neither of these are applicable, [[Put]] will set the value to the property as usual.
+If the property is not present, [[Put]] undergoes an even more complex series of operations.
