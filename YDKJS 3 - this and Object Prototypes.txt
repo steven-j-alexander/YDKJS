@@ -219,3 +219,7 @@ Attempting to add a property to an object that has extensions prevented will res
 
 -Seal-
 Object.seal(..) does the same thing as Object.preventExtensions(..) but also sets all existing properties to `configurable:false`, preventing the ability to configure or delete them (although you can still modify their values).
+
+-Freeze-
+Object.freeze(..) provides the highest level of immutability for an object, by performing the equivalent of Object.seal(..) upon it, and then additionally setting all 'data accessor' properties as `writable:false` so that their values can't be changed. You cannot change the object or any of its properties. The contents of any referenced objects remain unaffected.
+You could recursively iterate through an object's references and call Object.freeze(..) on each of them to "deep freeze" an object, but you have to be careful not to affect other shared objects you weren't attempting to freeze.
