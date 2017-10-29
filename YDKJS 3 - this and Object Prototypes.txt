@@ -216,3 +216,6 @@ Combining `writable:false` with `configurable:false` turns an object property in
 -Prevent Extensions-
 Call Object.preventExtensions(..) to prevent an object from being able to have new properties added to it, while leaving the rest of the object's properties alone.
 Attempting to add a property to an object that has extensions prevented will result in a TypeError being thrown in strict mode, otherwise the addition will silently fail.
+
+-Seal-
+Object.seal(..) does the same thing as Object.preventExtensions(..) but also sets all existing properties to `configurable:false`, preventing the ability to configure or delete them (although you can still modify their values).
