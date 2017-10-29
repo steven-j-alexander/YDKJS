@@ -212,3 +212,7 @@ According to author, it is not common to create deep immutable objects in JS, an
 
 -Object Constant-
 Combining `writable:false` with `configurable:false` turns an object property into what is essetially an object constant.
+ 
+-Prevent Extensions-
+Call Object.preventExtensions(..) to prevent an object from being able to have new properties added to it, while leaving the rest of the object's properties alone.
+Attempting to add a property to an object that has extensions prevented will result in a TypeError being thrown in strict mode, otherwise the addition will silently fail.
