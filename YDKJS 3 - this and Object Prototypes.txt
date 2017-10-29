@@ -223,3 +223,8 @@ Object.seal(..) does the same thing as Object.preventExtensions(..) but also set
 -Freeze-
 Object.freeze(..) provides the highest level of immutability for an object, by performing the equivalent of Object.seal(..) upon it, and then additionally setting all 'data accessor' properties as `writable:false` so that their values can't be changed. You cannot change the object or any of its properties. The contents of any referenced objects remain unaffected.
 You could recursively iterate through an object's references and call Object.freeze(..) on each of them to "deep freeze" an object, but you have to be careful not to affect other shared objects you weren't attempting to freeze.
+
+-[[Get]]-
+When you access a property via dot or bracket notation, you are not just looking for a property of that name in the object. You are actually performing a [[Get]] operation (sort of like a function call) on the object. 
+By default, the operation first checks the object for a property of that name, and then returns the value if it is found.
+If [[Get]] cannot come up with a value, it instead returns `undefined`. This contrasts variable identifier lookups, which throws a `ReferenceError` instead.
