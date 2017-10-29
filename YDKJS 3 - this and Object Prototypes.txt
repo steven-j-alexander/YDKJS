@@ -234,3 +234,10 @@ If [[Get]] cannot come up with a value, it instead returns `undefined`. This con
 [[Put]]'s behavior is based on whether the property it's trying to assign a value to is already present or not.
 If the property is present, [[Put]] will first check if it's an accessor descriptor and call the setter if so. Otherwise, it will check if the property is a data accessor with `writeable:false` and silent error or TypeError based on strict mode settings. If neither of these are applicable, [[Put]] will set the value to the property as usual.
 If the property is not present, [[Put]] undergoes an even more complex series of operations.
+
+-Getters & Setters-
+The default [[Get]] and [[Put]] operations completely control operations for setting and retrieving property values. They can/may be completely overridden using advanced/future JS capabilities, and partially overridden on a per-property level as of ES5 via the use of getters and setters.
+Getters are properties that call a hidden function to retrieve a value, and setters properties that call a hidden function to set a value.
+Properties become accessor descriptors (instead of a data descriptor) when they have been defined to have a getter/setter/both. The `value` and `writeable` characteristics are ignored, with JS considering the `get`, `set`, `configurable`, and `enumerable` being availed to accessor descriptors.
+You can define a getter property through either object-literal syntax (`get a() {..}' as a property) or explicit definition with Object.defineProperty(..) that, instead of holding a value, will access a hidden getter function that returns a value upon its invocation. Whatever value this function returns will be the result of the property access.
+When you only define a getter with a hardcoded return value for a property, you will be unable to reassign its value, instead having it silently thrown away. Because of this, you should also define a setter as well for each accessor descriptor property in order to override the default [[Put]] operation (the act of assignment).
