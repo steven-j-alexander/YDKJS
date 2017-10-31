@@ -246,3 +246,12 @@ When you only define a getter with a hardcoded return value for a property, you 
 You can see if a property exists without getting its value by using the `in` operator ( `("prop" in myObject)` ). It checks whether the property is "in" the object or at a higher level of the [[Prototype]] chain. It's actually just checking to see if the given property name exists, not for a value itself.
 Another way is using the hasOwnProperty(..) object method, which only checks to see if the property exists in the object referenced. It does not check the [[Prototype]] chain.
 A method call like `myObject.hasOwnProperty(..)` would fail on an object that does not link to `Object.prototype` via `Object.create(null)`. A more thorough way to check is to use `Object.prototype.hasOwnProperty.call(yourObject, "prop")`, which calls the base `hasOwnProperty(..)` method its `this` value bound to your object.
+
+-Enumeration-
+An object property being enumerable essentially means that it will be included if an object's properties are iterated through.
+An NON-enumerable object property exists and has an accessible value and will even show via the `in` operator check, it will not show in a `for..in` loop.
+Using a `for..in` loop on an array produces both the numeric indices as well as any enumerable properties on the array object. For that reason, it is usually best to use traditional `for` loops on arrays, as they stick to numeric index iteration only, and only using `for..in` loops on objects.
+`propertyIsEnumerable(..)` checks if a given property name both exists directly on an object and if that property is `enumerable:true`.
+`Object.keys(..)` returns an array containing all enumerable properties located directly on an object.
+`Object.getOwnPropertyNames(..)` returns an array containing all properties located directly on an object, regardless of their enumerability.
+There is currently no built-in way of iterating through properties on an object up through all levels of the [[Prototype]] chain, in a fashion similar to the way the `in` operator would check an object for a single property, but you can enact such utility by recursively traversing through each [[Prototype]] level in the chain, capturing the `Object.keys(..)`  list each loop, which would pull all enumerable properties from that level.
