@@ -285,3 +285,9 @@ OO/class-oriented programming encapsulates behavior and data together, since dat
 Classes imply a way of classifying a certain data structure, by categorizing a given structure as a specific variation of a more generalized base definition. For example, a `Car` class inheriting (or extending) from a `Vehicle` class.
 Polymorphism is the concept that a child class can override a behavior from its more generalized parent class in order to give it more specifics. Relative polymorphism allows you to reference the base behavior from the overridden behavior.
 Class theory strongly pushes using the same method name for both parent and child classes that share a certain behavior, although doing so in JS is apparently not an easy thing to do.
+
+-"Class" Design Pattern-
+Procedural programming, used by languages such as FORTRAN and BASIC, only consist of procedures (functions) calling other functions, without any higher abstraction. You can write procedural code in pretty much any language, although you end up with the often-dreaded "spaghetti code".
+The use of classes are often recommended as the way to minimize spaghetti code, although with "functional languages" you will find that they are just one of many optional over-arching design patterns.
+Some languages, such as Java, limit you to the confines of class-oriented programming, where design patterns are subservient to the class structure.
+Other languages, such as C/C++ and PHP, provide both procedural and class-oriented options, giving developers a choice as to the mixture of style they would like to use.
