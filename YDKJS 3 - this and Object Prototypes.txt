@@ -365,8 +365,12 @@ Prototypes
 
 All attempts to emulate class/instance copying behavior (mixins) completely circumvent the [[Prototype]] chain mechanism.
 
-[[Prototype]]
+-[[Prototype]]-
 Objects in JS have an internal property known as [[Prototype]], which is a reference to another object. Nearly all objects are assigned a non-null value for this property when they are created.
 `Object.create(..)` creates a new object that is [[Prototype]] linked to the object you pass. If you run a [Get] operation on this new object for a property that has not been defined on it, [Get] will traverse one level up the [[Prototype]] chain in search of a match, and will continue to do so until it reaches the end of the chain. If a match is not found, the return result will be `undefined`.
 Similar applies for the `for..in` loop, which will iterate an object for any enumerable property in an object's chain.
 Using the `in` operator checks for the existence of a property on an object and its entire chain as well, regardless of enumerability.
+
+-Object.prototype-
+All normal, built-in JS objects have the `Object.prototype` object at the top of their [[Prototype]] chain.
+This object contains many utilities such as `.toString()`, `valueOf()`, `.hasOwnProperty()`, and `.isPrototypeOf()`.
