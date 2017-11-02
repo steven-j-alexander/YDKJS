@@ -449,3 +449,7 @@ Assigning `Object.create(..)` to a new object without using the `new` keyword si
 -`Object.create()` Polyfilled-
 `Object.create(..)` will need to be polyfilled in pre-ES5 environments (like older IE). You can partially accomplish this by using an empty throwaway function, pointing its `.prototype` to the object you want to link to, then using `new` "construction" to create a new object that will possess the specified linkage. You will not be able to add the functionality of declaring property descriptors for each new property on a newly declared object pre-ES5, which is why this is only a partial polyfill.
 Some developers do not condone the use of partial polyfills, and recommend that necessary partial polyfills be written as entirely separate utilities. The author does not agree with this sentiment.
+
+-Links As Fallbacks?-
+Author states that while there are some occasions where intentionally using links as fallbacks for properties that may not exist on a lower object down the chain, you should avoid this when possible, as it can make the code more difficult to comprehend and maintain.
+The appropriate way to make code more readable while still taking advantage of the [[Prototype]] chain (for example, with an API where you don't want to directly expose some functionality) is to follow the "delegation design pattern", which is to instead implement an explicit method for each perceived endpoint, and then have those methods reference the properties/functions higher up the chain using internal delegation.
