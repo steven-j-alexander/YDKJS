@@ -465,3 +465,8 @@ Behavior Delegation
 
 Most JS developers resign to using some sort of class library, rather than getting a full grasp of the [[Prototype]] chain and related design patterns.
 Each object contains its own [[Prototype]], and when a property/method is referenced on that object that does not exist, [[Get]] traverses up the chain to the object referenced in [[Prototype]], runs the check again for the property/method, traverses up that object's [[Prototype]], and repeats until a match is found or `Object.prototype` is reached (sort of like the "global" of the [[Prototype]] chain).
+
+-Towards Delegation-Oriented Design: Class Theory-
+If you have a set of similar tasks that you need to model in your software and you are using classes, you would define a base (general) class where you would define shared behavior for all alike tasks. Then, you would define your child classes, each of which would inherit from your base class before adding on their own specialized behaviors.
+The class design pattern encourages one to employ method overriding (and polymorphism) to get the most out of inheritance. Perhaps you'll use `super` to call the base version of a method in order to add more behaviors onto it. You will often find places where you can "abstract" (out) general behavior to your base/parent class and then override it in your child classes where necessary.
+Equipped with classes, you can now instantiate your child classes, which will create a copy of them whenever performed, along with their own set of data that the child class and any inherited classes contain.
