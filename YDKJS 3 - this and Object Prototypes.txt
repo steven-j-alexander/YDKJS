@@ -337,3 +337,9 @@ You have to use this more explicit pseudo-polymorphism when your `mixin(..)`/`ex
 In class-oriented languages with relative polymorphism, class linkage is established one time at the top of the class definition. In JavaScript, this pseudo-polymorphic linkage has to be explicitly implied for every function reference with identifier overlap shadow. This manual/explicit linkage is brittle in comparison to it's class-oriented counterpart.
 Explicit pseudo-polymorphism can also emulate multiple inheritance, but this only increases the brittleness and complexity of your objects.
 According to the author, explicit pseudo-polymorphism should be avoided whenever possible.
+
+-Mixing Copies-
+Manually copying functions (using mixins) in JS still does not actually emulate the real duplication of a class to an instance that would occur in class-oriented languages. You can only duplicate a function reference. If you modify a shared function object, for example by adding properties to it, any objects that share the duplicated reference would be affected.
+Not much benefit is derived from copying properties from one object to another versus just defining the properties twice, once on each object (especially when function-object references are made).
+There is also no way to handle multiple inheritence method/property collisions, although some libraries have devised a "late binding" technique, among other workarounds. According to the author, they tend to require more effort and less performance than you are actually getting from the payoff.
+Try to only use explicit mixins when it helps make your code more readable. Avoid it where it makes code harder to trace and dependencies between objects overcomplicated. There are better ways to accomplish these desired outcomes, to be outlined.
