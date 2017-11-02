@@ -421,3 +421,11 @@ There are numerous pitfalls to relying on `.constructor` the way you would with 
 You can add `.constructor` back to your originating object's `.prototype` manually, but you have to be careful to match its native behavior and non-enumerability.
 This still perpetuates the illusion that a "constructor" means "constructed by" in JS.
 `.constructor` is extremely unreliable and untrustworthy due to its mutability and the underlying delegatory mechanics of JS. Avoid referencing it when possible.
+
+-"(Prototypal) Inheritance"-
+To create a semblance of "inheritance" between two classes, you can assign the object `.prototype` of one class to be equal to the `Object.create(..)` of your other object's `.prototype`. This creates a new object for the initial `.prototype` and links its internal [[Prototype]] to the `.prototype` of your other object.
+`Bar.prototype = Foo.prototype` would assign a reference of `Foo.prototype` to `Bar.prototype`, rather than create a new object that is linked to `Foo.prototype`. That means if you modified or added properties on `Bar.prototype`, you would actually be altering the contents of `Foo.prototype`.
+`Bar.prototype = Foo()` creates a new object does create a new object that links `Bar.prototype` to `Foo.prototype`, but produces the unintended side effects of also running any additional code in `Foo()` at the time of linking, rather than only when descendants of Bar() are created, which was the likely intention for the execution of that code.
+A downside to using `Object.create(..)` to link the prototypes of two "class" objects is that you have to create `.prototype` object, having to throw the old one away. There is both a (not fully cross-browser compatible) pre-ES6 way and a standardized ES6 way to modify the linkage of an existing object.
+While `Object.create(..)' is the preferrable way to handle object prototype linking pre-ES6, some use the non-cross-browser compatible `.__proto__` property, which is settable.
+ES6 adds the `Object.setPrototypeOf(..)` helper method, which takes your target and source prototype objects as respective parameters, doing what `Object.create(..)` accomplishes via modification of the target object, rather than replacement.
