@@ -407,3 +407,8 @@ By common convention in JS, functions are named with a capital letter when they 
 -Constructor Or Call?-
 Functions themselves are not "constructors". When you put a `new` keyword in front of one, that makes the function call a "constructor call". `new` calls a function in a way that constructs an object, in additional to whatever else the function call does.
 You could say a "constructor" in JS is any function with a `new` keyword in front of it.
+
+-Mechanics-
+`this.prop = prop` in a function that is passed a `prop` will add that property to each object created using that function with the `new` keyword, similar to the way class instances encapsulate data values.
+`myObject.prototype.myProp = ..` adds a property to an object's prototype object.
+Properties/functions on an object's `.prototype` are not copied when `new` objects are created from that original object. They instead are created with an internal [[Prototype]] linkage to the initial object's `.prototype` object, so if a property is referenced on one of the newly created objects, [[Get]] or [[Put]] will follow the same [[Prototype]] chain check as usual, following the same set of rules outlined previously, based on its findings.
