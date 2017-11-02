@@ -453,3 +453,9 @@ Some developers do not condone the use of partial polyfills, and recommend that 
 -Links As Fallbacks?-
 Author states that while there are some occasions where intentionally using links as fallbacks for properties that may not exist on a lower object down the chain, you should avoid this when possible, as it can make the code more difficult to comprehend and maintain.
 The appropriate way to make code more readable while still taking advantage of the [[Prototype]] chain (for example, with an API where you don't want to directly expose some functionality) is to follow the "delegation design pattern", which is to instead implement an explicit method for each perceived endpoint, and then have those methods reference the properties/functions higher up the chain using internal delegation.
+
+-Review-
+Cascading [[Prototype]] linkage between objects is somewhat similar to a nested scope chain, but consists of objects for a [[Get]] operation to traverse for property resolution.
+Normal objects have `Object.prototype` at the top of their [[Prototype]] chain, similar to global scope in a scope lookup. Several common utilities exist on `Object.prototype` as well, which is why all objects in JS can access them.
+The most common way to link two objects to one another is with the `new` keyword, which creates a new object linked to the other. The "another object" that the new object is linked to is the one referenced by the `.prototype` property of the function called by `new`. These functions are often called "constructors", although they are not instantiating/constructing a class. No copies are natively made with these "class instantiation/inheritance" mechanisms in JavaScript, only linked to one another in an internal [[Prototype]] chain.
+"Delegation" is the most appropriate term for the way objects relate to one another, as they are not copies of one another but rather delegation links.
