@@ -291,3 +291,7 @@ Procedural programming, used by languages such as FORTRAN and BASIC, only consis
 The use of classes are often recommended as the way to minimize spaghetti code, although with "functional languages" you will find that they are just one of many optional over-arching design patterns.
 Some languages, such as Java, limit you to the confines of class-oriented programming, where design patterns are subservient to the class structure.
 Other languages, such as C/C++ and PHP, provide both procedural and class-oriented options, giving developers a choice as to the mixture of style they would like to use.
+
+-Javascript "Classes"-
+Although the language has some class-like syntactic elements such as `new` and `instanceof` and (as of ES6) includes the `class` keyword, JavaScript does not really have classes.
+Since class structure is a design pattern, you can include approximations for most classical class functionality in JS, although the underlying mechanisms function quite differently than what these implementations show on the surface. They are an optional design pattern, and you can either use them in JS or not.
