@@ -478,3 +478,7 @@ The author calls this style of code "OLOO" (objects-linked-to-other-objects).
 With OLOO and [[Prototype]] delegation, you generally want state to be on your delegators ("children"/utilizer), not on the delegate ("parent"/utilized).
 In the class design pattern, you will often take advantage of overrides/polymorphism by giving a child property the same name as a property on the parent. With behavior delegation, you want to avoid the same names on different levels of the same [[Prototype]] chain whenever possible (it's called `shadowing` when it occurs). When you shadow, you create the necessity of using brittle syntax on individual properties to disambiguate your references. Use more descriptive, self-documenting naming conventions for your methods that are specific to the type of behavior they are performing.
 With [[Prototype]] delegation, calling a method bound to `this` that is only present a level up on the chain will result in the method being called while being implicitly bound to the originating call-site.
+
+-Mutual Delegation (Disallowed)-
+You will get an error if you attempt to link two objects to each other, as referencing a property/method that didn't exist on either objects would cause an infinite recursion on the [[Prototype]] loop.
+While it would have had its uses in an environment that checked for the infinite circular reference, engine implementors decided it worth the increase in performance to do a single error check at set-time for mutual delegation.
