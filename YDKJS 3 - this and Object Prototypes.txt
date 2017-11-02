@@ -304,3 +304,7 @@ Unless making a `Static` class member reference, you don't truly operate on the 
 To use the building analogy, a class is the building blueprint. To instantiate that class is to create a physical (constructed) copy of those plans (an object), typically called an instance. It is only this instance (not the class "blueprint" itself) that we can directly call methods and access exposed data properties from.
 While an object can't generally directly access and manipulate its class, it's usually possible to determine the class an instantiated object came from.
 "A class is instantiated into object form by a copy operation."
+
+-Constructor-
+Class instances are constructed by a special method of the class called the constructor, usually having the same name as the class itself. The job of the constructor method is to initialize the instance with any data (state) the instance will need.
+Class constructors belong to their classes, and almost always need to be called with the `new` keyword to let the language know you want to construct a new instance of a class.
