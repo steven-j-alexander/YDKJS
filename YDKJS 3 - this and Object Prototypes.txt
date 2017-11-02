@@ -374,3 +374,14 @@ Using the `in` operator checks for the existence of a property on an object and 
 -Object.prototype-
 All normal, built-in JS objects have the `Object.prototype` object at the top of their [[Prototype]] chain.
 This object contains many utilities such as `.toString()`, `valueOf()`, `.hasOwnProperty()`, and `.isPrototypeOf()`.
+
+-Setting & Shadowing Properties-
+If you assign a value to a property of an object and that property does not exist, [[Put]] will traverse the [[Prototype]] chain in search of a matching property. If one is not found, the property will be created on the initially specified object and assigned the value. If one is found, one of three things can happen.
+	1. If a normal data accessor that is found up the chain is set to `writable:true`, then the property you specified is added directly to your initial object, resulting in a "shadowed" property.
+	2. If a matching property is discovered up the chain and set to `writable:false`, both the setting of the existing property and the creation of the new property on your initial object will be disallowed, with an error being thrown in strict mode or being silently ignored otherwise. No "shadowing" occurs.
+	3. If the discovered property is a setter, the setter will always be called. Nothing will be added to your initial object, and the setter will not be redefined.
+To add a property that shadows another up the chain in situations 2 or 3, you must use `Object.defineProperty(..)`, rather than the assignment operator.
+If the property exists on both the initial object itself and at a higher level of the [[Prototype]] chain, this is called "shadowing", as the property on the initial object now "shadows" any matching properties higher up.
+The inability to create a property on an object that is read-only further up the [[Prototype]] chain was put in place to enforce the illusion of class-inherited properties. It doesn't make the most sense, seeing as no inheritance copying is actually occurring.
+Shadowing with methods leads to explicit pseudo-polymorphism. Shadowing should be avoided whenever possible. A superior design pattern will be outlined in Ch6.
+Implicit shadowing can even occur if you, for example, use the `Object.create(..)` method and then increment the value of a property on the newly-created object that previously only existed on your higher-level [[Prototype]] chain object, as this would implicitly create a new property with the modified value that now shadows your higher-level property. The only correct way increment the higher-level property value in this example would be to explicitly name that high-level object as the one to be incremented.
