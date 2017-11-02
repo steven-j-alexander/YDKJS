@@ -459,3 +459,9 @@ Cascading [[Prototype]] linkage between objects is somewhat similar to a nested 
 Normal objects have `Object.prototype` at the top of their [[Prototype]] chain, similar to global scope in a scope lookup. Several common utilities exist on `Object.prototype` as well, which is why all objects in JS can access them.
 The most common way to link two objects to one another is with the `new` keyword, which creates a new object linked to the other. The "another object" that the new object is linked to is the one referenced by the `.prototype` property of the function called by `new`. These functions are often called "constructors", although they are not instantiating/constructing a class. No copies are natively made with these "class instantiation/inheritance" mechanisms in JavaScript, only linked to one another in an internal [[Prototype]] chain.
 "Delegation" is the most appropriate term for the way objects relate to one another, as they are not copies of one another but rather delegation links.
+
+===========================================Chapter 6===========================================
+Behavior Delegation
+
+Most JS developers resign to using some sort of class library, rather than getting a full grasp of the [[Prototype]] chain and related design patterns.
+Each object contains its own [[Prototype]], and when a property/method is referenced on that object that does not exist, [[Get]] traverses up the chain to the object referenced in [[Prototype]], runs the check again for the property/method, traverses up that object's [[Prototype]], and repeats until a match is found or `Object.prototype` is reached (sort of like the "global" of the [[Prototype]] chain).
