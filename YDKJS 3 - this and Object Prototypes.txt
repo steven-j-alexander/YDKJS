@@ -445,3 +445,7 @@ Although you shouldn't generally change the [[Prototype]] of an existing object,
 -Object Links: `Create()`ing Links-
 Assigning `Object.create(..)` to a new object without using the `new` keyword simply links the new object to the passed one, giving you the delegation power of the [[Prototype]] chain without any of the additional "class"-related complication.
 `Object.create(null)` creates an object with an empty [[Prototype]] linkage. The `instanceof` operator will always return `false`, as there is nothing to check. These special empty [[Prototype]] objects are usually called "dictionaries", used purely for the flat storage of data.
+
+-`Object.create()` Polyfilled-
+`Object.create(..)` will need to be polyfilled in pre-ES5 environments (like older IE). You can partially accomplish this by using an empty throwaway function, pointing its `.prototype` to the object you want to link to, then using `new` "construction" to create a new object that will possess the specified linkage. You will not be able to add the functionality of declaring property descriptors for each new property on a newly declared object pre-ES5, which is why this is only a partial polyfill.
+Some developers do not condone the use of partial polyfills, and recommend that necessary partial polyfills be written as entirely separate utilities. The author does not agree with this sentiment.
