@@ -389,3 +389,7 @@ Implicit shadowing can even occur if you, for example, use the `Object.create(..
 -"Class"-
 JS is one of very few languages where objects can be created directly, without a class (because they don't exist).
 Since classes can't define what objects do, the object defines its own behavior directly.
+
+-"Class" Functions-
+All functions get a public, non-enumerable property on them called `prototype` by default, which points to an arbitrary object. Every object created from calling `new myObj()` will be [[Prototype]]-linked to the object that `myObj.prototype` is pointing at.
+This still does no inheritance copying. It simply links two objects together in an indirect manner.
