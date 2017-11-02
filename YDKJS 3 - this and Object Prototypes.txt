@@ -412,3 +412,7 @@ You could say a "constructor" in JS is any function with a `new` keyword in fron
 `this.prop = prop` in a function that is passed a `prop` will add that property to each object created using that function with the `new` keyword, similar to the way class instances encapsulate data values.
 `myObject.prototype.myProp = ..` adds a property to an object's prototype object.
 Properties/functions on an object's `.prototype` are not copied when `new` objects are created from that original object. They instead are created with an internal [[Prototype]] linkage to the initial object's `.prototype` object, so if a property is referenced on one of the newly created objects, [[Get]] or [[Put]] will follow the same [[Prototype]] chain check as usual, following the same set of rules outlined previously, based on its findings.
+
+-"Constructor" Redux-
+The `.constructor` property that appears to exist on a `new` function object is actually a reference that is delegated up to the object's `.prototype`, which contains a `.constructor` property pointing to object your `new` object was "constructed by".
+There are numerous pitfalls to relying on `.constructor` the way you would with a true constructor in a class-oriented language. If you create a new object where the originating object had its `.prototype` object reference changed, the new object will not by default have a `.constructor` to reference in the originating object. With [[Prototype]] chain traversal rules, `.constructor` would end up being referenced in `Object`.
