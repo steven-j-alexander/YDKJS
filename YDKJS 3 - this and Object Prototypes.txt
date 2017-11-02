@@ -416,3 +416,8 @@ Properties/functions on an object's `.prototype` are not copied when `new` objec
 -"Constructor" Redux-
 The `.constructor` property that appears to exist on a `new` function object is actually a reference that is delegated up to the object's `.prototype`, which contains a `.constructor` property pointing to object your `new` object was "constructed by".
 There are numerous pitfalls to relying on `.constructor` the way you would with a true constructor in a class-oriented language. If you create a new object where the originating object had its `.prototype` object reference changed, the new object will not by default have a `.constructor` to reference in the originating object. With [[Prototype]] chain traversal rules, `.constructor` would end up being referenced in `Object`.
+
+-Misconception, busted-
+You can add `.constructor` back to your originating object's `.prototype` manually, but you have to be careful to match its native behavior and non-enumerability.
+This still perpetuates the illusion that a "constructor" means "constructed by" in JS.
+`.constructor` is extremely unreliable and untrustworthy due to its mutability and the underlying delegatory mechanics of JS. Avoid referencing it when possible.
