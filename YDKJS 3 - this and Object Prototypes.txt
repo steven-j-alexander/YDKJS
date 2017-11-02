@@ -325,3 +325,8 @@ JavaScript does not include a native mechanism for multiple inheritance, althoug
 In JavaScript, there are no "classes", and there is no automatic copy behavior when one "inherits" or "instantiates". There are only objects, and rather than copy objects to other objects, they are instead linked together.
 Javascript developers fake this copying class behavior via the use of mixins.
 There are two types of mixins: Explicit and implicit.
+
+-Explicit Mixins-
+Since JS doesn't automatically copy behavior from one object to another, you can create and use a utility to manually copy the properties over. This is a mixin, but is often referred to in code as an `extend(..)` method by many libraries and frameworks.
+The mixin utility essentially iterates each key from the source object, checks to make sure it doesn't already exist in the target object (skipping over if it does), and adds each property to the target object.
+Function references, rather than the functions themselves, are actually copied to the target object when mixing in a source object.
