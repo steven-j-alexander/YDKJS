@@ -320,3 +320,8 @@ A child class is only given a copy of the inherited behavior from its parent cla
 Multiple inheritance means that multiple parent class definitions are copied into a child class.
 Problems can arise with such usage, some pertaining to the potential of inheriting multiple members of the same type and name.
 JavaScript does not include a native mechanism for multiple inheritance, although developers have faked such functionality in various ways.
+
+-Mixins-
+In JavaScript, there are no "classes", and there is no automatic copy behavior when one "inherits" or "instantiates". There are only objects, and rather than copy objects to other objects, they are instead linked together.
+Javascript developers fake this copying class behavior via the use of mixins.
+There are two types of mixins: Explicit and implicit.
