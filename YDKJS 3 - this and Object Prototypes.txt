@@ -441,3 +441,7 @@ As of ES5, you can also directly retrieve the [[Prototype]] of an object by usin
 The previously mentioned `.__proto__` retrieves the internal [[Prototype]] of an object as a reference, which can be useful for inspecting, comparing, or traversing (`.__proto__.__proto__`) its chain. This wasn't standardized until ES6, so doesn't have support from every browser.
 `.__proto__` (verbally known as "dunder proto") is not located on the object itself, but is actually built into `Object.prototype' as a non-enumerable property (it's more akin to a getter/setter).
 Although you shouldn't generally change the [[Prototype]] of an existing object, you can do so using `.__proto__`, which is settable in a fashion similar to `Object.setPrototypeOf(..)`. It can come in handy if you are in a situation where you want to change a default function's `.prototype` to some other object than `Object.prototype` without replacing/discarding the object in place.
+
+-Object Links: `Create()`ing Links-
+Assigning `Object.create(..)` to a new object without using the `new` keyword simply links the new object to the passed one, giving you the delegation power of the [[Prototype]] chain without any of the additional "class"-related complication.
+`Object.create(null)` creates an object with an empty [[Prototype]] linkage. The `instanceof` operator will always return `false`, as there is nothing to check. These special empty [[Prototype]] objects are usually called "dictionaries", used purely for the flat storage of data.
