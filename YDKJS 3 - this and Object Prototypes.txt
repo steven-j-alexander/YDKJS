@@ -351,3 +351,11 @@ No need to use the `new` keyword when creating an instance, since running the ch
 -Implicit Mixins-
 Implicit mixins are similar to explicit pseudo-polymorphism in that they should be avoided due to the same pitfalls. You basically call an assignment function from one object property within a property function of another object, being sure to bind it to the "child" context using `call( this )`. All of the assignments from the original function are now applied against the object you are currently invoking it from, essentially mixing the behaviors of one object into another.
 Implicit mixins cannot be made into a relative reference, so avoid when possible.
+
+-Review-
+JS has a similar syntax to languages with a natural class-oriented software design pattern, but behaves very differently.
+"Classes mean copies."
+Class instantiation = Copying behavior from class to instance.
+Polymorphism (different functions at multiple levels of the inheritance chain with same name) is just a result of copy behavior.
+JavaScript doesn't automatically create copies between objects. The mixin pattern sort of emulates this copy behavior, but often leads to complex and brittle code like that of explicit pseudo-polymorphism. Objects and functions are not copied and only have duplicated references that point to the same location.
+Faking classes bad. Don't be bad.
