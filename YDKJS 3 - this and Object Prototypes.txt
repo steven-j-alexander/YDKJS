@@ -299,3 +299,8 @@ Since class structure is a design pattern, you can include approximations for mo
 -Class Mechanics-
 With a class-oriented language, the standard library typically provides a stack data structure (push, pop, etc.) as a `Stack` class. The class provides you with publicly accessible methods that give your code the ability to interact with the hidden data variables (adding/removing/etc.).
 Unless making a `Static` class member reference, you don't truly operate on the stack in such languages. `Stack` is merely an abstract definition of what a stack would do. You still have to instantiate the `Stack` class before you have a concrete data structure "thing" to operate upon.
+
+-Building-
+To use the building analogy, a class is the building blueprint. To instantiate that class is to create a physical (constructed) copy of those plans (an object), typically called an instance. It is only this instance (not the class "blueprint" itself) that we can directly call methods and access exposed data properties from.
+While an object can't generally directly access and manipulate its class, it's usually possible to determine the class an instantiated object came from.
+"A class is instantiated into object form by a copy operation."
