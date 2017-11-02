@@ -393,3 +393,8 @@ Since classes can't define what objects do, the object defines its own behavior 
 -"Class" Functions-
 All functions get a public, non-enumerable property on them called `prototype` by default, which points to an arbitrary object. Every object created from calling `new myObj()` will be [[Prototype]]-linked to the object that `myObj.prototype` is pointing at.
 This still does no inheritance copying. It simply links two objects together in an indirect manner.
+
+-What's in a name?-
+The mechanism of linking objects together is referred to as "prototypal inheritance", which is said to be the dynamic language version of "classical inheritance", where one object (class) is copied to another (instance). Author opines that this label is not good, as this conflates one with the other, when in fact the underlying mechanisms are entirely different, regardless of all of the attempts mis-apply all of the class-oriented terminology to the JS language.
+Inheritance implies a copy operation. JS does not natively do such a thing. Delegation is a more accurate term to use, seeing as JS creates can create links between objects, where one object can delegate both property and function access to another.
+Another term sometimes used is "differential inheritance", which is the idea that an object describes its behavior in terms of differences from a general descriptor, rather than re-describing all of the details of the more generalized thing along with the differences. This still makes the mistake of implying "inheritance" and also does not take into account the fact that objects are simply described without certain details, and that these omissions are to be handled via delegation.
