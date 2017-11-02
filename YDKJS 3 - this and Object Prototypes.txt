@@ -385,3 +385,7 @@ If the property exists on both the initial object itself and at a higher level o
 The inability to create a property on an object that is read-only further up the [[Prototype]] chain was put in place to enforce the illusion of class-inherited properties. It doesn't make the most sense, seeing as no inheritance copying is actually occurring.
 Shadowing with methods leads to explicit pseudo-polymorphism. Shadowing should be avoided whenever possible. A superior design pattern will be outlined in Ch6.
 Implicit shadowing can even occur if you, for example, use the `Object.create(..)` method and then increment the value of a property on the newly-created object that previously only existed on your higher-level [[Prototype]] chain object, as this would implicitly create a new property with the modified value that now shadows your higher-level property. The only correct way increment the higher-level property value in this example would be to explicitly name that high-level object as the one to be incremented.
+
+-"Class"-
+JS is one of very few languages where objects can be created directly, without a class (because they don't exist).
+Since classes can't define what objects do, the object defines its own behavior directly.
