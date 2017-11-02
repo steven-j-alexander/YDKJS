@@ -347,3 +347,7 @@ Try to only use explicit mixins when it helps make your code more readable. Avoi
 -Parasitic Inheritance-
 Parasitic inheritance is a variation of the explicit mixin that makes a copy of the definition from the "parent" object and then mixins your "child class" object, saving a privileged parent reference to any properties to be overridden, and then returning the composed object as your child instance (object).
 No need to use the `new` keyword when creating an instance, since running the child function already returns a new copy of that object. You'd just be creating additional object waste for garbage collection.
+
+-Implicit Mixins-
+Implicit mixins are similar to explicit pseudo-polymorphism in that they should be avoided due to the same pitfalls. You basically call an assignment function from one object property within a property function of another object, being sure to bind it to the "child" context using `call( this )`. All of the assignments from the original function are now applied against the object you are currently invoking it from, essentially mixing the behaviors of one object into another.
+Implicit mixins cannot be made into a relative reference, so avoid when possible.
