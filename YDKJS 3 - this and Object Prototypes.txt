@@ -295,3 +295,7 @@ Other languages, such as C/C++ and PHP, provide both procedural and class-orient
 -Javascript "Classes"-
 Although the language has some class-like syntactic elements such as `new` and `instanceof` and (as of ES6) includes the `class` keyword, JavaScript does not really have classes.
 Since class structure is a design pattern, you can include approximations for most classical class functionality in JS, although the underlying mechanisms function quite differently than what these implementations show on the surface. They are an optional design pattern, and you can either use them in JS or not.
+
+-Class Mechanics-
+With a class-oriented language, the standard library typically provides a stack data structure (push, pop, etc.) as a `Stack` class. The class provides you with publicly accessible methods that give your code the ability to interact with the hidden data variables (adding/removing/etc.).
+Unless making a `Static` class member reference, you don't truly operate on the stack in such languages. `Stack` is merely an abstract definition of what a stack would do. You still have to instantiate the `Stack` class before you have a concrete data structure "thing" to operate upon.
