@@ -482,3 +482,9 @@ With [[Prototype]] delegation, calling a method bound to `this` that is only pre
 -Mutual Delegation (Disallowed)-
 You will get an error if you attempt to link two objects to each other, as referencing a property/method that didn't exist on either objects would cause an infinite recursion on the [[Prototype]] loop.
 While it would have had its uses in an environment that checked for the infinite circular reference, engine implementors decided it worth the increase in performance to do a single error check at set-time for mutual delegation.
+
+-Debugged-
+JS spec does not control how browser dev tools should display certain values/structures to the developer. Because of that, they don't always see eye to eye.
+For example, in Chrome Developer Tools, when evaluating an expression that was assigned an empty function object, you get an empty object belonging to the empty function object you referenced in your assignment. With Firefox, the same evaluation would result in `Object {}`. Chrome's output is showing you that you have an empty object that was constructed by that particular function. Firefox is saying you have an empty object of general construction from `Object`. The difference is that Chrome is tracking the name of the function that did the construction as an internal property, whereas other browsers do not track this.
+Chrome appears to be using the initially set `prototype.constructor` property to track this, (buggily) updating the value only if you use `Object.defineProperty` to update it. You won't get this internal tracking extension if you don't use a "constructor" when making your objects, which the author discourages anyways when using OLOO-style code, and would instead see `Object {}` as the source of construction.
+With the behavior delegation design pattern, who "constructed" your object is of no relevance, and is only relevant if you are embracing "class-style" coding.
