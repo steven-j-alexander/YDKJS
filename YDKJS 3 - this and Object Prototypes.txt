@@ -330,3 +330,10 @@ There are two types of mixins: Explicit and implicit.
 Since JS doesn't automatically copy behavior from one object to another, you can create and use a utility to manually copy the properties over. This is a mixin, but is often referred to in code as an `extend(..)` method by many libraries and frameworks.
 The mixin utility essentially iterates each key from the source object, checks to make sure it doesn't already exist in the target object (skipping over if it does), and adds each property to the target object.
 Function references, rather than the functions themselves, are actually copied to the target object when mixing in a source object.
+
+-"Polymorphism" Revisited-
+Since there is no relative polymorphism in JS (prior to ES6), instead you must make an absolute (rather than relative) reference that specifies both the object and function by name. An example is `ParentObject.function.call( this ). This ensures the function call is bound to and executed from the context of the child object you are calling from. You could call this "explicit pseudo-polymorphism".
+You have to use this more explicit pseudo-polymorphism when your `mixin(..)`/`extend(..)` call does not copy over a property/function reference due to the property/function name identifier of the parent/source object overlapping ("shadowing") with one in the child/target object.
+In class-oriented languages with relative polymorphism, class linkage is established one time at the top of the class definition. In JavaScript, this pseudo-polymorphic linkage has to be explicitly implied for every function reference with identifier overlap shadow. This manual/explicit linkage is brittle in comparison to it's class-oriented counterpart.
+Explicit pseudo-polymorphism can also emulate multiple inheritance, but this only increases the brittleness and complexity of your objects.
+According to the author, explicit pseudo-polymorphism should be avoided whenever possible.
