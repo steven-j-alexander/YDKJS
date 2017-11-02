@@ -359,3 +359,14 @@ Class instantiation = Copying behavior from class to instance.
 Polymorphism (different functions at multiple levels of the inheritance chain with same name) is just a result of copy behavior.
 JavaScript doesn't automatically create copies between objects. The mixin pattern sort of emulates this copy behavior, but often leads to complex and brittle code like that of explicit pseudo-polymorphism. Objects and functions are not copied and only have duplicated references that point to the same location.
 Faking classes bad. Don't be bad.
+
+===========================================Chapter 5===========================================
+Prototypes
+
+All attempts to emulate class/instance copying behavior (mixins) completely circumvent the [[Prototype]] chain mechanism.
+
+[[Prototype]]
+Objects in JS have an internal property known as [[Prototype]], which is a reference to another object. Nearly all objects are assigned a non-null value for this property when they are created.
+`Object.create(..)` creates a new object that is [[Prototype]] linked to the object you pass. If you run a [Get] operation on this new object for a property that has not been defined on it, [Get] will traverse one level up the [[Prototype]] chain in search of a match, and will continue to do so until it reaches the end of the chain. If a match is not found, the return result will be `undefined`.
+Similar applies for the `for..in` loop, which will iterate an object for any enumerable property in an object's chain.
+Using the `in` operator checks for the existence of a property on an object and its entire chain as well, regardless of enumerability.
