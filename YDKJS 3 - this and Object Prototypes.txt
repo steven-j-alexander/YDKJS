@@ -496,3 +496,7 @@ With OLOO-style coding, you stick to what matters, which is linking objects to o
 -Classes vs. Objects: Widget "Classes"-
 With OO design patterns you are intended to declare base classes, override them with your child classes, and then augment that base functionality with those overrides.
 To do this in JS you use `.call` in your child objects to make a "super" call back up to your parent class, which results in the expected class-style explicit pseudo-polymorphic clutter.
+
+-ES6 `class` Sugar-
+Much of the ugly syntax of the pre-ES6 class-oriented approach is cleaned up with the use of ES6's `class` keyword functionality, especially the `super(..)` method.
+Of course, these are still not real classes we're working with here.
