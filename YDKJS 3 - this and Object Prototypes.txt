@@ -513,3 +513,15 @@ If one child controller needs to know about another, you can instantiate it as a
 -De-class-ified-
 With OLOO-style, you are more inclilned to design objects horizontally to each other, rather than opting for a base "class" parent/children arrangement to "share" behaviors between sub-classes. You simply execute your initializing property method on one object, and have that object delegate to another to for it may need outside of its intended purpose. There is no need for composition, seeing that delegation allows for two objects to cooperate differentially.
 
+-Nicer Syntax-
+In ES6, you can use "concise method declarations" in any object literal, which means you can add a direct function as an object property without using the `function` type declaration, using the function name as your key (and being sure to still separate each function on your object with a comma). Like this:
+	var myObject = {
+		propArray: [],
+		propFunction() {
+			// ...
+		},
+		propFunction2() {
+			// ...
+		}
+	};
+This makes it easiest to write objects as literals, rather than assigning properties onto an object individually, so that concise methods can be used. You can also easily modify an objects [[Prototype]] using `Object.setPrototypeOf`.
