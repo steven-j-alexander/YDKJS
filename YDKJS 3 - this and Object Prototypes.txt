@@ -500,3 +500,7 @@ To do this in JS you use `.call` in your child objects to make a "super" call ba
 -ES6 `class` Sugar-
 Much of the ugly syntax of the pre-ES6 class-oriented approach is cleaned up with the use of ES6's `class` keyword functionality, especially the `super(..)` method.
 Of course, these are still not real classes we're working with here.
+
+-Delegating Widget Objects-
+When using OLOO-style delegation, you want to avoid sharing method names with delegates, so for an example of initialization methods, you want to use separate and descriptive terms like `init(..)` and `setup(..)` on linked objects. This helps avoid using the explicit pseudo-polymorphic `.call`s and its ES6 `super` counterpart. You simply use delegated `this.prop(..)` calls from your delegator.
+With "class" constructor syntax, you are coerced into doing both construction and initialization in the same call (assigning your "class" function call), whereas OLOO allows for easier seperation of the two by assigning an `Object.create` to a new object and then calling your initialization method.
