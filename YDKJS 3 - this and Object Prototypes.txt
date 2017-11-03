@@ -525,3 +525,9 @@ In ES6, you can use "concise method declarations" in any object literal, which m
 		}
 	};
 This makes it easiest to write objects as literals, rather than assigning properties onto an object individually, so that concise methods can be used. You can also easily modify an objects [[Prototype]] using `Object.setPrototypeOf`.
+
+-Unlexical-
+The drawback to concise method declarations is that you are calling an anonymous function with no name identifier. The name provided with this syntax is only referring to your property key.
+While implementation-dependent, this shouldn't prevent stack traces from being able to locate the anonymous function express, as it is still tied to your property name.
+With self-referencing in concise methods that lack a lexical identifier, you may be able to simply reference the property on the object, although this may not work in a scenario where the function is being shared via delegation to a different object or if you are using `this` binding.
+Because of this, be sure to use manually named function expressions in place of concise methods when self-referencing is of importance.
