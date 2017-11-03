@@ -509,3 +509,7 @@ With "class" constructor syntax, you are coerced into doing both construction an
 With class-style syntax, you would typically add base functionality into a `Controller` class, with more task-specific controller sub-classes inheriting from it.
 If one child controller needs to know about another, you can instantiate it as a passed argument and create a class member property to reference it, being able to invoke behaviors on that passed class from the other. This is called "composition", which in OO is basically the act of combining classes together.
 "Virtual composition" is inheriting one subclass from another. It is discouraged when neither class is a specialization of the other in regards to base behaviors. Inheritance doesn't make sense unless classes are the only design pattern available to you.
+
+-De-class-ified-
+With OLOO-style, you are more inclilned to design objects horizontally to each other, rather than opting for a base "class" parent/children arrangement to "share" behaviors between sub-classes. You simply execute your initializing property method on one object, and have that object delegate to another to for it may need outside of its intended purpose. There is no need for composition, seeing that delegation allows for two objects to cooperate differentially.
+
