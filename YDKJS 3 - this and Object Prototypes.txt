@@ -492,3 +492,7 @@ With the behavior delegation design pattern, who "constructed" your object is of
 -Mental Models Compared-
 Even between the two varying styles (classical "prototypal" OO-style and OLOO-style), you would still have the same objects linked together via [[Prototype]] delegation, but with behavior delegation style you would avoid the need to use "class"-style trimmings such as constructors, `.prototype`, and `new` keyword calls.
 With OLOO-style coding, you stick to what matters, which is linking objects to other objects.
+
+-Classes vs. Objects: Widget "Classes"-
+With OO design patterns you are intended to declare base classes, override them with your child classes, and then augment that base functionality with those overrides.
+To do this in JS you use `.call` in your child objects to make a "super" call back up to your parent class, which results in the expected class-style explicit pseudo-polymorphic clutter.
