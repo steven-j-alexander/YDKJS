@@ -531,3 +531,23 @@ The drawback to concise method declarations is that you are calling an anonymous
 While implementation-dependent, this shouldn't prevent stack traces from being able to locate the anonymous function express, as it is still tied to your property name.
 With self-referencing in concise methods that lack a lexical identifier, you may be able to simply reference the property on the object, although this may not work in a scenario where the function is being shared via delegation to a different object or if you are using `this` binding.
 Because of this, be sure to use manually named function expressions in place of concise methods when self-referencing is of importance.
+
+-Introspection-
+In class-oriented programming, "type introspection" is the act of inspecting an instance to determine what kind of object it is, in order to determine the structure and capabilities, based on how it was created.
+The `instanceof` operator can yield a result of true if your left-hand operand has a delegation link to your right-hand function's `.prototype` reference, giving the false impression that one possesses the capabilities of the other. The only thing `instanceof` is telling you in this situation is that both the left-hand's [[Prototype]] (at some point in the chain) and the right-hand function's `.prototype` value point to the same object.
+	function Foo(){}
+	function Bar(){}
+	Bar.prototype = Object.create( Foo.prototype );
+	
+	Bar instanceof Foo; // FALSE
+	Bar.prototype instanceof Foo; // TRUE
+	
+	var b1 = new Bar();
+	
+	b1 instanceof Bar; // TRUE
+	b1 instanceof Foo; // TRUE
+When you assign `new Bar()` to b1, you are [[Prototype]] linking the newly-constructed object to `Bar.prototype`, which is already [[Prototype]]-linked to `Foo.prototype`.
+To use `instanceof` for introspection, you have to procure, as your right-hand operand, a function that holds a `.prototype` reference to the object reference you are checking against. Note you are checking to see if the object "reference" provided is an "instance" of the provided right-hand function's `.prototype` reference. You can't just check if an object is an instance of an object, even if the latter is a function object.
+One alternative pattern to type introspection that developers use is called "duck typing". Instead of inspecting for a relationship between an object's [[Prototype]] and an object that holds a delegatable function, you assume a test of checking for the existence of that latter object's function on that initial object to be confirmation of a prototypal relationship, and the capability of the former to call the latter object's function.
+A downside to duck typing is that using it to make assumptions about other capabilities other than what you are testing can land you into trouble. For example, if you are trying to determine if an object reference is a Promise by checking to see whether it contains a `then()` reference, the object may not actually conform to Promise standards, and you may end up with a broken assumption.
+With OLOO-style coding, you can avoid all of this mess of using `instanceof`, the `.prototype` property, and duck typing for introspection, again by simply sticking to `Object.create(..)` and checking [[Prototype]] relation via `.isPrototypeOf(..)` and `.getPrototypeOf` for reflection operations.
