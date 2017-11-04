@@ -414,7 +414,7 @@ You could say a "constructor" in JS is any function with a `new` keyword in fron
 Properties/functions on an object's `.prototype` are not copied when `new` objects are created from that original object. They instead are created with an internal [[Prototype]] linkage to the initial object's `.prototype` object, so if a property is referenced on one of the newly created objects, [[Get]] or [[Put]] will follow the same [[Prototype]] chain check as usual, following the same set of rules outlined previously, based on its findings.
 
 -"Constructor" Redux-
-The `.constructor` property that appears to exist on a `new` function object is actually a reference that is delegated up to the object's `.prototype`, which contains a `.constructor` property pointing to object your `new` object was "constructed by".
+The `.constructor` property that appears to exist on a `new` function object is actually a reference that is delegated up to the object's `.prototype`, which contains a `.constructor` property pointing to the object your `new` object was "constructed by".
 There are numerous pitfalls to relying on `.constructor` the way you would with a true constructor in a class-oriented language. If you create a new object where the originating object had its `.prototype` object reference changed, the new object will not by default have a `.constructor` to reference in the originating object. With [[Prototype]] chain traversal rules, `.constructor` would end up being referenced in `Object`.
 
 -Misconception, busted-
@@ -554,3 +554,12 @@ With OLOO-style coding, you can avoid all of this mess of using `instanceof`, th
 
 -Review-
 JavaScript's [[Prototype]] mechanism is designed for behavior delegation. Use it in that way whenever you can, and be aware that class mechanics are never really in play, only as a mental model sitting on top of delegation mechanics with the intention of providing ease to developers familiar with the class-oriented design pattern.
+
+===========================================Appendix A===========================================
+ES6 `class`
+
+-`class`-
+ES6 `class` syntax allows you to avoid `.prototype` references and the `Object.create(..)` method, instead using the `extends` keyword on an entire `class` object along with `super` to reference "inherited" (object-linked) methods.
+`super`, other than working as expected inside `constructor(..)`s, provides the capability for relative polymorphism. Simply append the `super` keyword (using dot notation) with the intended method on the class object that the object you're in `extends`/links to.
+`class` literal syntax only allows for the specifying of methods, rather than properties. This is because it is expected for properties (state) to exist on the "instances" themselves, and that referring to one on a class is usually a mistake.
+`extends` allows you to extend built-in object subtypes such as `String` or `Array` in a much more convenient manner than was previously possible pre-ES6.
