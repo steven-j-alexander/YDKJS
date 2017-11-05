@@ -578,3 +578,6 @@ You can manually change `super()` binding using `.toMethod(..)` to bind/rebind t
 -Static > Dynamic?-
 `class` syntax is an attempt to avail JS in a pseudo-static manner, although with many a flaw.
 Hard-bound functions created with `bind()` are not subclassable with ES6 `extend`.
+
+-Review-
+Author alludes that ES6 `class` syntax should be considered an anti-pattern, as it obfuscates the dynamism of the language.
