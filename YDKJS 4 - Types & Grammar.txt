@@ -10,3 +10,8 @@ To test a `null` value using its type, you need to create a compound condition t
 Functions, although considered a subtype of `object`, are also identified by `typeof`. Functions are considred "callable objects" in JS, as they have an internal [[[Call]]] property, allowing them to be invoked.
 Because functions are objects, they can have properties, which include the parameters they were declared with. This is useful if you want to run an object utility such as `.length` on a function.
 Arrays are also considered a subtype of `object`, with the included ability to be numerically indexed.
+
+-Values as Types-
+Values have types in JS, rather than variables. Variables can hold any value, therefore they can hold any type.
+The type of value a variable can hold is mutable. You can think of this as JS not having "type enforcement".
+A value's type cannot be changed. Coercion is the act of creating a new value from a value of a different type. `typeof` is simply checking the type of the value contained in a variable.
