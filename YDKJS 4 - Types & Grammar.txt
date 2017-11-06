@@ -35,3 +35,8 @@ Values
 Like type-enforced languages, JS `array`s are simply containers that allow storage of any type of value. Pre-sizing is not necessary.
 Using the `delete` operator on an array will remove a slot from it, but does not update its `length` property. Also, creating "sparse" arrays (leaving empty/missing slots) will still leave a `length` equal to the highest index, plus 1 (for the "0" index). Slots you haven't defined will have the same behaviors as a slot that has been explicitly defined as `undefined` would.
 `string` keys/properties added to an array object do not have an impact on its `length`, UNLESS the `string` value can be coerced into a base-10 numerical value, in which case the value will be treated as the numerical index. Because of this (and the fact that general objects exist), it's best to use objects for storing key/value pairs.
+
+-Array-Likes-
+There are instances where you will need to take "array-like" collections of values and coerce them into actual arrays to be operated upon using the `Array` object utilties. Many DOM query operations return array-like collections, as well as the ES6-deprecated function `arguments` object. One easy way to do this with `arguments` is to make a function that assigns a call of `Array.prototype.slice.call( arguments );` to a variable, and then call that function while passing your list of arguments.
+In ES6, you can instead use `Array.from(..)` to perform the same task of taking anything passed to it and coercing it into a new array.
+`.push` allows you to add more values to an array.
