@@ -27,3 +27,11 @@ Recall that `if` statements are only block-scoped, so if you are performing a `t
 All global variables are also properties of the global object, which in a browser is essentially the `window` object, so you can also perform safe checks for global vars in `if` conditionals using `window.prop` syntax. No `ReferenceError` is thrown on trying to access object properties that don't exist. Some developers prefer to avoid this though, as accessing the `window` object directly can be unwise if your code needs to run in multiple JS environments (such as node.js).
 `typeof` is useful for checking the existence of variables in places other than the global object as well, although some developers prefer using dependency injection. If you wanted to check and see if program or module contained a particular helper utility before adding it in, you can check for the `typeof` said variable. If the check fails, you can have a default anonymous function defined and ready to go.
 The dependecy injection design pattern is similar, but instead of implicitly checking for the feature/variable directly around it, you would need to have the dependency explicitly passed into the function that performs the check (which now simply checks if anything was passed to it).
+
+===========================================Chapter 2===========================================
+Values
+
+-Arrays-
+Like type-enforced languages, JS `array`s are simply containers that allow storage of any type of value. Pre-sizing is not necessary.
+Using the `delete` operator on an array will remove a slot from it, but does not update its `length` property. Also, creating "sparse" arrays (leaving empty/missing slots) will still leave a `length` equal to the highest index, plus 1 (for the "0" index). Slots you haven't defined will have the same behaviors as a slot that has been explicitly defined as `undefined` would.
+`string` keys/properties added to an array object do not have an impact on its `length`, UNLESS the `string` value can be coerced into a base-10 numerical value, in which case the value will be treated as the numerical index. Because of this (and the fact that general objects exist), it's best to use objects for storing key/value pairs.
