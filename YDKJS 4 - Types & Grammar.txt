@@ -15,3 +15,8 @@ Arrays are also considered a subtype of `object`, with the included ability to b
 Values have types in JS, rather than variables. Variables can hold any value, therefore they can hold any type.
 The type of value a variable can hold is mutable. You can think of this as JS not having "type enforcement".
 A value's type cannot be changed. Coercion is the act of creating a new value from a value of a different type. `typeof` is simply checking the type of the value contained in a variable.
+
+-`undefined` vs "undeclared"-
+A variable that has been declared, but currently has no other value associated with it, has a value of `undefined`.
+An undeclared variable is a variable that has not been formally declared in the accessible scope.
+Some browsers will return a warning that a variable has not been defined when in fact it hasn't even been declared. The `typeof` operator also has a safeguard that engages in a similar behavior, so be aware.
