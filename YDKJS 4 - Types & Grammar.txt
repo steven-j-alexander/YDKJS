@@ -2,3 +2,11 @@
 Types
 
 A rough definition of a type in JavaScript is: "an intrinsic, built-in set of characteristics that uniquely identifies the behavior of a particular value and distinguishes it from other values, both to the engine and to the developer."
+
+-Built-in Types-
+The seven built-in JS types are: null, undefined, boolean, number, string, object, symbol (new in ES6). All of these are considered primitives, except for `object`.
+The `typeof` operator inspects a given value and returns the type. `null` is buggy and returns a value of `"object"`. It should return `"null"` but the bug has existed for so long that changing it would cause a lot of harm to legacy code, so it is left as is.
+To test a `null` value using its type, you need to create a compound condition that, in addition, checks the value's falsiness, as `null` is the only "falsy" primitive value that returns a `typeof` of "object".
+Functions, although considered a subtype of `object`, are also identified by `typeof`. Functions are considred "callable objects" in JS, as they have an internal [[[Call]]] property, allowing them to be invoked.
+Because functions are objects, they can have properties, which include the parameters they were declared with. This is useful if you want to run an object utility such as `.length` on a function.
+Arrays are also considered a subtype of `object`, with the included ability to be numerically indexed.
