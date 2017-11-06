@@ -52,3 +52,13 @@ If you are performing a lot of operations on a set of strings that require you t
 -Numbers-
 `number` is the only numeric type currently availed in JS. It encompasses both integers and fractional values. JS uses double-precision format floating-point.
 You can read about IEEE 754 to understand how these numbers are stored in memory.
+
+-Numeric Syntax-
+The leading and trailing portions of a decimal value are optional (".42" or "42.").
+Very large and small numbers will be outputted in exponential form by default, providing the same output as the `toExponential()` method.
+`number` values, having the ability to be boxed into the `Number` object wrapper, are availed access to utility methods built into `Number.prototype`.
+`.toFixed(..)` allows you to specify how many decimal places you want a value to be displayed with as a `string` representation.
+`.toPrecision(..)` works similarly, but allows you to specify how many significant digits can be used to refer to a value, meaning you can set it to a smaller number of digits than the real value, causing them to round up or down.
+You can use these `Number` methods direct against numerical values, but recalling that a decimal point without a trailing value is acceptable syntax in JS, you have to be certain the value contains a decimal point (in addition to the dot operator that notates a separation between the value and the property call), or that you wrap the value in a parenthesis, in order to avoid a `SyntaxError`. It is uncommon to access property methods directly on primitive values, so this is not likely to be seen often. You can also validly exclude the decimal point and instead include a space between the value and the dot operator, but this is not recommended by the author.
+You can define numerical values with decimals when using exponent form. ie. `1.7E4` is equal to `17,000`.
+Express `number` literals in other bases than 10 by preceding a value with `0x` or `0X` for hexadecimal, a `0` for octal pre-ES6 or `0o`/`0O` in ES6+, and `0b`/`0B` for binary. Author advises to stick to the lower-case letter syntax for readability.
