@@ -73,3 +73,7 @@ The max value that can be represented is 1.798+e308, or `Number.MAX_VALUE`. The 
 The range of values that is considred "safe" for whole integer `number`s is smaller than the range one would infer by `Number.MAX_VALUE`. That value is `2^53 - 1`, or 9007199254740991, just over 9 quadrillion. It is defined in ES6 as `Number.MAX_SAFE_INTEGER`.
 The minimum safe integer is also defined in ES6 as `Number.MIN_SAFE_INTEGER`, and is equal to -9007199254740991, which is just a subtraction of the max.
 A common encounter caused by this limitation comes in dealing with 64-bit IDs from things such as databases, which exceed safe value bounds. Because of this, they must be stored as `string`s. If math operations are to be performed on such large values, a "big number" utility would be required.
+
+-Testing for Integers-
+ES6 includes a utility to check if a value is an integer: `Number.isInteger(..)`. It basically checks if the value is 1. a number and 2. has a modulus of zero when divided by one.
+Another ES6 utility for checking if a value is a "safe integer": `Number.isSafeInteger(..)`, which performs the same check as `Number.isInteger(..)`, but also ensures the absolute value of the passed value is less than or equal to the value of `Number.MAX_SAFE_INTEGER`.
