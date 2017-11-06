@@ -37,6 +37,15 @@ Using the `delete` operator on an array will remove a slot from it, but does not
 `string` keys/properties added to an array object do not have an impact on its `length`, UNLESS the `string` value can be coerced into a base-10 numerical value, in which case the value will be treated as the numerical index. Because of this (and the fact that general objects exist), it's best to use objects for storing key/value pairs.
 
 -Array-Likes-
-There are instances where you will need to take "array-like" collections of values and coerce them into actual arrays to be operated upon using the `Array` object utilties. Many DOM query operations return array-like collections, as well as the ES6-deprecated function `arguments` object. One easy way to do this with `arguments` is to make a function that assigns a call of `Array.prototype.slice.call( arguments );` to a variable, and then call that function while passing your list of arguments.
+There are instances where you will need to take "array-like" collections of values and coerce them into actual arrays to be operated upon using the array object utilties. Many DOM query operations return array-like collections, as well as the ES6-deprecated function `arguments` object. One easy way to do this with `arguments` is to make a function that assigns a call of `Array.prototype.slice.call( arguments );` to a variable, and then call that function while passing your list of arguments.
 In ES6, you can instead use `Array.from(..)` to perform the same task of taking anything passed to it and coercing it into a new array.
 `.push` allows you to add more values to an array.
+
+-Strings-
+JS strings are not really the same as arrays of characters. JS strings are immutable, whereas arrays are not.
+Older versions of IE did not allow for index-style character access on strings. The correct approach is considered to be `string.charAt(..)`.
+Because strings are immutable, all string methods that alter contents are actually returning a new `string` each time, while many of `array`s manipulation methods do modify content.
+Due to these differences in mutability, any `array` methods that directly alter existing values cannot be used on `string`s, but anything non-mutable that returns a new value can be "borrowed".
+A quick hack to reverse a simple string to convert it to an array, use the `reverse()` utility, and then convert back to a string: `string.split( "" ).reverse().join( "" );`. You'd need more complex utilities to perform the same operation with strings containing complex unicode characters.
+If you are performing a lot of operations on a set of strings that require you to treat them like arrays of characters, you should probably just make them arrays of characters, simply `join("")`ing them whenever you need to represent them as strings.
+
