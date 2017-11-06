@@ -49,3 +49,6 @@ Due to these differences in mutability, any `array` methods that directly alter 
 A quick hack to reverse a simple string to convert it to an array, use the `reverse()` utility, and then convert back to a string: `string.split( "" ).reverse().join( "" );`. You'd need more complex utilities to perform the same operation with strings containing complex unicode characters.
 If you are performing a lot of operations on a set of strings that require you to treat them like arrays of characters, you should probably just make them arrays of characters, simply `join("")`ing them whenever you need to represent them as strings.
 
+-Numbers-
+`number` is the only numeric type currently availed in JS. It encompasses both integers and fractional values. JS uses double-precision format floating-point.
+You can read about IEEE 754 to understand how these numbers are stored in memory.
