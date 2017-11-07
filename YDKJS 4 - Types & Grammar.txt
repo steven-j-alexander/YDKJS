@@ -123,3 +123,18 @@ It may seem useless to know this, but there are some applications where negative
 -Special Equality-
 In ES6, there is a new utility called `Object.is(..)` that can test two values for absolute equality, including the special values mentioned.
 This performs an equality check while combining the `NaN` and `-0` checks of the previously mentioned ES6 utilities into one method.
+Try and use `Object.is(..)` only where these special cases may be encountered, as using simple comparison operators are likely more efficient.
+
+-Value vs. Reference-
+In other languages, you can syntactically specify whether a value is assigned or passed by means of value-copy or reference-copy.
+In C++, you can pass a variable into a function and have its value updated by declaring a function parameter (`int& myNum`). When you pass a variable into the function, `myNum` will now reference that variable, similarly to how a pointer works. Without a reference parameter, the value passed in will simply be copied, regardless of its complexity.
+In JS, there are no pointers. There are references, but they are simply variables pointing at shared values. You cannot refer one JS variable to another, only to values.
+The only thing that determines whether a value will be value or reference-copied in JS is the type of value being passed.
+Simple values (scalar primitives) are always value-copied: `null`, `undefined`, `string`, `number`, `boolean`, and `symbol`.
+Compound values (`object`s and any `object` subtypes) are reference-copied on assignment/passing. There is no hierarchy for variables that share these value references. They are equal peers.
+Reassigning the value of a variable that was previously assigned a compound value reference will not change the reference or value of any of the other variables pointing at that initial compound value reference.
+To pass a compound object by value-copying, you would need to manually copy it yourself. For arrays, you can pass them into a function using `a.slice()`.  `.slice()` creates a shallow copy of an array when no overload parameters are provided.
+To pass a scalar primitive value as a reference-copy, you would need to wrap it in another compound value, such as an object or array.
+Reference-copying a scalar primitive value boxed in its respective object wrapper (`Number` for `number`, etc.) and then passing that to a function in hopes of being able to modify the value referenced is a no-go. The values contained in these object wrappers are immutable, and any variable references them would have to create a new `Number` in order to reference any other value. Attempting to modify a `Number` reference "unboxes" the value from the `Number` object, resulting in the modified value being directly (and separately) referenced by the variable.
+You can only add properties on top of a scalar primitive object wrapper such as `Number`.
+You are better off just manually wrapping objects in order to reference-copy, as previously suggested.
