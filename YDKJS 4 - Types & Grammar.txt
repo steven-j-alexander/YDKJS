@@ -144,3 +144,9 @@ Natives
 
 `String`, `Number`, and similar built-in type functions are called "natives".
 These natives can be used as native constructors, similar to other languages like Java, but they actually create a wrapper object (natives are subtypes of `object`) that contains the primitive value.
+
+-Internal [[Class]]-
+Values that are a subtype of `object` contain an additional [[Class]] property (as in "Class"ification) that (usually) denotes the built-in native constructor for the given subtype. It can't be accessed directly, only indirectly through use of the `Object.prototype.toString(..)` method called against your value.
+For primitive values `null` and `undefined`, `Null` and `Undefined` are returned, even though no native constructor exists for these values.
+Other simple primitive values will be automatically boxed into their respective object wrappers, those of which will be revealed as the value's internal [[Class]].
+These behaviors have changed somewhat from ES5 to ES6. Previous notes are likely pertaining to ES5.
