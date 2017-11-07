@@ -102,7 +102,7 @@ A need for `void` is rare.
 Not using a `number` for either operand in a math operation will result in a value of `NaN`. Author states it better to consider `NaN` to be "invalid number", "failed number", "bad number", rather than "not a number", seeing as the `typeof` `NaN` still resolves to `number`. `NaN` can be considered a special error condition within the set of normal `number`s.
 `NaN` is never equal to any other `NaN` value (including itself). It is the only value in JS that is not reflexive.
 There is a global built-in utility called `isNaN(..)` that is intended for checking if a value is `NaN`, but it (buggily) just checks if a value is literally a valid number or not, so caution advised.
-In ES6 there is a new and improved replacement utility called `Number.isNaN(..)` that *actually* checks if a value is `NaN` or not. One polyfill for this would simply perform the same global `isNaN(..)` check, but would also require that the value was still a `number` in order to pass. An even simpler polyfill would be to run the `isNaN(..)` check and then compare the value to itself, recalling that `NaN` is not a reflexive value, and only pass if it fails this comparison.
+In ES6 there is a new and improved replacement utility called `Number.isNaN(..)` that *actually* checks if a value is `NaN` or not. One polyfill for this would simply perform the same global `isNaN(..)` check, but would also require that the value was still a `number` in order to pass. An even simpler polyfill would be to compare the value to itself, recalling that `NaN` is not a reflexive value, and will only pass if it fails this comparison.
 
 -Infinites-
 Math operations resulting in infinite numbers do not throw compiler errors like traditional compiled languages, as JS has an `Infinity` (or `Number.POSITIVE_INFINITY`/`Number.NEGATIVE_INFINITY`) value.
@@ -119,3 +119,7 @@ Some older browsers still report this value as a simple zero. The spec also requ
 This deception also applies to comparison operators. According to them, `-0 === 0`.
 To check if a value or expression is equal to negative zero, you'd need to write a function that both checks if the value is zero, and then checks if a value of 1 divided by that zero is equal to `Number.NEGATIVE_INFINITY` (`-Infinity`).
 It may seem useless to know this, but there are some applications where negative zeros are utilitized, such as in denoting the direction of movement in an animation frame. Preserving the sign can prevent the unwanted loss of information in such a circumstance.
+
+-Special Equality-
+In ES6, there is a new utility called `Object.is(..)` that can test two values for absolute equality, including the special values mentioned.
+This performs an equality check while combining the `NaN` and `-0` checks of the previously mentioned ES6 utilities into one method.
