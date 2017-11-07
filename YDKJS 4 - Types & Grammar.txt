@@ -86,3 +86,8 @@ Passing certain values such as `NaN` and `Infinity` will pass through an abstrac
 -Special Values: The Non-`value` Values-
 `null` is an empty value or had a value that it doesn't hold anymore. The label and value are both `null`. 'null' is a special keyword, rather than an identifier. You can't assign anything to it like a variable.
 `undefined` has not had a value yet or can be considered to be missing. The label and value are both `undefined`. `undefined` is an identifier.
+
+-Undefined-
+Outside of strict-mode, you can actually assign a value to the global `undefined` identifier.
+In either strict or non-strict mode, you can make a local variable named `undefined` and assign a value to it.
+Don't do either of these.
