@@ -159,3 +159,7 @@ That being said, just allow boxing of primitives to happen implicitly, rather th
 -Object Wrapper Gotchas-
 If for some reason you do explicitly wrap a value in it's object form, be aware that objects themselves are truthy, so a check of the truthiness of a variable referencing that object will actually be performed on the object itself, rather than the value it contains.
 While still discouraged to manually box a primtive, and also while this doesn't seem to resolve the issue outlined above, it is suggested to manually wrap values using `Object(..)` rather than explicitly defining the wrapper type.
+
+-Unboxing-
+To get the underlying primitive value out of an object wrapper, use `.valueOf()`
+Unboxing can occur implicitly via coercion when the object wrapper is used in a way that requires the use of its underlying primitive value.
