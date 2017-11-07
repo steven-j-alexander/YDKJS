@@ -163,3 +163,9 @@ While still discouraged to manually box a primtive, and also while this doesn't 
 -Unboxing-
 To get the underlying primitive value out of an object wrapper, use `.valueOf()`
 Unboxing can occur implicitly via coercion when the object wrapper is used in a way that requires the use of its underlying primitive value.
+
+-Natives as Constructors: `Array(..)`-
+With `array`, `object`, `function`, and regexp, the literal and constructor form create the same unwrapped value, so stick with the literal form when possible.
+`Array(..)` construction does not require `new` in front of it, and construct a new object the same regardless of the keyword's presence.
+If only one numerical value is passed to `Array(..)`, that value will be used to "pre-size" the newly-constructed array. It's still an empty array, but will have a `.length` property whose value matches the value you passed. This is essentially a "sparse array", and is not a recommended array to construct. Chrome and Firefox's dev consoles currently display these `length`-defined slots as "empty", which is better than the "undefined" or ","+1 values they were previously mis-defining.
+ 
