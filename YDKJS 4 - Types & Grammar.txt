@@ -97,3 +97,9 @@ Another way to get the `undefined` value is via the `void` operator. It "voids" 
 To represent `void` as a standalone `undefined`, you would use the conventional `void 0`, although there is no practical difference between this and any other resulting voided value.
 `void` could be used in a return statement that included a `setTimeout(..)` that ran if a condition failed, ensuring no value was returned that could have potentially resulted in a false positive, although you could just separate those two actions.
 A need for `void` is rare.
+
+-Special Numbers: The Not Number, Number-
+Not using a `number` for either operand in a math operation will result in a value of `NaN`. Author states it better to consider `NaN` to be "invalid number", "failed number", "bad number", rather than "not a number", seeing as the `typeof` `NaN` still resolves to `number`. `NaN` can be considered a special error condition within the set of normal `number`s.
+`NaN` is never equal to any other `NaN` value (including itself). It is the only value in JS that is not reflexive.
+There is a global built-in utility called `isNaN(..)` that is intended for checking if a value is `NaN`, but it (buggily) just checks if a value is literally a valid number or not, so caution advised.
+In ES6 there is a new and improved replacement utility called `Number.isNaN(..)` that *actually* checks if a value is `NaN` or not. One polyfill for this would simply perform the same global `isNaN(..)` check, but would also require that the value was still a `number` in order to pass. An even simpler polyfill would be to run the `isNaN(..)` check and then compare the value to itself, recalling that `NaN` is not a reflexive value, and only pass if it fails this comparison.
