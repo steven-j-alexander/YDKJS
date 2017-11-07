@@ -77,3 +77,8 @@ A common encounter caused by this limitation comes in dealing with 64-bit IDs fr
 -Testing for Integers-
 ES6 includes a utility to check if a value is an integer: `Number.isInteger(..)`. It basically checks if the value is 1. a number and 2. has a modulus of zero when divided by one.
 Another ES6 utility for checking if a value is a "safe integer": `Number.isSafeInteger(..)`, which performs the same check as `Number.isInteger(..)`, but also ensures the absolute value of the passed value is less than or equal to the value of `Number.MAX_SAFE_INTEGER`.
+
+-32-bit (Signed) Integers-
+Numeric operations such as bitwise are defined for 32-bit numbers, which are even smaller than the safe range. That range is between `Math.pow(-2,31)` and `Math.pow(2,31)-1`.
+You can force a number into a 32-bit signed integer value by using the bitwise OR operator (`val | 0`). Since the bitwise operator can only handle 32-bit integer values, any excess bits will be thrown out. OR'ing the remaining value with zero is essentially a no-op (no operation).
+Passing certain values such as `NaN` and `Infinity` will pass through an abstract operation called `ToInt32` and end up with a value of `+0` when passed to a bitwise operator, and are considered to not be 32-bit safe.
