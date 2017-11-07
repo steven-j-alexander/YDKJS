@@ -112,3 +112,10 @@ IEEE 754's  "round-to-nearest" mode will cause a number just under max value, wh
 You cannot math a value from `Infinity` back into a finite value.
 `Infinity / Infinity` equals `NaN`.
 A positive finite `number` divided by `Infinity` equals 0.
+
+-Zeros-
+Negative zero (`-0`) results from multiplying or dividing a negative number by zero. It cannot result from addition or subtraction operations.
+Some older browsers still report this value as a simple zero. The spec also requires that converting a negative zero to a string will result in a string form of positive zero (`0`). The same requirement does not apply when working in reverse. This also occurs when using the `JSON.stringify(..)` method, with `JSON.parse(..)` converting negative zero strings into the proper negative zero `number`.
+This deception also applies to comparison operators. According to them, `-0 === 0`.
+To check if a value or expression is equal to negative zero, you'd need to write a function that both checks if the value is zero, and then checks if a value of 1 divided by that zero is equal to `Number.NEGATIVE_INFINITY` (`-Infinity`).
+It may seem useless to know this, but there are some applications where negative zeros are utilitized, such as in denoting the direction of movement in an animation frame. Preserving the sign can prevent the unwanted loss of information in such a circumstance.
