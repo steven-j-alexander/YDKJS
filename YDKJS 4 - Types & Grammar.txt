@@ -138,3 +138,9 @@ To pass a scalar primitive value as a reference-copy, you would need to wrap it 
 Reference-copying a scalar primitive value boxed in its respective object wrapper (`Number` for `number`, etc.) and then passing that to a function in hopes of being able to modify the value referenced is a no-go. The values contained in these object wrappers are immutable, and any variable references them would have to create a new `Number` in order to reference any other value. Attempting to modify a `Number` reference "unboxes" the value from the `Number` object, resulting in the modified value being directly (and separately) referenced by the variable.
 You can only add properties on top of a scalar primitive object wrapper such as `Number`.
 You are better off just manually wrapping objects in order to reference-copy, as previously suggested.
+
+===========================================Chapter 3===========================================
+Natives
+
+`String`, `Number`, and similar built-in type functions are called "natives".
+These natives can be used as native constructors, similar to other languages like Java, but they actually create a wrapper object (natives are subtypes of `object`) that contains the primitive value.
