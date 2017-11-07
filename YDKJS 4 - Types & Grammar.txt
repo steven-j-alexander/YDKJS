@@ -82,3 +82,7 @@ Another ES6 utility for checking if a value is a "safe integer": `Number.isSafeI
 Numeric operations such as bitwise are defined for 32-bit numbers, which are even smaller than the safe range. That range is between `Math.pow(-2,31)` and `Math.pow(2,31)-1`.
 You can force a number into a 32-bit signed integer value by using the bitwise OR operator (`val | 0`). Since the bitwise operator can only handle 32-bit integer values, any excess bits will be thrown out. OR'ing the remaining value with zero is essentially a no-op (no operation).
 Passing certain values such as `NaN` and `Infinity` will pass through an abstract operation called `ToInt32` and end up with a value of `+0` when passed to a bitwise operator, and are considered to not be 32-bit safe.
+
+-Special Values: The Non-`value` Values-
+`null` is an empty value or had a value that it doesn't hold anymore. The label and value are both `null`. 'null' is a special keyword, rather than an identifier. You can't assign anything to it like a variable.
+`undefined` has not had a value yet or can be considered to be missing. The label and value are both `undefined`. `undefined` is an identifier.
