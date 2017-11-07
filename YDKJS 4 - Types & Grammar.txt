@@ -103,3 +103,12 @@ Not using a `number` for either operand in a math operation will result in a val
 `NaN` is never equal to any other `NaN` value (including itself). It is the only value in JS that is not reflexive.
 There is a global built-in utility called `isNaN(..)` that is intended for checking if a value is `NaN`, but it (buggily) just checks if a value is literally a valid number or not, so caution advised.
 In ES6 there is a new and improved replacement utility called `Number.isNaN(..)` that *actually* checks if a value is `NaN` or not. One polyfill for this would simply perform the same global `isNaN(..)` check, but would also require that the value was still a `number` in order to pass. An even simpler polyfill would be to run the `isNaN(..)` check and then compare the value to itself, recalling that `NaN` is not a reflexive value, and only pass if it fails this comparison.
+
+-Infinites-
+Math operations resulting in infinite numbers do not throw compiler errors like traditional compiled languages, as JS has an `Infinity` (or `Number.POSITIVE_INFINITY`/`Number.NEGATIVE_INFINITY`) value.
+Negative infinity results from equations where one, but not both, of the operands are a negative value.
+Due to the numeric limitations of IEEE 754 floating-point, you can get a return value of `Infinity` even with operations such as addition or subtraction.
+IEEE 754's  "round-to-nearest" mode will cause a number just under max value, when added to a max value, to round back down to max value, rather than up to `Infinity`, as it computes that as being the closer value.
+You cannot math a value from `Infinity` back into a finite value.
+`Infinity / Infinity` equals `NaN`.
+A positive finite `number` divided by `Infinity` equals 0.
