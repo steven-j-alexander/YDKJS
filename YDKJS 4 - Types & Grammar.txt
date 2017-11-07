@@ -155,3 +155,7 @@ These behaviors have changed somewhat from ES5 to ES6. Previous notes are likely
 Since primitive values don't have properties or methods, boxing them into their objects wrappers provides a means to access their type methods.
 Because browsers have optimized access of these methods when performed on primitive values, trying to "pre-optimize" by manually wrapping said primitives in objects before running these methods against them actually results in slower performance.
 That being said, just allow boxing of primitives to happen implicitly, rather than using their object forms directly.
+
+-Object Wrapper Gotchas-
+If for some reason you do explicitly wrap a value in it's object form, be aware that objects themselves are truthy, so a check of the truthiness of a variable referencing that object will actually be performed on the object itself, rather than the value it contains.
+While still discouraged to manually box a primtive, and also while this doesn't seem to resolve the issue outlined above, it is suggested to manually wrap values using `Object(..)` rather than explicitly defining the wrapper type.
