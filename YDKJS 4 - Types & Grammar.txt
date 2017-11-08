@@ -189,3 +189,9 @@ Calling `Date()` without instancing it with the `new` keyword will return a stri
 `Error(..)` behaves the same with or without `new` instancing. They are primarily useful for the fact that error objects capture detailed information on the execution stack and its current state, including the function call-stack and the line number where the error object was created.
 Error objects are typically used with the `throw` operator, which halts execution of the application, instead skipping to the next `catch` block in the call-stack. Error objects usually have a `message` property, which are usually best-called by the `.toString(..)` method.
 There are several other specific error-type natives that are rarely used manually, usually relegated to automatic execution during real exception error situations: `EvalError(..)`, `RangeError(..)`, `ReferenceError(..)`, `SyntaxError(..)`, `TypeError(..)`, and `URIError(..)`.
+
+-`Symbol(..)`-
+New to ES6, symbols are "unique" (not totally guaranteed) values that can be used as object properties without fear of collision. There are existing symbols for new built-in ES6 behaviors, and you can also define your own. You can't resolve the actual value of a symbol from your program.
+The `Symbol(..)` native constructor is used to create new symbols, but will actually throw an error if you try to create one with the `new` keyword while doing this.
+Symbols are primarily used for special or private properties, although `Object.getOwnPropertySymbols(..)` publicly reveals the symbols on an object. For some, they replace the use of underscore prefixing special property names.
+Symbols are simple scalar primitives and not objects.
