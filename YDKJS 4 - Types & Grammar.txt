@@ -181,3 +181,11 @@ Like `Array(..)`, these constructors are optional and to be avoided unless neces
 There's no practical reason to use the `new Object(..)` constructor form over object literals.
 `Function(..)` can be useful in rare situations where you need to dynamically define its parameters and/or body. Don't use in place of `eval(..)`.
 Literal forms of regular expressions are preferable for syntax and superior performance, due to JS precompilation and caching, although the constructor form can be very useful when dynamically defining a regexp pattern.
+
+-`Date(..)` and `Error(..)`-
+There is no literal form for either of these native constructors.
+You can get the current timestamp by calling `.getTime()` on an instance of a date object, but an even easier way is to use ES5's `Date.now()`, which simply returns a new `Date` object with the `.getTime()` method already applied against it.
+Calling `Date()` without instancing it with the `new` keyword will return a string representation of the current time, although the format itself is not represented in the language spec and liable to be inconsistent.
+`Error(..)` behaves the same with or without `new` instancing. They are primarily useful for the fact that error objects capture detailed information on the execution stack and its current state, including the function call-stack and the line number where the error object was created.
+Error objects are typically used with the `throw` operator, which halts execution of the application, instead skipping to the next `catch` block in the call-stack. Error objects usually have a `message` property, which are usually best-called by the `.toString(..)` method.
+There are several other specific error-type natives that are rarely used manually, usually relegated to automatic execution during real exception error situations: `EvalError(..)`, `RangeError(..)`, `ReferenceError(..)`, `SyntaxError(..)`, `TypeError(..)`, and `URIError(..)`.
