@@ -199,4 +199,9 @@ Symbols are simple scalar primitives and not objects.
 -Native Prototypes-
 Built-in native constructors all have their own `.prototype` object, each containing behaviors specific to their object subtype, availed to both any constructor objects and primitive values via boxing.
 All `.prototype` behaviors that modify an existing value are actually returning a new value with the modification enacted.
-Some native prototypes aren't simple objects. `Function.prototype`, `Array.prototype`, and `RegExp.prototype` are all typed to their respective literal type, and can even be modified.
+Some native prototypes aren't simple objects. `Function.prototype`, `Array.prototype`, and `RegExp.prototype` are all typed to their respective literal type, are (their form of) empty, and can even be modified.
+
+-Prototypes As Defaults-
+Pre-ES6, it's handy to use the `val = val || ...` trick with functions expected the last three mentioned `.prototype`s native objects as a means to ensure they are set to an empty form if they weren't passed in. This is especially useful when you realize that manually defining empty values of these native types would mean they would be recreated for every call to that function, meaning more resource hogging.
+Be aware though, that you can still modify `Array.prototype` itself if you aren't careful. In fact, it's not always the best idea to rely on `.prototypes` for defaulting values.
+In ES6, default values can be set for parameters using native syntax in the function declaration.
