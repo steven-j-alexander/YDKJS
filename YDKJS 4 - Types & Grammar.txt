@@ -175,3 +175,9 @@ The `.apply` method is a utility similar to `.call` that is availed to all funct
 `Array.apply( null, { length: .. } )` feeds the array a parameter of property `length` with a value of whatever you give it. The `.apply` loop will then run, creating an array index for each unit of length in the array. Because no other values are provided, there is nothing to add to each index as it's created, resulting in a value of `undefined` for each of them.
 The key difference here is that `.apply` is physically creating each index as specified by the `length` property (but not defining a value in any of them), whereas `Array( val )` only assigns a value to the `length` property value.
 Use `.apply` over `Array( val )` to avoid empty slots. Avoid intentionally creating empty-slot arrays.
+
+-`Object(..)`, `Function(..)`, and `RegExp(..)`-
+Like `Array(..)`, these constructors are optional and to be avoided unless necessary.
+There's no practical reason to use the `new Object(..)` constructor form over object literals.
+`Function(..)` can be useful in rare situations where you need to dynamically define its parameters and/or body. Don't use in place of `eval(..)`.
+Literal forms of regular expressions are preferable for syntax and superior performance, due to JS precompilation and caching, although the constructor form can be very useful when dynamically defining a regexp pattern.
