@@ -205,3 +205,11 @@ Some native prototypes aren't simple objects. `Function.prototype`, `Array.proto
 Pre-ES6, it's handy to use the `val = val || ...` trick with functions expected the last three mentioned `.prototype`s native objects as a means to ensure they are set to an empty form if they weren't passed in. This is especially useful when you realize that manually defining empty values of these native types would mean they would be recreated for every call to that function, meaning more resource hogging.
 Be aware though, that you can still modify `Array.prototype` itself if you aren't careful. In fact, it's not always the best idea to rely on `.prototypes` for defaulting values.
 In ES6, default values can be set for parameters using native syntax in the function declaration.
+
+===========================================Chapter 4===========================================
+Coercion
+
+-Converting Values-
+Converting values from one type to another is often called coercion when implicit, and type casting when explicit. It's often considered that type casting is done at compile-time in statically-typed languages, whereas implicit type coercion occurs during run-time in dynamically-typed languages.
+Often in JS, both implicit and explicit type conversions are referred to as coercion, so you can use implicit/explicit coercion to differentiate the two.
+Coercion in JS always results in scalar primitives, and never complex values.
