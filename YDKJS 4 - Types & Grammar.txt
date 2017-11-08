@@ -195,3 +195,8 @@ New to ES6, symbols are "unique" (not totally guaranteed) values that can be use
 The `Symbol(..)` native constructor is used to create new symbols, but will actually throw an error if you try to create one with the `new` keyword while doing this.
 Symbols are primarily used for special or private properties, although `Object.getOwnPropertySymbols(..)` publicly reveals the symbols on an object. For some, they replace the use of underscore prefixing special property names.
 Symbols are simple scalar primitives and not objects.
+
+-Native Prototypes-
+Built-in native constructors all have their own `.prototype` object, each containing behaviors specific to their object subtype, availed to both any constructor objects and primitive values via boxing.
+All `.prototype` behaviors that modify an existing value are actually returning a new value with the modification enacted.
+Some native prototypes aren't simple objects. `Function.prototype`, `Array.prototype`, and `RegExp.prototype` are all typed to their respective literal type, and can even be modified.
