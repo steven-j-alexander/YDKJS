@@ -235,3 +235,13 @@ Strings that fail to be coerced to a number are `NaN`. 0-prefixed octals and bas
 Objects and arrays are first coerced to their primitive value equivalent before following regular `ToNumber` primitive coercion rules.
 When converting objects or arrays to a primitive, the `ToPrimitive` abstract operation is called. This operation checks to see if the object has an internal `valueOf()` method. If that exists and returns a primitive value, that is the value that will be used. If not, `ToPrimitive` will try to use `toString()` to provide a coerced value. If both fail to provide a primitive value, a `TypeError` is thrown.
 You can create non-coercible objects as of ES5 via means such as `Object.create(null)` that have a hidden [[Prototype]] property of `null` that don't possess either a `valueOf()` or `toString()` method.
+
+-Explicit Coercion-
+The advantage of explicit coercion is that it makes it more obvious to other developers that a type conversion has taken place.
+
+-Explicitly: Strings <--> Numbers-
+To explicitly coerce a string into a number value or vice versa, you'd pass the value to be coerced into the native constructor of the type you want to coerce to, being sure to leave out the `new` keyword, as this would create an object wrapper. This usage looks quite similar to that in statically typed languages.
+Using `toString(..)` needs to implicitly box a primitive value in a wrapper before it can coerce it into a string. Both explicit and implicit.
+The unary operation of adding a non-number value without using a left-hand operand coerces that value to a number. The JS community accepts this as an explicit form of coercion, although it's suggested to avoid when other operators may be present.
+A unary `-` operation functions the same way but flips the sign of the resulting value. You cannot unflip the sign using `--` as this is reserved for the decrement operator. You'd have to space them out (`- -`).
+
