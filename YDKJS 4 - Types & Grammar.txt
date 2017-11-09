@@ -248,3 +248,8 @@ A unary `-` operation functions the same way but flips the sign of the resulting
 -`Date` to `number`-
 The unary `+` operator is commonly used to coerce a `Date` object into a `number`, as this gives you the date in Unix timestamp format ('var d = +new Date();'). `Date.now()` is preferable for the current timestamp.
 Parenthesis on a function call following the `new` keyword are option if no parameters are passed. Some feel that leaving them in improves readability.
+
+-The Curious Case of the `~`-
+Bitwise operations first explicitly coerce any non-`number` values into 32-bit `number`s where possible.
+The tilde '~' operator, AKA the bitwise NOT, performs a bitwise negation (flipping parity/twos complement) (basically `-(x+1)`, although `~-1` produces a positive zero). This means the only value `~` can resolve as falsy is -1. 
+-1 is called a "sentinel value" (a value given a semantic meaning within a larger set of values). C returns it as a "failure" for many functions. JavaScript returns it when a substring was not found during an `indexOf(..)` operation. This means `~` will resolve a failing return value to the falsy value of zero.
