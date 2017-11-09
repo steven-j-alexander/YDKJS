@@ -245,3 +245,6 @@ Using `toString(..)` needs to implicitly box a primitive value in a wrapper befo
 The unary operation of adding a non-number value without using a left-hand operand coerces that value to a number. The JS community accepts this as an explicit form of coercion, although it's suggested to avoid when other operators may be present.
 A unary `-` operation functions the same way but flips the sign of the resulting value. You cannot unflip the sign using `--` as this is reserved for the decrement operator. You'd have to space them out (`- -`).
 
+-`Date` to `number`-
+The unary `+` operator is commonly used to coerce a `Date` object into a `number`, as this gives you the date in Unix timestamp format ('var d = +new Date();'). `Date.now()` is preferable for the current timestamp.
+Parenthesis on a function call following the `new` keyword are option if no parameters are passed. Some feel that leaving them in improves readability.
