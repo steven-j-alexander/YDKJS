@@ -251,5 +251,12 @@ Parenthesis on a function call following the `new` keyword are option if no para
 
 -The Curious Case of the `~`-
 Bitwise operations first explicitly coerce any non-`number` values into 32-bit `number`s where possible.
-The tilde '~' operator, AKA the bitwise NOT, performs a bitwise negation (flipping parity/twos complement) (basically `-(x+1)`, although `~-1` produces a positive zero). This means the only value `~` can resolve as falsy is -1. 
+The tilde '~' operator, AKA the bitwise NOT, attempts to coerce the given value to an integer using `ToInt32`, and if successful, performs a bitwise negation (flipping parity/twos complement) (basically `-(x+1)`, although `~-1` produces a positive zero). This means the only value `~` can resolve as falsy is -1. 
 -1 is called a "sentinel value" (a value given a semantic meaning within a larger set of values). C returns it as a "failure" for many functions. JavaScript returns it when a substring was not found during an `indexOf(..)` operation. This means `~` will resolve a failing return value to the falsy value of zero.
+
+-Truncating Bits-
+Double tildes `~~` can be used to truncate the decimal portion of a `number`.
+This simply runs the bitwise NOT operation twice, coercing the value to an integer using `ToInt32`, and then fliping bit parity twice, leaving you with a decimal truncation of the same value you provided.
+Note this will not work the same as `Math.floor(..)` does when using negative numbers, as the floor of a negative decimal value is the next digit up (-38 is larger than -39), and truncate still simply truncates, leaving you with a difference of one between the two. Also note that `~~` only works reliably with 32-bit numbers.
+Alternatively, you can also perform this in a single operation by using `x | 0`.
+It's advised to avoid using any of these as explicit coercion mechanisms if those who read and modify your code aren't aware of their meaning.
