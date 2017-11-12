@@ -319,3 +319,8 @@ The notion that loose equals checks for matching values and strict equals checks
 -Equality Performance-
 Knowing this, you can see that `==` loose equals actually does more work than `===` strict equals (if the types are different), compared to the common idea that loose equals is actually less intensive of an operation. The performance difference is negligible, though.
 Both operands still check types. Only one will try to coerce differing types.
+
+-Abstract Equality-
+The `==` loose equals operator is defined as the "Abstract Equality Comparison Algorithm" in the ES5 spec.
+These rules of "abstract equality" define how coercions should occur for every possible combination of types.
+Both loose and strict comparison of `objects` are the same in that the result is equal only if both objects are references to the exact same value.
