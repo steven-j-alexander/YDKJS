@@ -284,3 +284,12 @@ It can be quite useful when one has the aim of reducing verbosity, boilerplate, 
 Implicity is to abstract code and improe readability.
 Some developers feel that if a mechanism used to hide details can be abused or misused, then it should be avoided altogether.
 
+-Implicitly: Strings <--> Numbers-
+When the overloaded `+` operator is used in conjunction with an `object` operand, it will concatenate it with the other operand if it is already a `string`, or if both operands can be resolved to a `string`.
+It checks if resolution is possible via the `ToPrimitive` > '[[DefaultValue]]` operations. If the `valueOf()` method check on the array fails to procure a primitive value, a string will be coerced using the `toString(..)` method, allowing for concatenation.
+The above steps are the same as when using the explicit `ToNumber` operation.
+If neither operands are a string, the operands will be calculated as a numeric addition.
+A "commutative" operation is one where a difference in the order of the same values is irrelevant in its affect of the result. `+` numerical operations fit this profile, whereas string concatenations generally do not (adding "" to a number to coerce to a string would be considered commutative).
+Keep in mind that implicit coercion to a string using `a + ""` checks the return of the `valueOf()` method on a value whereas the explicit `ToString` simply invokes `toString()` directly. If you are defining your own custom variants of these methods that differ at all on an object, then you may get differing results between these explicit and implicit forms of coercion.
+The `-` operator is useful for coercing a string to a number, as the operator is only defined and used in cases of numerical subtraction. The multiply and divide operators are less commonly used for coercion, but also perform a similar utility.
+When implicitly coercing to a number using these operators, a similar `ToString` coercion takes place, before being coerced to `number`s.
