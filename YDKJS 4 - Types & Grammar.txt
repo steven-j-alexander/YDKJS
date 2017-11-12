@@ -293,3 +293,6 @@ A "commutative" operation is one where a difference in the order of the same val
 Keep in mind that implicit coercion to a string using `a + ""` checks the return of the `valueOf()` method on a value whereas the explicit `ToString` simply invokes `toString()` directly. If you are defining your own custom variants of these methods that differ at all on an object, then you may get differing results between these explicit and implicit forms of coercion.
 The `-` operator is useful for coercing a string to a number, as the operator is only defined and used in cases of numerical subtraction. The multiply and divide operators are less commonly used for coercion, but also perform a similar utility.
 When implicitly coercing to a number using these operators, a similar `ToString` coercion takes place, before being coerced to `number`s.
+
+-Implicitly: Booleans <--> Numbers-
+Coercing boolean values to numbers can be useful when checking the truthiness of several values, as you can plug them into a function containing a `for` loop that checks how many flags met your specified condition, adding the truthy booleans as numbers to the sum implicitly via use of the addition assignment `+=` operator. (You can also perform a similar action by using the more concise `.reduce(..)` utility on an array.)
