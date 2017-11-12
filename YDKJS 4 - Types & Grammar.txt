@@ -313,3 +313,6 @@ Putting expressions using these operand selector operators inside of an `if(..)`
 While explicit coercion of ES6 Symbols to strings is allowed, the attempt to implicitly coerce them will throw a `TypeError`.
 `symbol` cannot be coerced to a `number`, but will coerce to a `boolean` (implicitly or explicitly).
 
+-Loose Equals vs. Strict Equals-
+The notion that loose equals checks for matching values and strict equals checks both matching values and types is a misconception. The only real difference between the two is that loose equals allows coercion while the other does not.
+
