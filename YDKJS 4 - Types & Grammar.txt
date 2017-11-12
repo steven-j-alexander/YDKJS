@@ -299,3 +299,12 @@ Coercing boolean values to numbers can be useful when checking the truthiness of
 
 -Implicitly: *--> Boolean-
 Implicit coercion to a boolean occurs in the second clause for the `for(..)` header, in `while(..)` and `do..while(..)` loops, and to the left-hand operand of `||` logical or and `&&` logical and operations.
+
+-Operators `||` and `&&`-
+These logical operators will only result in the value of one of the two operands they are given (not always boolean). The author believes they should be called "operand selector operators" because they do not always provide a logical (boolean) value.
+`||` will attempt to coerce the first (test) value to a boolean. If the coercion resolves to `true`, that operator is what is selected as the result. Otherwise, the second operand value results. Similar to `a ? a : b`.
+`&&` works the same, but instead returns the second operand if the first resolves to `true`, and vice versa. Similar to `a ? b : a`.
+A difference to keep in mind between using these operators to the ternary equivalents is that with the ternary you may be evaluating your left-hand expression (that may be running a function) twice, versus the one time with the operators, using the operand as both the value to test and the result to provide (with a truthy `||` or a falsy `&&`).
+Because of this difference, you should only use the operators when it's ok to skip falsy values. If additional condition checks are needed, the extra evaluation with ternary conditionals allow for further specificity and complexity.
+JS minifiers often use `&&` as what is called a "guard operator", in that it protects the execution of a function unless the conditions of left-hand operand test as truthy. Usually, human coders just use an `if(..){..}` conditional to accomplish the same thing.
+Putting expressions using these operand selector operators inside of an `if(..)` or `for(..)` conditional works the same way, with the resulting expression value being implicitly coerced into the boolean that will be used to determine whether the enclosed statements will run.
