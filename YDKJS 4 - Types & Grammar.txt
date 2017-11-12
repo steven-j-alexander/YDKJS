@@ -308,3 +308,8 @@ A difference to keep in mind between using these operators to the ternary equiva
 Because of this difference, you should only use the operators when it's ok to skip falsy values. If additional condition checks are needed, the extra evaluation with ternary conditionals allow for further specificity and complexity.
 JS minifiers often use `&&` as what is called a "guard operator", in that it protects the execution of a function unless the conditions of left-hand operand test as truthy. Usually, human coders just use an `if(..){..}` conditional to accomplish the same thing.
 Putting expressions using these operand selector operators inside of an `if(..)` or `for(..)` conditional works the same way, with the resulting expression value being implicitly coerced into the boolean that will be used to determine whether the enclosed statements will run.
+
+-Symbol Coercion-
+While explicit coercion of ES6 Symbols to strings is allowed, the attempt to implicitly coerce them will throw a `TypeError`.
+`symbol` cannot be coerced to a `number`, but will coerce to a `boolean` (implicitly or explicitly).
+
