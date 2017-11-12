@@ -279,3 +279,8 @@ Author recommends avoiding the ternary operator for coercion in lieu of the prev
 -Implicit Coercion-
 Implicit coercion isn't necessarily something to be avoided at all times.
 It can be quite useful when one has the aim of reducing verbosity, boilerplate, and any unnecessary details that bog code down, preventing one from focusing on the more important intent.
+
+-Simplifying Implicity-
+Implicity is to abstract code and improe readability.
+Some developers feel that if a mechanism used to hide details can be abused or misused, then it should be avoided altogether.
+
