@@ -324,3 +324,7 @@ Both operands still check types. Only one will try to coerce differing types.
 The `==` loose equals operator is defined as the "Abstract Equality Comparison Algorithm" in the ES5 spec.
 These rules of "abstract equality" define how coercions should occur for every possible combination of types.
 Both loose and strict comparison of `objects` are the same in that the result is equal only if both objects are references to the exact same value.
+
+-Comparing: `string`s to `number`s-
+When loose comparing a string to a number, the `string` is always coerced to the matching `number` type.
+The spec uses capitalized names for types, such as `Number` and `String`, even when referring to primitive types (not be confused with native functions).
