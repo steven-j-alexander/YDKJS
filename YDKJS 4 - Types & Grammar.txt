@@ -316,3 +316,6 @@ While explicit coercion of ES6 Symbols to strings is allowed, the attempt to imp
 -Loose Equals vs. Strict Equals-
 The notion that loose equals checks for matching values and strict equals checks both matching values and types is a misconception. The only real difference between the two is that loose equals allows coercion while the other does not.
 
+-Equality Performance-
+Knowing this, you can see that `==` loose equals actually does more work than `===` strict equals (if the types are different), compared to the common idea that loose equals is actually less intensive of an operation. The performance difference is negligible, though.
+Both operands still check types. Only one will try to coerce differing types.
