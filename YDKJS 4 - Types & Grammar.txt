@@ -275,3 +275,7 @@ Many unexpected resulst can occur when parsing a string with a radix/base higher
 A double negative `!!` is often used to both coerce and ensure the parity is left intact.
 Explicit boolean coercion is not necessary if the value is used in a context that demands a boolean. For example, in an `if(..){..}` statement.
 Author recommends avoiding the ternary operator for coercion in lieu of the previous two options, if explicitness is to be desired.
+
+-Implicit Coercion-
+Implicit coercion isn't necessarily something to be avoided at all times.
+It can be quite useful when one has the aim of reducing verbosity, boilerplate, and any unnecessary details that bog code down, preventing one from focusing on the more important intent.
