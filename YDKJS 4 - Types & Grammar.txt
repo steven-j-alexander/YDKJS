@@ -328,3 +328,9 @@ Both loose and strict comparison of `objects` are the same in that the result is
 -Comparing: `string`s to `number`s-
 When loose comparing a string to a number, the `string` is always coerced to the matching `number` type.
 The spec uses capitalized names for types, such as `Number` and `String`, even when referring to primitive types (not be confused with native functions).
+
+-Comparing: anything to `boolean`-
+With loose equals comparisons where one value is boolean, the boolean will always be coerced to its `number` value equivalent.
+Because of this, you are not checking the truthiness of a value when comparing a different value type, but rather checking if a value is equal to the numerical value of the boolean.
+If checking for truthiness, it's still best to use either the implicit ( `if(x)` ) or explicit ( `if(!!x)` or `if(Boolean(x))` ) boolean coercions.
+Recommended to avoid loose comparisons to boolean values.
