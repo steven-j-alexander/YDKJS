@@ -296,3 +296,6 @@ When implicitly coercing to a number using these operators, a similar `ToString`
 
 -Implicitly: Booleans <--> Numbers-
 Coercing boolean values to numbers can be useful when checking the truthiness of several values, as you can plug them into a function containing a `for` loop that checks how many flags met your specified condition, adding the truthy booleans as numbers to the sum implicitly via use of the addition assignment `+=` operator. (You can also perform a similar action by using the more concise `.reduce(..)` utility on an array.)
+
+-Implicitly: *--> Boolean-
+Implicit coercion to a boolean occurs in the second clause for the `for(..)` header, in `while(..)` and `do..while(..)` loops, and to the left-hand operand of `||` logical or and `&&` logical and operations.
