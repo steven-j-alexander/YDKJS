@@ -260,3 +260,8 @@ This simply runs the bitwise NOT operation twice, coercing the value to an integ
 Note this will not work the same as `Math.floor(..)` does when using negative numbers, as the floor of a negative decimal value is the next digit up (-38 is larger than -39), and truncate still simply truncates, leaving you with a difference of one between the two. Also note that `~~` only works reliably with 32-bit numbers.
 Alternatively, you can also perform this in a single operation by using `x | 0`.
 It's advised to avoid using any of these as explicit coercion mechanisms if those who read and modify your code aren't aware of their meaning.
+
+-Explicitly: Parsing Numeric Strings-
+You can parse numerical characters (the first group coming from the left-hand side) out of a string value and coerce them into a number using `parseInt(..)`.
+`parseFloat(..)` performs similarly, parsing out a floating number value.
+If you didn't provide `parseInt(..)` a second argument with the desired radix pre-ES5, it would attempt to determine the numerical base depending on the beginning characters of the string for a base prefix. If you're going to run your code in ES4 or earlier, provide the radix.
