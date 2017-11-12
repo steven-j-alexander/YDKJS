@@ -334,3 +334,7 @@ With loose equals comparisons where one value is boolean, the boolean will alway
 Because of this, you are not checking the truthiness of a value when comparing a different value type, but rather checking if a value is equal to the numerical value of the boolean.
 If checking for truthiness, it's still best to use either the implicit ( `if(x)` ) or explicit ( `if(!!x)` or `if(Boolean(x))` ) boolean coercions.
 Recommended to avoid loose comparisons to boolean values.
+
+-Comparing: `null`s to `undefined`s-
+`null` and `undefined` are indistinguishable in loose comparisons, coercing to one another.
+You can use the `null` comparison to check if a function returns that or `undefined` as a value, and be assured that no other values would give off a false match. Implicitly, this is safe and far more readable.
