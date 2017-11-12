@@ -265,3 +265,7 @@ It's advised to avoid using any of these as explicit coercion mechanisms if thos
 You can parse numerical characters (the first group coming from the left-hand side) out of a string value and coerce them into a number using `parseInt(..)`.
 `parseFloat(..)` performs similarly, parsing out a floating number value.
 If you didn't provide `parseInt(..)` a second argument with the desired radix pre-ES5, it would attempt to determine the numerical base depending on the beginning characters of the string for a base prefix. If you're going to run your code in ES4 or earlier, provide the radix.
+
+-Parsing Non-Strings-
+Using `parseInt` on a non-string will often coerce the value to a string before conducting the parse.
+Many unexpected resulst can occur when parsing a string with a radix/base higher than 10, where alphabetical numerics can be parsed out of a string value.
