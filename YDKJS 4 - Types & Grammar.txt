@@ -338,3 +338,8 @@ Recommended to avoid loose comparisons to boolean values.
 -Comparing: `null`s to `undefined`s-
 `null` and `undefined` are indistinguishable in loose comparisons, coercing to one another.
 You can use the `null` comparison to check if a function returns that or `undefined` as a value, and be assured that no other values would give off a false match. Implicitly, this is safe and far more readable.
+
+-Comparing: `object`s to non-`object`s-
+Objects will have `ToPrimitive` called on them to attempt coercion of a simple scalar primitive when they are loosely compared to numbers or strings (booleans coerce to numbers first).
+This functions similarly to unboxing a primitive value from an object wrapper.
+Note that this will not work with `null` or `undefined`, which have no object wrapper, or with `NaN`, which can never equal itself.
