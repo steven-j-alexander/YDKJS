@@ -343,3 +343,7 @@ You can use the `null` comparison to check if a function returns that or `undefi
 Objects will have `ToPrimitive` called on them to attempt coercion of a simple scalar primitive when they are loosely compared to numbers or strings (booleans coerce to numbers first).
 This functions similarly to unboxing a primitive value from an object wrapper.
 Note that this will not work with `null` or `undefined`, which have no object wrapper, or with `NaN`, which can never equal itself.
+
+-Edge Cases: A Number By Any Other Value Would...-
+By changing the `valueOf` method of `Number.prototype` to return a specific or incrementing number, you can get strange looking results when comparing a `new Number(..)` variable to a primitive number.
+Author states these corner cases are sometimes used as an argument against coercion.
