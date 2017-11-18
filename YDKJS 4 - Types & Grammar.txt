@@ -355,3 +355,9 @@ Coercion of any whitespace combination, empty string, or empty array to a number
 -Safely Using Implicit Coercion-
 An alternative operator to use is `typeof` to avoid what you would consider to be false positives for your matching operations. Implicit coercion will not occur with `typeof` and it will always return one of seven types.
 https://github.com/dorey/JavaScript-Equality-Table - table of JS equality comparison matches.
+
+-Abstract Relational Comparison-
+When comparing strings in relational comparisons that remain strings, a lexicographic comparison will occur, where each alphabetical character is counted as a numeric value and compared in the order of left-most to right-most characters.
+When comparing two separate object references containing equal (but still separately instanced) values, you will only get a "true" result when conducting a `<=` or `>=` comparison. This is because two objects will only loose/strict-equal one another if they point to the exact same value location (not duplicates of the same value), they are not "less than" or "greater than" one another seeing as they both resolve to the same `["object Object"]` string value, and the `<=` and `>=` are not actually "less-than/greater than or equal to".
+`<=` is actually defined in the spec as "not greater than", simply checking if `>` results to false, and likewise for the opposite operator.
+There is no way to prevent implicit coercion from occuring with relational comparisons, so explicitly coerce your values to the desired matching type first if you need to.
