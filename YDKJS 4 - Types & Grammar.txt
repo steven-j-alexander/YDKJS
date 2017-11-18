@@ -347,3 +347,7 @@ Note that this will not work with `null` or `undefined`, which have no object wr
 -Edge Cases: A Number By Any Other Value Would...-
 By changing the `valueOf` method of `Number.prototype` to return a specific or incrementing number, you can get strange looking results when comparing a `new Number(..)` variable to a primitive number.
 Author states these corner cases are sometimes used as an argument against coercion.
+
+-False-y Comparisons: The Crazy Ones-
+Coercion of an array containing `null` to a string will result in an empty string.
+Coercion of any whitespace combination to a number will result in a "0".
