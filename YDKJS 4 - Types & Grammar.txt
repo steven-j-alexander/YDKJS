@@ -350,4 +350,8 @@ Author states these corner cases are sometimes used as an argument against coerc
 
 -False-y Comparisons: The Crazy Ones-
 Coercion of an array containing `null` to a string will result in an empty string.
-Coercion of any whitespace combination to a number will result in a "0".
+Coercion of any whitespace combination, empty string, or empty array to a number will result in a "0".
+
+-Safely Using Implicit Coercion-
+An alternative operator to use is `typeof` to avoid what you would consider to be false positives for your matching operations. Implicit coercion will not occur with `typeof` and it will always return one of seven types.
+https://github.com/dorey/JavaScript-Equality-Table - table of JS equality comparison matches.
