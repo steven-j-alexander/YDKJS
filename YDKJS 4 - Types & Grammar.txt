@@ -370,3 +370,9 @@ You can think of statements as sentences, expressions as phrases, and operators 
 Every JS expression can be evaluated to a single result.
 `var blah = blah` would be considered a declaration statement, and can contain assignment expressions.
 An expression statement just contains an expression (condensable to a single value).
+
+-Statement Completion Values-
+All statements have completion values, even if they are `undefined` (variable assignments return this, for example).
+For any block-scoped (`{..}`) code snippet, the completion value implicitly returned is the completion value of the last statement/expression is contains.
+CoffeeScript works similarly, in that it implicitly returns values from functions that are the same as the last statement in that function.
+In JS, you cannot directly capture the completion value of a statement and assign it to a variable. Other than using the less than desirable `eval(..)` method, there is an ES7 proposal for a `do {..}` expression that would allow for more direct application of completion values resulted from the contents of its enclosing block. In effect, this would treat statements more like expressions so that they can be added inside of other statements.
