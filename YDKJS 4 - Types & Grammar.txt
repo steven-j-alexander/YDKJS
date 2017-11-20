@@ -425,3 +425,9 @@ Similar can be conducted with the OR operator, avoiding the call to a function o
 -Tighter Binding-
 Logical operators have more precedence over ternary operators.
 They are commonly explained as "binding more tightly" than ternary operators.
+
+-Associativity-
+Operators are generally left or right-associative, meaning they group from the left or the right. This is important when there are groups of the same operations occurring in sequence. You want to know which direction these groups will be evaluating from first.
+`||` and `&&` are left-associative.
+Ternary operators are right-associative, which means the right-most groups actually evaluate first. This is important because even if you attain the same results regardless of grouping, the expressions to be evaluated will differ, which could have implications if, for example, function calls are involved in the evaluations.
+The `=` operator is also right-associative.
