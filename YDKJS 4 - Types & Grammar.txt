@@ -442,3 +442,8 @@ ASI can be handy when using the `break`, `continue`, `return`, and `yield` keywo
 
 -Error Correction-
 Since JS doesn't really possess "significant newlines" and ASI is considered "error-correction", the author (and even the creator of JavaScript) state it best to avoid using ASI for the purposes of stylistic preference. Use semicolons where you know they are to be needed.
+
+-Errors-
+Early errors are caught and reported during compile time. Syntactical errors fit this profile, as does some syntactically-acceptable but grammatically disallowed code, such as invalid regex, assignment to a value rather than an identifier, and (in strict mode) the declaration of duplicate parameters in a function or duplicate properties in an object literal.
+Even though they are more grammatical errors than syntax, you will still get a `SyntaxError` thrown for these pre-defined error conditions.
+Early errors cannot be caught with `try...catch`, as they never make it to execution.
