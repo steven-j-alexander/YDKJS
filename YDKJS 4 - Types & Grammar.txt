@@ -416,3 +416,8 @@ These statements do not need brackets around their associated block if it only c
 The `=` operator has precedence over the `,` comma operator (in fact, the comma operator has the lowest precedence of all), so when using `,` as a statement-series operator, it is likely necessary to wrap the statement in parenthesis, otherwise whatever comes first in the series after the `=` operator will be assigned before any after side effects occur.
 The same thing is of importance with logical operators, as they have higher precedence over both `,` and `=` operators.
 `&&` operators are more precedent than `||` operators.
+
+-Short Circuited-
+With logical AND and OR operators, the right-hand operand will not be evaluated if the left-hand operator is sufficient enough to determine the outcome of the operation (false and true, respectively).
+This can be useful in an instance where you passing an object to a function, and want to check for the existence of a property. If the object doesn't exist, checking for a property on it will throw an error. Using the AND operator, you can check for the object's existence (or at least that what was passed resolves to a boolean of `true`), and avoid errors on checking the property if a value of `false` is evaluated on the left-hand.
+Similar can be conducted with the OR operator, avoiding the call to a function on the right-hand side of the operand if the left-hand resolves to `true`.
