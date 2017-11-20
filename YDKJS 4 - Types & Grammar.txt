@@ -411,3 +411,8 @@ You can create functions that accept objects using destructured assignments as w
 -`else if` and Optional Blocks-
 There actually is no `else if` clause. They are simply a combination of `else` and `if`.
 These statements do not need brackets around their associated block if it only contains a single statement. This means that any instance of `else if` occurring is actually an `if` statement being defined inside the block of an `else` statement.
+
+-Operator Precedence-
+The `=` operator has precedence over the `,` comma operator (in fact, the comma operator has the lowest precedence of all), so when using `,` as a statement-series operator, it is likely necessary to wrap the statement in parenthesis, otherwise whatever comes first in the series after the `=` operator will be assigned before any after side effects occur.
+The same thing is of importance with logical operators, as they have higher precedence over both `,` and `=` operators.
+`&&` operators are more precedent than `||` operators.
