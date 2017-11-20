@@ -434,3 +434,8 @@ The `=` operator is also right-associative.
 
 -Disambiguation-
 Author recommends to make use of operator precedence and associativity when it leads to less verbose and cleaner code, while using manual `( )` grouping in more complex operation chains where clarification would be of aid, such as when using multiple sets of (conditional) ternary operators.
+
+-Automatic Semicolons-
+ASI (Automatic Semicolon Insertion) assumes there is a semicolon in places where you did not put one, but its usage is implied, in order to prevent parser errors from being thrown. It can only occur in places where a newline takes place.
+Statement blocks do not require semicolon termination.
+ASI can be handy when using the `break`, `continue`, `return`, and `yield` keywords, as they are often used with no right-hand value. ASI prevents the contents of the next line being combined into a single expression with these keywords.
