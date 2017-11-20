@@ -386,3 +386,7 @@ The `delete` operator returns a value of `true` on both nonexistent properties a
 The assignment operator itself has a side-effect of assigning a value to a variable, as the completion value is merely a return of the value that was assigned. The same applies for compound assignment operators.
 The completion value of an assignment operation being equal to the evaluated value being assigned is useful in instances such as chaining of assignments, as each preceding assignment will be equal to the completion value evaluated from the assignment expressions that follow it. Ensure your variables are all being declared beforehand, as they cannot be declared inside of the right-hand assignment itself. If a referenced variable in a chain assignment operation is not declared, a `ReferenceError` will be thrown in strict mode, or an accidental global variable will be created.
 Another use of assignment being a side effect is that you can combine multiple `if` statements. Wrap your additional `if` assignments in matching parenthesis and include them as conditionals in your single `if`. They will assign as a side effect and be evaluated as true or false in the context of the `if` conditional, being implicitly coerced to a boolean.
+
+-Contextual Rules: `{ .. }` Curly Braces: Object Literals-
+Enclosing curly bracket pairs, when assigned to a variable, are referred to as an `object` literal.
+The variable being assigned to is sometimes called the "l-value", whereas the object literal being assigned is called an r-value.
