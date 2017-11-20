@@ -407,3 +407,7 @@ Adding an empty array to an empty object results in the number `0`, because the 
 -Object Destructuring-
 Curly brackets can also be used in ES6 destructuring assignments. With `object` destructuring, you return an object from a function that contains a series of key/value pairs. You can then assign the function to an object with matching keys defined, and have that return populate those keys with their matching values.
 You can create functions that accept objects using destructured assignments as well.
+
+-`else if` and Optional Blocks-
+There actually is no `else if` clause. They are simply a combination of `else` and `if`.
+These statements do not need brackets around their associated block if it only contains a single statement. This means that any instance of `else if` occurring is actually an `if` statement being defined inside the block of an `else` statement.
