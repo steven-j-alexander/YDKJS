@@ -390,3 +390,12 @@ Another use of assignment being a side effect is that you can combine multiple `
 -Contextual Rules: `{ .. }` Curly Braces: Object Literals-
 Enclosing curly bracket pairs, when assigned to a variable, are referred to as an `object` literal.
 The variable being assigned to is sometimes called the "l-value", whereas the object literal being assigned is called an r-value.
+
+-Labels-
+When you remove the target l-value in an object literal assignment, you are left with regular, block-scoped code.
+Any key/value pairs in a standard block of code are known as labeled statements. The "key" is the label, and the "value" is the statement.
+JS has a special form of the `goto` statement named "labeled jumps", which `continue`s either the loop specified by label, or if not specified, the one enclosing the `continue` statement.
+You can also `break` a specific label to continue after the end of that loop.
+While a label can apply to a non-loop block, `break` is the only statement out of the two that can reference such a label, as you cannot `continue` a non-loop block.
+Labeled loops/blocks are best avoided, as it is usually better to use function calls in place of loop jumps.
+Statement labels can't have `""` quotes around them. This means JSON is not valid JS grammar on its own, but rather a subset of JavaScript syntax. JSON values by themselves throw an error because they are interpreted as statement blocks with invalid labels. JSON-P (which is the act of wrapping JSON values in a function call) makes JSON data valid JS grammar because it treats it as an object literal value being passed to the function object.
