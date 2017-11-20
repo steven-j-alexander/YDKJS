@@ -447,3 +447,8 @@ Since JS doesn't really possess "significant newlines" and ASI is considered "er
 Early errors are caught and reported during compile time. Syntactical errors fit this profile, as does some syntactically-acceptable but grammatically disallowed code, such as invalid regex, assignment to a value rather than an identifier, and (in strict mode) the declaration of duplicate parameters in a function or duplicate properties in an object literal.
 Even though they are more grammatical errors than syntax, you will still get a `SyntaxError` thrown for these pre-defined error conditions.
 Early errors cannot be caught with `try...catch`, as they never make it to execution.
+
+-Using Variables Too Early-
+The "TDZ" (Temporal Dead Zone) concept defined in ES6 as a place in code where a variable reference cannot yet be made because it hasn't been initialized yet.
+This can occur when referencing a block-scoped variable that hasn't yet been initialized with the `let` keyword.
+While `typeof` has an exception for undeclared variables (resulting in `undefined`), it will throw a `ReferenceError` when used to reference a variable in the TDZ.
