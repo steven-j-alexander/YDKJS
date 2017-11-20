@@ -421,3 +421,7 @@ The same thing is of importance with logical operators, as they have higher prec
 With logical AND and OR operators, the right-hand operand will not be evaluated if the left-hand operator is sufficient enough to determine the outcome of the operation (false and true, respectively).
 This can be useful in an instance where you passing an object to a function, and want to check for the existence of a property. If the object doesn't exist, checking for a property on it will throw an error. Using the AND operator, you can check for the object's existence (or at least that what was passed resolves to a boolean of `true`), and avoid errors on checking the property if a value of `false` is evaluated on the left-hand.
 Similar can be conducted with the OR operator, avoiding the call to a function on the right-hand side of the operand if the left-hand resolves to `true`.
+
+-Tighter Binding-
+Logical operators have more precedence over ternary operators.
+They are commonly explained as "binding more tightly" than ternary operators.
