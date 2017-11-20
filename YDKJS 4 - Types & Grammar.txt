@@ -403,3 +403,7 @@ Statement labels can't have `""` quotes around them. This means JSON is not vali
 -Blocks-
 Adding an empty object to an empty array results in the string value `"[object Object]"`, because the array is first coerced to an empty string, and then the object is coerced to its string value as well.
 Adding an empty array to an empty object results in the number `0`, because the `+` operator is adding the standalone coerced array value (`+ []`) of `0` to what it perceives to be an empty block (as blocks don't need semicolons to be terminated).
+
+-Object Destructuring-
+Curly brackets can also be used in ES6 destructuring assignments. With `object` destructuring, you return an object from a function that contains a series of key/value pairs. You can then assign the function to an object with matching keys defined, and have that return populate those keys with their matching values.
+You can create functions that accept objects using destructured assignments as well.
