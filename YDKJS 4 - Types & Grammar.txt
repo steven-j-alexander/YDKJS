@@ -399,3 +399,7 @@ You can also `break` a specific label to continue after the end of that loop.
 While a label can apply to a non-loop block, `break` is the only statement out of the two that can reference such a label, as you cannot `continue` a non-loop block.
 Labeled loops/blocks are best avoided, as it is usually better to use function calls in place of loop jumps.
 Statement labels can't have `""` quotes around them. This means JSON is not valid JS grammar on its own, but rather a subset of JavaScript syntax. JSON values by themselves throw an error because they are interpreted as statement blocks with invalid labels. JSON-P (which is the act of wrapping JSON values in a function call) makes JSON data valid JS grammar because it treats it as an object literal value being passed to the function object.
+
+-Blocks-
+Adding an empty object to an empty array results in the string value `"[object Object]"`, because the array is first coerced to an empty string, and then the object is coerced to its string value as well.
+Adding an empty array to an empty object results in the number `0`, because the `+` operator is adding the standalone coerced array value (`+ []`) of `0` to what it perceives to be an empty block (as blocks don't need semicolons to be terminated).
