@@ -439,3 +439,6 @@ Author recommends to make use of operator precedence and associativity when it l
 ASI (Automatic Semicolon Insertion) assumes there is a semicolon in places where you did not put one, but its usage is implied, in order to prevent parser errors from being thrown. It can only occur in places where a newline takes place.
 Statement blocks do not require semicolon termination.
 ASI can be handy when using the `break`, `continue`, `return`, and `yield` keywords, as they are often used with no right-hand value. ASI prevents the contents of the next line being combined into a single expression with these keywords.
+
+-Error Correction-
+Since JS doesn't really possess "significant newlines" and ASI is considered "error-correction", the author (and even the creator of JavaScript) state it best to avoid using ASI for the purposes of stylistic preference. Use semicolons where you know they are to be needed.
