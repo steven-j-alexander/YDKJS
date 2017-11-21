@@ -492,3 +492,11 @@ Annex B is the ECMAScript spec for JS compatibility in a browser host environmen
 The primary compatibility differences are: 1. Octal number literals are allowed in non-strict mode.
 `window.escape(..)` and `window.unescape(..)` allow you to escape/unescape strings containing %-delimited hex escape sequences.
 `String.prototype.substr`, in comparison to `String.prototype.substring`, is the same other than the second parameter being equal to the desired character length for the substring, rather than the ending character index.
+
+-Web ECMAScript-
+Web ECMAScript covers the gap between Annex B, and what is required of browsers to be compatible with one another in their JS implementation.
+(these may be out of date and included in Annex B): `<!--`/`-->` are valid comment delimiters when used on a single line.
+Rarely used, as most prefer and encourage the use of other utilities and built-in DOM APIs, there are numerous `String.prototype` additions for formatting HTML-friendly strings.
+`RegExp` extensions for match groups and most recent match.
+(Already deprecated) `Function.prototype` additions of `arguments` and `caller`.
+These and the Annex B deviations are rarely used, but be aware when you use them.
