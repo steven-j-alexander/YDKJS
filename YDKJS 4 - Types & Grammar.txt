@@ -480,3 +480,15 @@ Operator precedence is the order in which they will bind (before or after others
 Early errors are often syntactical (but sometimes semantical rule-breaking), compiler-thrown, and uncatchable, whereas run-time errors can be caught with `try..catch`.
 Avoid using the `arguments` array when possible, as there is leaky abstraction behavior that especially surfaces when referencing both the argument slot and its (not always) matching named parameter.
 The `finally` clause, with its execution order intricacies, can be useful, but also confusing when combined with labeled blocks.
+
+===========================================Appendix A===========================================
+Mixed Environment JavaScript
+
+JS always depends on a host environment, each of which can potentially cause different types of unpredictable behavior with your code.
+
+-Annex B (ECMAScript)-
+JavaScript is the name for the browser implementation of ECMAScript.
+Annex B is the ECMAScript spec for JS compatibility in a browser host environment.
+The primary compatibility differences are: 1. Octal number literals are allowed in non-strict mode.
+`window.escape(..)` and `window.unescape(..)` allow you to escape/unescape strings containing %-delimited hex escape sequences.
+`String.prototype.substr`, in comparison to `String.prototype.substring`, is the same other than the second parameter being equal to the desired character length for the substring, rather than the ending character index.
