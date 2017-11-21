@@ -452,3 +452,11 @@ Early errors cannot be caught with `try...catch`, as they never make it to execu
 The "TDZ" (Temporal Dead Zone) concept defined in ES6 as a place in code where a variable reference cannot yet be made because it hasn't been initialized yet.
 This can occur when referencing a block-scoped variable that hasn't yet been initialized with the `let` keyword.
 While `typeof` has an exception for undeclared variables (resulting in `undefined`), it will throw a `ReferenceError` when used to reference a variable in the TDZ.
+
+-Function Arguments-
+TDZ violations can also occur with ES6 default paramater value definitions that reference themselves or an outer reference outside of scope.
+While there is no difference between passing `undefined` or omitting an argument with default parameters, you can still tell the difference between the two by calling the `arguments.length` method within the function. This checks the number of slots in the `arguments` array that have entries. If you explicitly pass `undefined`, it will be added to the `arguments` array, even if a different default value is used.
+The `arguments` array can contain different arguments that what are actually used for values in a function, even in ES5 strict mode, by redeclaring the value of the parameter in the function body. This will create an "unlinked" argument.
+In non-strict mode, `argument` array values and their respective parameter variable values will always be "linked" to match, so updating the latter will also update the former.
+This linkage is considered a leaky abstraction that reveals an implementation detail rather than an intended feature, and its usage as such should be avoided, especially since usage of the `arguments` array is now deprecated as of ES6 (in favor of `...` rest parameters).
+In pre-ES6, `arguments` still has its utility (it was the only way to get all arguments passed to a function, including those that were not assigned to parameter variables), but don't refer to a named parameter and it's matching argument in the same place.
