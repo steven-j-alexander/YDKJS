@@ -472,3 +472,11 @@ One note is that the omission of a `return` inside of a `finally` does not opera
 The `switch` statement uses strict equality `===` comparisons when matching values to cases. To allow loose, coercive equality `==`, you can test each case expression (performing a loose equals comparison) result against a test expression of the boolean, `true`. The `switch` will still be strictly matching the boolean results, but your individual `case` expressions will perform the coercive comparison.
 Be careful doing this with expressions that include logical operators that test for truthiness. For example, an OR operation that has a string operand would qualify as truthy, resulting in that string being returned. You must explicitly force it to a boolean of `true` or `false`.
 The (optional) `default` clause doesn't have to be added to the end.
+
+-Review-
+Expressions can have side-effects or they can be pure and unaffecting of outside data.
+The context in which syntax is used and utilized can vary based on the grammatical rules of the JavaScript language.
+Operator precedence is the order in which they will bind (before or after others) and operator associativity is the implicit order in which those operations are grouped.
+Early errors are often syntactical (but sometimes semantical rule-breaking), compiler-thrown, and uncatchable, whereas run-time errors can be caught with `try..catch`.
+Avoid using the `arguments` array when possible, as there is leaky abstraction behavior that especially surfaces when referencing both the argument slot and its (not always) matching named parameter.
+The `finally` clause, with its execution order intricacies, can be useful, but also confusing when combined with labeled blocks.
