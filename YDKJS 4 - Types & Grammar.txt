@@ -467,3 +467,8 @@ If you `throw` or `return` from `finally` as well as from `try`, the completion 
 Control statements such as `break` and `continue` will behave similarly when used in a `try..finally` clause.
 ES6 adds `yield` statements, which function as intermediate `return` statements. They are not completed until their generator is resumed, so using one inside of a `try` will not immediately result in the execution of the `finally` clause.
 One note is that the omission of a `return` inside of a `finally` does not operate similarly to the behavior of a function where the lack of an explicit return results in the implicit `return undefined` being returned. The previous `return` call remains intact.
+
+-`switch`-
+The `switch` statement uses strict equality `===` comparisons when matching values to cases. To allow loose, coercive equality `==`, you can test each case expression (performing a loose equals comparison) result against a test expression of the boolean, `true`. The `switch` will still be strictly matching the boolean results, but your individual `case` expressions will perform the coercive comparison.
+Be careful doing this with expressions that include logical operators that test for truthiness. For example, an OR operation that has a string operand would qualify as truthy, resulting in that string being returned. You must explicitly force it to a boolean of `true` or `false`.
+The (optional) `default` clause doesn't have to be added to the end.
