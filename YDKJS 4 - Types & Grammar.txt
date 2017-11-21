@@ -460,3 +460,10 @@ The `arguments` array can contain different arguments that what are actually use
 In non-strict mode, `argument` array values and their respective parameter variable values will always be "linked" to match, so updating the latter will also update the former.
 This linkage is considered a leaky abstraction that reveals an implementation detail rather than an intended feature, and its usage as such should be avoided, especially since usage of the `arguments` array is now deprecated as of ES6 (in favor of `...` rest parameters).
 In pre-ES6, `arguments` still has its utility (it was the only way to get all arguments passed to a function, including those that were not assigned to parameter variables), but don't refer to a named parameter and it's matching argument in the same place.
+
+-`try..finally`-
+When using a `try..finally` clause, anything returned from the `try` will be ran before `finally` (which always runs regardless of what happens with `try` and `catch`, if present), but not returned until completion of the enclosing function call. The same behavior occurs if you use a `throw` inside your `try`, where that will become the completion value for that function.
+If you `throw` or `return` from `finally` as well as from `try`, the completion value returned from the enclosing function will resolve to what you returned in `finally`, essentially overriding what was returned from `try`.
+Control statements such as `break` and `continue` will behave similarly when used in a `try..finally` clause.
+ES6 adds `yield` statements, which function as intermediate `return` statements. They are not completed until their generator is resumed, so using one inside of a `try` will not immediately result in the execution of the `finally` clause.
+One note is that the omission of a `return` inside of a `finally` does not operate similarly to the behavior of a function where the lack of an explicit return results in the implicit `return undefined` being returned. The previous `return` call remains intact.
