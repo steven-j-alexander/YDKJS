@@ -511,3 +511,8 @@ One example of a host object is `console`. This object is provided by the hostin
 Creating a variable in the global scope creates a property of the same name on the `global ` object (`window` in browser), in addition to the variable.
 The same global property mirroring behavior occurs when creating DOM elements possessing `id` attributes in your host HTML page.
 Avoid using global vars or stick to ones with unique var names when possible, as they can collide with HTML content as well as any other JS code.
+
+-Native Prototypes-
+It is best to never extend native prototypes, because you never know if that method/property could be added to the spec in the future, causing a conflict with your old code. 
+And exception is that you are absolutely sure your code will be the only code to ever run in that environment. It is also best to define them only conditionally (as in, check if the method already exists on the prototype), which limits the extension to environments where it does not exist. Even then, this is not sure-fire safe, as something else such as a JS framework can come in before-hand and define its own extension.
+One can utilize a full set of unit/regression tests in all known environments to help bring issues with extended native prototypes to the light, but they won't actually protect your code from the conflicts, so again, it is best to avoid extending them altogether.
