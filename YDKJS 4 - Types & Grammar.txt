@@ -521,3 +521,11 @@ One can utilize a full set of unit/regression tests in all known environments to
 It's usually safe to extend native prototypes for older host environments not prone to being updated if you are extending to include a feature already outlined in spec.
 ES5-Shim (https://github.com/es-shims/es5-shim) and ES6-Shim (https://github.com/es-shims/es6-shim) are collections of shims/polyfills used with the intention of bringing JS code for older environments up to their respective spec baseline. These mostly do not allow for the use of newer syntax. You would need incorporate use of a transpiler such as Traceur (https://github.com/google/traceur-compiler/wiki/Getting-Started) to accomplish that.
 A "shim" is compliance tested, whereas a "polyfill" is only existence-checked.
+
+-`<script>`s-
+Additional JS files included via the use of inline or externally sourced `<script>` tag share the same `global`/`window` namespace object, although global variable scope hoisting does not span and hoist across the boundaries of separate JS files or inline <script>-enclosed elements.
+Separate JS scripts/<script> elements can error out, but subsequent scripts will still run unimpeded, still sharing `global`.
+You can even create `script` elements dynamically (either containing code or referencing an external file) and inject them into the DOM for your page, with the code in them operating as their own script element/file.
+When including `<script>` tags inside of dynamically generated JS code for inline injection, be sure to write your closing tag as something like `"</sc" + "ript>"' in order to prevent premature script block termination.
+The character set of externally sourced files will be interpreted using the character set that the file is served with, whereas inline `<script>` blocks will always be interpreted with the character set used by the HTML page containing it. `charset` does not work on inline attributes.
+Wrapping `<script>` code with HTML/XHTML-style comments is now a deprecated and unnecessary practice.
