@@ -506,3 +506,8 @@ Host objects are objects and functions that are built into the hosting environme
 Some of these objects are special in that they have a different internal `[[Class]]` value and come with predefined (and frequently unmodifiable) properties. An example of this is a DOM element.
 Some of these host objects will actually coerce to `false` rather than `true`, won't have access to your typical built-in `object` utilities, are partially or completely read-only, contain methods that are unchangeably `this`-bound, etc.
 One example of a host object is `console`. This object is provided by the hosting environment, such as your browser's developer tools.
+
+-Global DOM Variables-
+Creating a variable in the global scope creates a property of the same name on the `global ` object (`window` in browser), in addition to the variable.
+The same global property mirroring behavior occurs when creating DOM elements possessing `id` attributes in your host HTML page.
+Avoid using global vars or stick to ones with unique var names when possible, as they can collide with HTML content as well as any other JS code.
