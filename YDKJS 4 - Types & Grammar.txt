@@ -516,3 +516,8 @@ Avoid using global vars or stick to ones with unique var names when possible, as
 It is best to never extend native prototypes, because you never know if that method/property could be added to the spec in the future, causing a conflict with your old code. 
 And exception is that you are absolutely sure your code will be the only code to ever run in that environment. It is also best to define them only conditionally (as in, check if the method already exists on the prototype), which limits the extension to environments where it does not exist. Even then, this is not sure-fire safe, as something else such as a JS framework can come in before-hand and define its own extension.
 One can utilize a full set of unit/regression tests in all known environments to help bring issues with extended native prototypes to the light, but they won't actually protect your code from the conflicts, so again, it is best to avoid extending them altogether.
+
+-Shims/Polyfills-
+It's usually safe to extend native prototypes for older host environments not prone to being updated if you are extending to include a feature already outlined in spec.
+ES5-Shim (https://github.com/es-shims/es5-shim) and ES6-Shim (https://github.com/es-shims/es6-shim) are collections of shims/polyfills used with the intention of bringing JS code for older environments up to their respective spec baseline. These mostly do not allow for the use of newer syntax. You would need incorporate use of a transpiler such as Traceur (https://github.com/google/traceur-compiler/wiki/Getting-Started) to accomplish that.
+A "shim" is compliance tested, whereas a "polyfill" is only existence-checked.
