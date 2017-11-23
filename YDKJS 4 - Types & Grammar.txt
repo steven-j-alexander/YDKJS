@@ -529,3 +529,7 @@ You can even create `script` elements dynamically (either containing code or ref
 When including `<script>` tags inside of dynamically generated JS code for inline injection, be sure to write your closing tag as something like `"</sc" + "ript>"' in order to prevent premature script block termination.
 The character set of externally sourced files will be interpreted using the character set that the file is served with, whereas inline `<script>` blocks will always be interpreted with the character set used by the HTML page containing it. `charset` does not work on inline attributes.
 Wrapping `<script>` code with HTML/XHTML-style comments is now a deprecated and unnecessary practice.
+
+-Reserved Words-
+ES5 defines 4 categories of reserved words that cannot be used for variable names: Your in-use keywords, future reserved words, the `null` literal, and `true`/`false` boolean literals.
+Before ES5, these reserved words also could not be used as property or key names, although that restriction has been lifted. Still, keep in mind some older browsers (IE) may act funky when using these reserved words in such a manner.
