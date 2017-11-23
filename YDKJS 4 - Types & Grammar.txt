@@ -533,3 +533,7 @@ Wrapping `<script>` code with HTML/XHTML-style comments is now a deprecated and 
 -Reserved Words-
 ES5 defines 4 categories of reserved words that cannot be used for variable names: Your in-use keywords, future reserved words, the `null` literal, and `true`/`false` boolean literals.
 Before ES5, these reserved words also could not be used as property or key names, although that restriction has been lifted. Still, keep in mind some older browsers (IE) may act funky when using these reserved words in such a manner.
+
+-Implementation Limits-
+There are implentation-specific limits for certain things that the JS spec does not define.
+Some examples are the number of function arguments, length or max characters of a string literal, stack size of data that can be sent in arguments to a function call, max depth of (non-optimized) call-stack/chain of recursively called functions, the maximum amount of time a JS program can block the browser, and max variable name length.
