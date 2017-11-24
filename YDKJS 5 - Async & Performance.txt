@@ -35,3 +35,8 @@ With the previous example, it is possible that both an `onscroll`-triggering Aja
 -Noninteracting-
 Nondeterminism is not an issue if these concurrently virtual processes/tasks you are interleaving into the event queue are unrelated and don't interact with each other.
 If the concurrent processes will work as intended, regardless of its ordering, this would not be considered a race condition bug.
+
+-Interaction-
+Concurrent processes will interact more commonly than not. Always remedy race condition nondeterminism by delineating different potential responses in your callbacks, checking that all necessary conditions are met/completed (especially those from other processes). You may also need to ensure you are carving out separate spaces for any response data to be stored (such as storing one specific type of response in one array slot, adding another to a different slot, etc), in order to maintain proper coordination of ordering interaction.
+`if` statements that aren't ran until a `true` return of conditional checks for values that won't be set until the completion of callbacks are referred to as "gates".
+A "latch" (sometimes called a "race"), is a nondeterministic concurrency interaction that is explicitly designed to only allow for callback execution of the first process to complete.
