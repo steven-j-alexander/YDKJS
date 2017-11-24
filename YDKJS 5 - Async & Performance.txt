@@ -57,3 +57,10 @@ Jobs allow for somewhat more defined and guaranteed ordering. Similar to the `se
 -Statement Ordering-
 Compiler statement reordering will never reorder or combine statements in a way that will create observable side effects, only performing safe optimizations.
 Although altered statement ordering has no observable impact, it is best to remember that code is not always compiled to run in the top-down fashion in which it is written, instead being constantly restructured by the compiler to run in more of a concurrent and interacting fashion, not dissimilar from the flow of async code.
+
+-Review-
+JS code is broken into multiple chunks of code, the first of which runs "now", and the latter which runs "later" (as a response to an event). These chunks share scope and state.
+User interaction, I/O, and timers can all add events to the event queue. Only one event from the queue can process at a time.
+Concurrency is when multiple chains of events (known as processes or tasks) are woven together on the event loop, appearing to run simultaneously. 
+Interaction coordination between concurrent processes is often required to guarantee precise ordering or prevent unwanted race conditions that could cause unpredictable results.
+You can also break large processes into smaller chunks to allow cooperation and cohabitation with other various processes, I/O, and rendering that may be a part of the event queue as well.
