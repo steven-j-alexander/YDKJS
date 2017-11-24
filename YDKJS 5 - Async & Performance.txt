@@ -47,3 +47,9 @@ For example, if a resposne for one process is received that then runs a callback
 This can be done using the `setTimeout(.., 0)` hack, which is a simple way to have the timer asynchronously schedule the referenced function at the end of the event loop queue as soon as it can. Node.js uses a similar `process.nextTick(..)`.
 As of the writing of the book, there is no single direct way to ensure the ordering of async events across all environments.
 Cooperation can also be combined with concurrent interaction ordering techniques when necessary.
+
+-Jobs-
+The job queue, a new addition in ES6, is another layer added on top of the event loop queue that is mostly (indirectly) exposed via the use of Promises.
+One way to conceptualize the job queue is that it exists at the end of every tick in the event loop queue. Some async actions arising during an event loop queue tick may not be added to the end of that queue, but rather to the job queue at the end of that tick as a job, intended to run immediately after that tick.
+A job can result in the addition to more jobs at the end of the same job queue.
+Jobs allow for somewhat more defined and guaranteed ordering. Similar to the `setTimeout(.., 0)` hack, but scheduled at the end of the current event tick, rather than at the end of the entire event queue loop.
