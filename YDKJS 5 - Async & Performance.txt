@@ -20,3 +20,9 @@ While async refers to the gap between now and later (scheduled and ran in serial
 Parallel computing commonly utilizes processes and threads, with both executing simultaneously and independently, but threads have the ability to share the memory of a single process.
 Both parallel and serial can occur in tandem via the use of event loops in different threads working together.
 The use of threaded programming is challenging, as you can run into trouble in situations where the same variables or registers in memory are being modified and used by multiple threads at the same time. While JS doesn't share data across threads, even simple things such as the sequence of threads can cause issues, or confusion at the least.
+
+-Run-to-Completion-
+JS is single-threaded, so functions run through to completion before running the next. This is known as "run-to-completion" behavior.
+If viewed from the perspective of function/event-ordering level, a global chunk could be considered synchronous as it "happens now" and any function chunks (that aren't immediately invoked at the beginning of global (recall they aren't hoisted)) could be considered asynchronous as they "happen later". While there is still a degree of nondeterminism involved, this is more determinable than threads that introduce a variable level of statement and expression operation ordering.
+Function-ordering nondeterminism when applied to the behavior of JS is referred to as "race condition", as multiple functions are "racing" to see which condition plays out, adding a degree of unreliability to the result.
+Generators are functions that do not have your typical run-to-completion behavior.
