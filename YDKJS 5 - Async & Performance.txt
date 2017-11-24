@@ -1,0 +1,9 @@
+===========================================Chapter 1===========================================
+Asynchrony: Now & Later
+
+-A Program In Chunks-
+A JS program consists of several chunks, with some chunks running in the "present", and the rest running "later". A common type of a chunk unit is a function.
+Asynchronous tasks do not block until completion, whereas synchronous tasks do. Ajax requests complete asynchronously. Requests are made in the present and the results are returned later.
+The simplest way to block and wait from now until later when a return is recieved is to use a callback function.
+While it is possible to make Ajax requests synchronously, it locks the browser UI, preventing user interaction. It is best avoided.
+"Later" (asynchronous) code chunks are often functions that are set to run as a response to specific circumstances (timer or click event, Ajax response, etc).
