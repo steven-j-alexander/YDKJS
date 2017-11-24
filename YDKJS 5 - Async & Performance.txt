@@ -14,3 +14,9 @@ When making an Ajax request to fetch data from a server, you would set up a resp
 Each iteration of this callback event loop is called a "tick". During each tick, the loop checks if an event is waiting on the queue. If so, it is removed from the queue and the chunk is executed by running the function callback within the JS engine.
 `setTimeout(..)` doesn't directly put your callback on the event loop queue. It sets a timer that, once expired, places the provided callback into the event loop for a future tick of the loop to execute. Even events not a part of your program can be added onto the hosting environment's queue loop as well. This is why the functions you pass it don't always fire with perfect accuracy.
 As of ES6, the loop queue is now within scope of the JS engine in addition to the standard hosting environment accessibility/management. The primary reason for widening the breadth of control is for the usage of ES6's Promises, which require direct and specific control over event scheduling.
+
+-Parallel Threading-
+While async refers to the gap between now and later (scheduled and ran in serial), parallelism is about simultaneous execution.
+Parallel computing commonly utilizes processes and threads, with both executing simultaneously and independently, but threads have the ability to share the memory of a single process.
+Both parallel and serial can occur in tandem via the use of event loops in different threads working together.
+The use of threaded programming is challenging, as you can run into trouble in situations where the same variables or registers in memory are being modified and used by multiple threads at the same time. While JS doesn't share data across threads, even simple things such as the sequence of threads can cause issues, or confusion at the least.
