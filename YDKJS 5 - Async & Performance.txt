@@ -37,6 +37,13 @@ Nondeterminism is not an issue if these concurrently virtual processes/tasks you
 If the concurrent processes will work as intended, regardless of its ordering, this would not be considered a race condition bug.
 
 -Interaction-
-Concurrent processes will interact more commonly than not. Always remedy race condition nondeterminism by delineating different potential responses in your callbacks, checking that all necessary conditions are met/completed (especially those from other processes). You may also need to ensure you are carving out separate spaces for any response data to be stored (such as storing one specific type of response in one array slot, adding another to a different slot, etc), in order to maintain proper coordination of ordering interaction.
+Concurrent processes will interact more commonly than not. Always remedy race condition nondeterminism via value sharing in scopes by delineating different potential responses in your callbacks, checking that all necessary conditions are met/completed (especially those from other processes). You may also need to ensure you are carving out separate spaces for any response data to be stored (such as storing one specific type of response in one array slot, adding another to a different slot, etc), in order to maintain proper coordination of ordering interaction.
 `if` statements that aren't ran until a `true` return of conditional checks for values that won't be set until the completion of callbacks are referred to as "gates".
 A "latch" (sometimes called a "race"), is a nondeterministic concurrency interaction that is explicitly designed to only allow for callback execution of the first process to complete.
+
+-Cooperation-
+Cooperative concurrency is the act of taking longer processes and batching them out, allowing for room to interleave the operations of other processes into the event loop.
+For example, if a resposne for one process is received that then runs a callback mapping several million values onto an array, everything else (other processes, UI updates, user events) will be unresponsive and unable to update. Instead, you can process such a large amount of results by breaking them up into smaller asynchronous batch operations that process after each one yields back to the event loop, effectively allowing other waiting events to occur before running the next batch, which results in a more performant site/app.
+This can be done using the `setTimeout(.., 0)` hack, which is a simple way to have the timer asynchronously schedule the referenced function at the end of the event loop queue as soon as it can. Node.js uses a similar `process.nextTick(..)`.
+As of the writing of the book, there is no single direct way to ensure the ordering of async events across all environments.
+Cooperation can also be combined with concurrent interaction ordering techniques when necessary.
