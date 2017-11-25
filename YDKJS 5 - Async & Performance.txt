@@ -64,3 +64,11 @@ User interaction, I/O, and timers can all add events to the event queue. Only on
 Concurrency is when multiple chains of events (known as processes or tasks) are woven together on the event loop, appearing to run simultaneously. 
 Interaction coordination between concurrent processes is often required to guarantee precise ordering or prevent unwanted race conditions that could cause unpredictable results.
 You can also break large processes into smaller chunks to allow cooperation and cohabitation with other various processes, I/O, and rendering that may be a part of the event queue as well.
+
+===========================================Chapter 2===========================================
+Callbacks
+
+Callbacks are the most common and fundamental pattern of asynchrony that occur in JavaScript.
+
+-Continuations-
+Callback functions wrap or encapsulate the continuation of a program.
