@@ -72,3 +72,9 @@ Callbacks are the most common and fundamental pattern of asynchrony that occur i
 
 -Continuations-
 Callback functions wrap or encapsulate the continuation of a program.
+
+-Sequential Brain-
+The human brain works similarly to the event loop queue via concurrent single-tasking.
+
+-Doing Versus Planning-
+While we think in step-by-step behaviors, callbacks are not expressed in such a (sequential) manner when moving to asynchrony.
