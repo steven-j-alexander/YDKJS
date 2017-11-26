@@ -95,3 +95,11 @@ If you aren't positive that you can trust a utility to handle your async callbac
 -Not Just Others' Code-
 While the use of versioned APIs or self-hosted libraries can help remove much ambiguity and potential for mishap, you should still add checks and normalizations for your async code.
 This introduces a lot of boilerplate or overhead code that needs to be repeated for each async callback.
+
+-Trying to Save Callbacks-
+Some APIs are designed to offer split callbacks for both success and failure conditions. This pattern is what the ES6 Promise API uses. 
+Another callback pattern is the error-first or Node style. If successful, the first returned argument will be falsy or an empty object.
+These designs still don't deal with that majority of the previously outlined trust issues that can occur. It also introduces the additional potential problem returns where you receive both error and success objects at once, or nothing at all for each argument. This means your boilerplate surrounding each callback is going to need to be even more verbose.
+You can write a timeout function that cancels the event after the specified amount of time passes, pass your callback into that as an argument (to be executed), and then pass that function into your async call in place of the callback function.
+In scenarios where it is possible that a callback could be invoked synchronously (such as with a pre-cached url), it is always best to still add it to the event loop to be asynchronously returned later, as not doing so can introduce unpredictability and bugs in places there is still remaining code to be executed. The order of execution would essentially become dependent upon the synch/asynchronicity of the callback.
+You can convert a potentially synchronous callback to an async one by passing it to a utility function that checks if a `setTimeout(..)` of 0 (adds to end of event loop) has completed. If it completes first, it just passes the callback function as is. If not, the returned callback that was passed into the utility will return once the `setTimeout(..)` interval has completed (essentially completing at least one asynch tick).
