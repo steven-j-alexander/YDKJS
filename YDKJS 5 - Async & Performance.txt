@@ -91,3 +91,7 @@ Because you are usually handing off your callback functions to a third-party uti
 A lot of things can potentially go wrong with third-party API utilities that employ the use of async callbacks.
 These include receiving multiple (unintended) callback responses for a single request, a lack of or late intended response, an early callback response, a lack of or incompatible return parameters passed to the callback, or disappearing errors/exceptions.
 If you aren't positive that you can trust a utility to handle your async callbacks, you would have to add handle every single situation that could potentially go awry.
+
+-Not Just Others' Code-
+While the use of versioned APIs or self-hosted libraries can help remove much ambiguity and potential for mishap, you should still add checks and normalizations for your async code.
+This introduces a lot of boilerplate or overhead code that needs to be repeated for each async callback.
