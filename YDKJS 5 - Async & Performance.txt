@@ -103,3 +103,10 @@ These designs still don't deal with that majority of the previously outlined tru
 You can write a timeout function that cancels the event after the specified amount of time passes, pass your callback into that as an argument (to be executed), and then pass that function into your async call in place of the callback function.
 In scenarios where it is possible that a callback could be invoked synchronously (such as with a pre-cached url), it is always best to still add it to the event loop to be asynchronously returned later, as not doing so can introduce unpredictability and bugs in places there is still remaining code to be executed. The order of execution would essentially become dependent upon the synch/asynchronicity of the callback.
 You can convert a potentially synchronous callback to an async one by passing it to a utility function that checks if a `setTimeout(..)` of 0 (adds to end of event loop) has completed. If it completes first, it just passes the callback function as is. If not, the returned callback that was passed into the utility will return once the `setTimeout(..)` interval has completed (essentially completing at least one asynch tick).
+
+===========================================Chapter 3===========================================
+Promises
+
+The idea of Promises is that, rather than inverting control of the continuation of your program over to a third party in hopes that it will correctly invoke your callback, you expect a return letting you know when that third party API has finished its task so that your code can then decide what to do next.
+Most new async APIs are being designed to make use of Promises.
+"Immediately", in regards to Promises, is usually used when referring to Job queue behavior, rather than the synchronous "now".
