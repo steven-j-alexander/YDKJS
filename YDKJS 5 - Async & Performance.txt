@@ -82,3 +82,7 @@ While we think in step-by-step behaviors, callbacks are not expressed in such a 
 -Nested/Chained Callbacks-
 Nested callbacks are often referred to as "callback hell" or the "pyramid of doom", due to their confusing combination of nesting and lack of easily readable ordering when using async function calls.
 Author points out that nesting really has little to do with the difficult readability, but moreso the unsequential nature of function execution when using async callbacks. This becomes even more confusing once you begin manually hardcoding alternate conditional paths, error handling forks, simultaneous callbacks, branches into parallel (concurrent) callbacks, etc.
+
+-Trust Issues-
+Callback-driven code and its lack of mirroring to the sequential brain are a part of confusing aspects of async, but inversion of control is a much deeper and ambiguous occurence.
+Because you are usually handing off your callback functions to a third-party utility or a method you did not write or directly control, expectations for how/if a return is made may not always be clearly defined.
