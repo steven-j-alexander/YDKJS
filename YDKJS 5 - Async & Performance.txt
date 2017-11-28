@@ -110,3 +110,8 @@ Promises
 The idea of Promises is that, rather than inverting control of the continuation of your program over to a third party in hopes that it will correctly invoke your callback, you expect a return letting you know when that third party API has finished its task so that your code can then decide what to do next.
 Most new async APIs are being designed to make use of Promises.
 "Immediately", in regards to Promises, is usually used when referring to Job queue behavior, rather than the synchronous "now".
+
+-What Is a Promise?: Future Value-
+One way to think of a Promise is as a receipt for a future value which you have no yet received. It represents a time-independent future value.
+Once the future value is ready, you exchange the value promise for it. You may also receive an indication that no value will be availed, in the form of a failure.
+Lastly, you may be left with an unresolved state where the future value is never retrieved.
