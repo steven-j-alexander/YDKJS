@@ -160,3 +160,7 @@ Promises, by definition, cannot be subjected to race conditions. Even immediatel
 -Calling Too Late-
 A Promise's `then(..)` observation callbacks are automatically scheduled (in order) upon the calling of `resolve(..)` or `reject(..)` by the Promise. They will be predictably fired at the end of the current asynchronous "tick" as Jobs. These registered callbacks cannot affect the calling of any the proceeding `then(..)` callbacks.
 This means that embedding `then(..)` callbacks inside of other callbacks will still result in all `then(..)` callbacks from the enclosing scope being scheduled first, in sequence.
+
+-Promise Scheduling Quirks-
+There are some nuances where `then(..)` returns don't appear be properly sequenced.
+One example is when creating a Promise that awaits the resolution of another Promise in the same enclosing scope before its own resolution. Since you are essentially "unwrapping" another Promise asynchronously (you have to wait for the enclosed value to resolve), the "wrapper" Promise is added to the end of the asynchronous Job queue, after any remaining callbacks have completed (including the remainder in the same enclosed scope).
