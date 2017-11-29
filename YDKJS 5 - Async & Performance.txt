@@ -150,3 +150,9 @@ The way to recognize a Promise or something conformant and Promise-like is by ch
 Type checking that identifies based on the shape (properties that are present) of an object is referred to as "duck typing" ("looks like a duck, quacks like a duck, must be a duck").
 Duck typing Promises can be problematic in situations that have the matching property name, but weren't intended to be treated as thenable Promises, or objects that inherit "then(..)" from their `[[Prototype]]`, that are also unintentionally recognized as Promises. Another circumstance (which is already a no-no as you shouldn't be adding properties to JS native prototypes) is the existence of an added `then(..)` property on the Array or Object prototypes, which would result in all arrays/objects being thenable. Several pre-ES6 non-Promise libraries exist that possess `then(..)` methods.
 Regardless of the poor standard chosen for identifying Promises, duck typing are still said to be helpful when caution is taken.
+
+-Promise Trust-
+Promises are designed to resolve all inversion of control issues outlined with the use of callbacks in the previous chapter.
+
+-Calling Too Early-
+Promises, by definition, cannot be subjected to race conditions. Even immediately fulfilled Promises are only capable of being ***observed*** asynchronously, as callbacks provided to `then(..)` cannot be called synchronously.
