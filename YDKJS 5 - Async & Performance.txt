@@ -173,3 +173,8 @@ Promises themselves possess a "race" method that provides a means to return a re
 -Calling Too Few or Too Many Times-
 Too few is best defined as not calling at all, as the correct amount of times for a callback to be called is once.
 Promises are defined to only be resolved once, with that resolution value being treated as immutable. All subsequent attempts are silently ignored. This also means that any `then(..)` registered callbacks will be called a single time as well (for each time it exists in your code).
+
+-Failing to Pass Along Any Parameters/Environment-
+If the return value for a Promise is not explicitly returned, it will be `undefined` and still be passed to all registered callbacks.
+All parameters beyond the first that are passed in `resolve(..)` or `reject(..)` will be silently ignored. This is because the use of multiple parameters in a resolution value are not valid usage of the Promise mechanism. You must wrap multiple values in a single `array` or `object`. Similar behavior applies to invalid actions such as calling `resolve(..)` more than once.
+Just like JS functions, Promise callbacks retain access to the enclosing scope in which they are defined.
