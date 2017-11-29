@@ -164,3 +164,8 @@ This means that embedding `then(..)` callbacks inside of other callbacks will st
 -Promise Scheduling Quirks-
 There are some nuances where `then(..)` returns don't appear be properly sequenced.
 One example is when creating a Promise that awaits the resolution of another Promise in the same enclosing scope before its own resolution. Since you are essentially "unwrapping" another Promise asynchronously (you have to wait for the enclosed value to resolve), the "wrapper" Promise is added to the end of the asynchronous Job queue, after any remaining callbacks have completed (including the remainder in the same enclosed scope).
+Because of such nuances, it is best to code in a way that the ordering or scheduling of multiple Promise callbacks are depended upon.
+
+-Never Calling the Callback-
+Nothing, including JS errors, can prevent a Promise from returning its resolution, as long as fulfillment/rejection callbacks are registered. Even callback errors themselves don't get swallowed, and the callback is still always ran.
+Promises themselves possess a "race" method that provides a means to return a rejection callback (with an error specifying the reason) when a call doesn't asynchronously resolve in the specified time. This means, you do not need to worry about a Promise ever causing your program to hang indefinitely.
