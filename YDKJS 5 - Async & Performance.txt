@@ -192,3 +192,7 @@ Passing an immediate, non-Promise value to `Promise.resolve(..)` will return a g
 Passing a genuine, thenable Promise value to `Promise.resolve(..)` returns the same promise back.
 Passing a non-Promise, but thenable value to `Promise.resolve(..)` will result in the utility attempting to unwrap the value continually until a final, non-Promise-like value results, and then return a genuine promise that is fulfilled with that value.
 This helps for filtering untrustworthy and potentially thenable non-Promise values, unwrapping them if need be, and returning them wrapped in a normalized and trustworthy Promise to be asynchronously chained/observed off of.
+
+-Trust Built-
+Promises are a pattern that augments that already-established use of callbacks with trustable semantics that allow for more reasonable and reliable behavior.
+They effectively uninvert the inversion of control caused by callback usage, and place it into a trustable system designed specifically for the readability, robustness, and maintainability of asynchronous code.
