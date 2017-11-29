@@ -169,3 +169,7 @@ Because of such nuances, it is best to code in a way that the ordering or schedu
 -Never Calling the Callback-
 Nothing, including JS errors, can prevent a Promise from returning its resolution, as long as fulfillment/rejection callbacks are registered. Even callback errors themselves don't get swallowed, and the callback is still always ran.
 Promises themselves possess a "race" method that provides a means to return a rejection callback (with an error specifying the reason) when a call doesn't asynchronously resolve in the specified time. This means, you do not need to worry about a Promise ever causing your program to hang indefinitely.
+
+-Calling Too Few or Too Many Times-
+Too few is best defined as not calling at all, as the correct amount of times for a callback to be called is once.
+Promises are defined to only be resolved once, with that resolution value being treated as immutable. All subsequent attempts are silently ignored. This also means that any `then(..)` registered callbacks will be called a single time as well (for each time it exists in your code).
