@@ -127,3 +127,12 @@ Chaining another call to it using the `.then(..)` call creates another promise. 
 Promise rejection values, commonly referred to as "rejection reasons", can be set directly in the program or implicitly resulted via runtime error.
 An error handler function can be directly added to a `.then` chained-call by adding it as the second parameter.
 As Promises encapsulate time-dependent state, they can be used in a manner that is predictable and time-independent. Its return value becomes immutable and observable once resolved.
+
+-Completion Event-
+While one Promise can be equivalent to a future value, they can also function as a flow control mechanism within the scope of a larger sequence of asynchronous operations.
+Classically, such situations call for listeners and events, so you can view this from the perspective of needing to listen for a completion or continuation event to be emitted by a particular function.
+The term "completion event" is more related to the importance of the execution of a function finishing, compared to "continuation event", where the focus is more about being able to continue with the following steps in a sequence.
+With Promises, you are essentially setting up two listeners, one for a success event and one for a failure event to be returned. You are only awaiting the final outcome of the event call. This contrasts callbacks, where the "notification" would be the execution of the callback function itself.
+This means that Promises essentially separate the called function from the calling code's subscription to the completion/continuation events, with the called function's returned event being ran against the two event handlers. This uninverts the control previously inverted by callbacks.
+With this level of separation of concerns, you can give multiple separate parts/functions in your code the capability to independently listen for return events from the same function.
+The event object returned is basically a neutral third-party negotiation between separate, independent task entities.
