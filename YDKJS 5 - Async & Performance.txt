@@ -178,3 +178,9 @@ Promises are defined to only be resolved once, with that resolution value being 
 If the return value for a Promise is not explicitly returned, it will be `undefined` and still be passed to all registered callbacks.
 All parameters beyond the first that are passed in `resolve(..)` or `reject(..)` will be silently ignored. This is because the use of multiple parameters in a resolution value are not valid usage of the Promise mechanism. You must wrap multiple values in a single `array` or `object`. Similar behavior applies to invalid actions such as calling `resolve(..)` more than once.
 Just like JS functions, Promise callbacks retain access to the enclosing scope in which they are defined.
+
+-Swallowing Any Errors/Exceptions-
+Rejection reason values are passed to rejection callbacks.
+`TypeError`s and `ReferenceError`s that occur during the creation or observation of a Promise will be returned in its `rejection(..)` value in the form of a catchable error object.
+This behavior has the additional benefit of rendering errors within Promises as asynchronous occurences, allowing for the continued maintenance of sequential predictability.
+Recall that `then(..)` calls return another Promise, so if your error only occurs during observation, it's that new Promise that will be rejected. It cannot use its own handler to call a rejection because that is specifically for the Promise that it is observing (which in this example, was fulfilled with a non-rejection return value), and Promises are immutable once resolved.
