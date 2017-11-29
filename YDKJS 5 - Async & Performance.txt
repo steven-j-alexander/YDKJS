@@ -136,3 +136,10 @@ With Promises, you are essentially setting up two listeners, one for a success e
 This means that Promises essentially separate the called function from the calling code's subscription to the completion/continuation events, with the called function's returned event being ran against the two event handlers. This uninverts the control previously inverted by callbacks.
 With this level of separation of concerns, you can give multiple separate parts/functions in your code the capability to independently listen for return events from the same function.
 The event object returned is basically a neutral third-party negotiation between separate, independent task entities.
+
+-Promise "Events"-
+Promise "events" don't strictly follow the format previously outlined, although they certainly behave in such a manner for these purposes. You use `.then(..)` to register a "then" event (either "fulfillment" or "rejection"), although you do not explicitly see them in code.
+`new Promise( function(..){ .. } )` is generally referred to as a "revealing constructor". In it, the function passed in is executed immediately, rather than async deferred like with `.this(..)`. The function is provided with both a `resolve` and `reject` parameter, which are resolution functions for the Promise that signal success or failure.
+Your resolution handler functions wait for completion of the Promise resolution function before flow control takes place (using `.then(..)`), which doesn't always necessitate a message being sent to it, as mere completion is sometimes the only thing to be required for continuation.
+Chaining `then(..)`s results in a different pattern known as forking, versus semi-colon separated `then(..)` statements that results in a splitting behavior.
+You can also use the promise itself in combination with `.then(..)` to control the execution of functions, the difference being that an explicit call of these handler functions means that they will always run, which may necessitate the need for error handling being included in the function, whereas `then(..)` allows you to directly specify an error handler as the second parameter.
