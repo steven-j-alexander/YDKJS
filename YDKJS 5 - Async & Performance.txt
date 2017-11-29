@@ -119,3 +119,11 @@ Lastly, you may be left with an unresolved state where the future value is never
 -Values Now and Later-
 When working with callbacks, you know they won't be invoked until request results are later returned. But what if you are performing an operation that relies upon one or more returned callback values?
 To consistently handle operands that may be either "now" or "later", you must make the entire operation async, either by manually checking/waiting for values to resolve, or some other mechanism.
+
+-Promise Value-
+Promises return values in the temporal, time-independent manner that is required when performing operations of uncertain synchronicity.
+Promises can be created that resolve once an array of other promises have been successfully returned (by creating the promise with `Promise.all(..)`).
+Chaining another call to it using the `.then(..)` call creates another promise. In its return, you can invoke a function that can be passed any return values from your initial promise invocation.
+Promise rejection values, commonly referred to as "rejection reasons", can be set directly in the program or implicitly resulted via runtime error.
+An error handler function can be directly added to a `.then` chained-call by adding it as the second parameter.
+As Promises encapsulate time-dependent state, they can be used in a manner that is predictable and time-independent. Its return value becomes immutable and observable once resolved.
