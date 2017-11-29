@@ -115,3 +115,7 @@ Most new async APIs are being designed to make use of Promises.
 One way to think of a Promise is as a receipt for a future value which you have no yet received. It represents a time-independent future value.
 Once the future value is ready, you exchange the value promise for it. You may also receive an indication that no value will be availed, in the form of a failure.
 Lastly, you may be left with an unresolved state where the future value is never retrieved.
+
+-Values Now and Later-
+When working with callbacks, you know they won't be invoked until request results are later returned. But what if you are performing an operation that relies upon one or more returned callback values?
+To consistently handle operands that may be either "now" or "later", you must make the entire operation async, either by manually checking/waiting for values to resolve, or some other mechanism.
