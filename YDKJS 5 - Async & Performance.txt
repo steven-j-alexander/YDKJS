@@ -156,3 +156,7 @@ Promises are designed to resolve all inversion of control issues outlined with t
 
 -Calling Too Early-
 Promises, by definition, cannot be subjected to race conditions. Even immediately fulfilled Promises are only capable of being ***observed*** asynchronously, as callbacks provided to `then(..)` cannot be called synchronously.
+
+-Calling Too Late-
+A Promise's `then(..)` observation callbacks are automatically scheduled (in order) upon the calling of `resolve(..)` or `reject(..)` by the Promise. They will be predictably fired at the end of the current asynchronous "tick" as Jobs. These registered callbacks cannot affect the calling of any the proceeding `then(..)` callbacks.
+This means that embedding `then(..)` callbacks inside of other callbacks will still result in all `then(..)` callbacks from the enclosing scope being scheduled first, in sequence.
