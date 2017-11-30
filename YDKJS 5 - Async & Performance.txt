@@ -208,3 +208,10 @@ If a `then(..)` only contains a fulfillment error, a rejection handler will be s
 There is also a default fulfillment handler that is substituted into a `then(..)` step when a valid function is not passed in. It simply passes the received value along to the next step. A shortcut for this pattern is to use `catch(function(err){..})`.
 If a fulfillment/rejection returns a Promise of its own, it is unwrapped and its resolution is then substituted in as the resolution for the chained Promise returned from the current `then(..)` in the chain.
 A much better pattern for expressing sequential flow control in such a manner is via the use of generators.
+
+-Terminology: Resolve, Fulfill, and Reject-
+There is some confusion with the name of the first callback parameter of the `Promise(..)` constructor being "resolve", since resolution implies either fulfillment or rejection.
+The `.resolve(..)` Promise API method will actually create a Promise that is resolved to the value passed to it, including non-Promise, non-thenable, and thenable values. These may actually resolve to rejected Promise values, in the case where it is passed a `Promise.reject(..)` value (which it then unwraps and passes as a rejected Promise).
+This means that the first parameter in a Promise callback (in addition to unwrapping a genuine Promise) can also unwrap thenable values to reveal a rejected state, return a Promise with that same state.
+`reject(..)` does not perform this same thenable unwrapping behavior. When passing such a value, that still-wrapped value will serve as the reason for the rejection. A rejection handler that followed would recieve that still-wrapped value.
+The author suggests calling the callbacks provided to your subsequently-chained `.then(..)`s as `fulfilled(..)` and `rejected(..)`, as the first parameter passed to this method is unambiguously and always a fulfillment case, unlike with `Promise(..)` constructors. ES6 spec uses `onFulfilled(..)` and `onRejection(..)`, similarly.
