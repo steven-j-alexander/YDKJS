@@ -222,3 +222,7 @@ The most notable callback error handling pattern is known as "error-first callba
 A downside is if function calls inside of the callback itself are async-completing, their errors will not be catchable.
 Promises use split-callbacks, which are somewhat more difficult to grasp in certain situations, due to the fact that errors occurring inside of the fulfillment handlers can only be captured and notified from subsequent chain-linked `.then(..)` promises, seeing as the initial promise has already been fulfilled and is now immutably unable to "converted" to a rejected value.
 Invalid use of the Promise API to construct a promise results in an exception error being thrown, rather than a rejected Promise, as it was never actually constructed.
+
+-Pit of Despair-
+Promise error handling is "pit of despair" by design -- where mistakes are punished, rather than having you default into a successful action. It assumes you want errors to be swallowed by default, unless explicitly observed.
+While some developers will stick a `.catch(..)` on the end of an async chain as a means of overcoming this design and catching any errors as they filter down from any point in the chain, there is still a chance that the `.catch(..)` callback or even the promise that *it* returns could throw an uncatchable/uncaptured error.
