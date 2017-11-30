@@ -226,3 +226,8 @@ Invalid use of the Promise API to construct a promise results in an exception er
 -Pit of Despair-
 Promise error handling is "pit of despair" by design -- where mistakes are punished, rather than having you default into a successful action. It assumes you want errors to be swallowed by default, unless explicitly observed.
 While some developers will stick a `.catch(..)` on the end of an async chain as a means of overcoming this design and catching any errors as they filter down from any point in the chain, there is still a chance that the `.catch(..)` callback or even the promise that *it* returns could throw an uncatchable/uncaptured error.
+
+-Uncaught Handling-
+Some Promise libraries add methods for registering something such as a "global unhandled rejection" handler, which calls in place of a globally thrown error. These work by catching errors thrown within a arbitrary time limit after a Promise was rejected. While this works for most usage patterns, there are cases where the time delay does not catch the error, and where there are false positives in cases where you don't immediately register a handler and other "uncaught" errors occur in the interim.
+Some developers suggest finishing each Promise chain with `.done(..)`, as it does not create or return a Promise, and throws any uncaught error conditions passed to it as global uncaught errors. Unfortunately, it is not a part of the ES6 standard, which means it lacks omnipresence and reliability.
+Browser developer consoles will report any uncaught errors found during the garbage collection process, although the author states that this feature is not comprehensive. It's also possible that a Promise is not garbage collected accidentally through various coding patterns.
