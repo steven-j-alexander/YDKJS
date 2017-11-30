@@ -236,3 +236,11 @@ Browser developer consoles will report any uncaught errors found during the garb
 The author suggests that Promises could default to reporting rejections to the dev console on the next Job or event tick if no error handler was registered for that Promise at that exact moment.
 You could call `defer()` on a Promise to suppress this automatic error reporting in cases where you want it to hold onto its rejected state for an indefinite amount of time.
 This would be considered a "pit of success", as the default behavior decreases the chances of not catching an error, rather than increasing the likelihood of such mistakes.
+
+-Promise Patterns-
+There are several async variation patterns you can use to build abstractions on top of the Promise mechanism. Two are built directly into the native ES6 Promise implementation.
+
+-Promise.all([..])-
+The `all([..])` pattern functions as a gate mechanism, allowing for multiple requests to be made concurrently, contrasting to the linear, sequential pattern of previous.
+You pass it a single array containing (generally) Promise instances, but can also include thenable and immediate values (each will be implicitly passed through `.resolve(..)`). The Promise it returns will contain an array of fulfillment messages, presented in the same relative order as your initialization parameter array.
+If any of the Promises in the `all([..])` array are rejected, the main Promise that it returns will also be rejected, eschewing results from the other Promises.
