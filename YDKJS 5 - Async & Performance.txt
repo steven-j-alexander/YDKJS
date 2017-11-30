@@ -215,3 +215,10 @@ The `.resolve(..)` Promise API method will actually create a Promise that is res
 This means that the first parameter in a Promise callback (in addition to unwrapping a genuine Promise) can also unwrap thenable values to reveal a rejected state, return a Promise with that same state.
 `reject(..)` does not perform this same thenable unwrapping behavior. When passing such a value, that still-wrapped value will serve as the reason for the rejection. A rejection handler that followed would recieve that still-wrapped value.
 The author suggests calling the callbacks provided to your subsequently-chained `.then(..)`s as `fulfilled(..)` and `rejected(..)`, as the first parameter passed to this method is unambiguously and always a fulfillment case, unlike with `Promise(..)` constructors. ES6 spec uses `onFulfilled(..)` and `onRejection(..)`, similarly.
+
+-Error Handling-
+`try..catch` is synchronous-only and is of no use in async patterns without additional environmental support.
+The most notable callback error handling pattern is known as "error-first callback" style. It entails adding a conditional check for a first parameter, equal to either null an error value, into your callback, passing that callback into another function that asynchronously executes a `try..catch` block, which executes your callback and passes it an error if caught, or null for the first parameter and potentially a second value parameter if no errors were caught.
+A downside is if function calls inside of the callback itself are async-completing, their errors will not be catchable.
+Promises use split-callbacks, which are somewhat more difficult to grasp in certain situations, due to the fact that errors occurring inside of the fulfillment handlers can only be captured and notified from subsequent chain-linked `.then(..)` promises, seeing as the initial promise has already been fulfilled and is now immutably unable to "converted" to a rejected value.
+Invalid use of the Promise API to construct a promise results in an exception error being thrown, rather than a rejected Promise, as it was never actually constructed.
