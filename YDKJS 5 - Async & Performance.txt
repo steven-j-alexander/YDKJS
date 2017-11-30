@@ -253,3 +253,8 @@ Passing an empty array to `.race([..])` will result in a Promise that never reso
 -Timeout Race-
 You can use `.race([..])` in a timeout pattern to ensure a Promise (or one of multiple) is only fulfilled if it resolves within a particular time frame.
 You do this by passing the Promise that needs to be fulfilled within the time limit, along with your timeout function that automatically returns a rejected Promise once its set timeout elapses. Whichever one resolves first wins the race and shares the same state with `.race([..])`'s returned Promise.
+
+-"Finally"-
+With `.race([..])` and timeouts with Promises, the "losers" still exist as they cannot be cancelled, only silently ignored.
+Some developers have proposed the need for a `finally(..)` callback registration to be automatically called upon each Promise resolution, allowing you to simply observe the resolution of Promise, specify any cleanup such as freeing reserved resources, or cancelling any side effects that a Promise may have had. This may come to be in ES7+.
+You can create a static helper utility to be able to observe (but not interfere with) the resolution of such Promises. You'd essentially wrap your Promises in this utility function, also passing along any callback you'd like to use for cleanup or other purposes. Inside of the utility, you chain the Promise to a `.then(..)` link that checks the resolved value of the Promise and acts accordingly (calling your callback and passing it the resolution message to clean up, log to console, etc.), followed by returning the initial Promise's resolution. You can use this wrapper utility in place of a direct Promise in a `race([..])` or `all([..])` parameter array.
