@@ -249,3 +249,7 @@ If any of the Promises in the `all([..])` array are rejected, the main Promise t
 This pattern, called a "race" with Promises, is classically referred to as a "latch". It works similarly to `.all([..])`, in that you provide it with multiple Promises or values to be `.resolve(..)`ed to Promises, but it diverges in that it returns a Promise that is either fulfilled or rejected based on the state of the first Promise to return.
 Passing an empty array to `.race([..])` will result in a Promise that never resolves. This was implemented as a gotcha due to Promise libraries that predates ES6.
 `race([..])` returns the single fulfillment value message of the Promise that won the "race", rather than an array.
+
+-Timeout Race-
+You can use `.race([..])` in a timeout pattern to ensure a Promise (or one of multiple) is only fulfilled if it resolves within a particular time frame.
+You do this by passing the Promise that needs to be fulfilled within the time limit, along with your timeout function that automatically returns a rejected Promise once its set timeout elapses. Whichever one resolves first wins the race and shares the same state with `.race([..])`'s returned Promise.
