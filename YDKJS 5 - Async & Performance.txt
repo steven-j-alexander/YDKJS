@@ -280,3 +280,8 @@ The `Promise(..)` revealing constructor must be called with the `new` keyword, a
 -Promise.resolve(..) and Promise.reject(..)-
 `Promise.reject(..)` is simply a shortcut for creating an already-rejected Promise. It is equivalent to creating a new Promise using the revealing constructor and invoking the `reject(..)` callback within the Promise's immediately-invoked callback.
 `Promise.resolve(..)` works similarly to its `Promise.reject(..)` counterpart, but also recursively "resolves" wrapped thenable values to get to a final "resolution" value that can be either a fulfillment or rejection, to be adopted and returned by the parent Promise. It simply directly returns values that are already genuine promise values.
+
+-then(..) and catch(..)-
+Every Promise instance has a `then(..)` and `catch(..)` method, allowing the registering of fulfillment/rejection handlers for it. Once the Promise resolves, one of these will be called as asynchronous Jobs.
+`catch(..)` takes only one parameter for the rejection callback, always substituting a default fulfillment callback, similar to the one availed to a`then(..)` when it is passed a `null` value for its fulfillment callback.
+These methods create and return a new Promise, allowing for Promise chain flow control. The Promise they return will be rejected if the fulfillment/reject callbacks threw an exception.
