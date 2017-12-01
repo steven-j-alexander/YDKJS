@@ -295,3 +295,7 @@ An empty array passed to `.all` will fulfill immediately, but one passed to `.ra
 Because a Promise chain is a sequence of Promises, with no way to refer to it as a single entity, there is no external way to observe errors that occur on it, necessitating the explicit addition of error handling.
 Referencing the last promise in a chain (referencing an entire chain will always result in a reference to the last promise of that chain) can be enough for a chain that has no error handling in it, as errors propagate down the chain. You can just register an rejection handler in the last step, or even on the reference itself, to be notified of any errors that occur in the chain.
 This only notifies you of unhandled errors, similar to how `try..catch` can catch and swallow up exceptions, which can be restrictive in certain cases.
+
+-Single Value-
+Promises can only be of a single fulfillment or rejection value/reason.
+You can construct a wrapper, in the form of an object or array, to hold multiple values/messages, although having to wrap and unwrap these messages along the Promise chain can be a cumbersome exercise.
