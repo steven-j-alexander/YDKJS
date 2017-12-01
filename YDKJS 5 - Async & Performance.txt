@@ -266,3 +266,6 @@ Other commonly-used variations of these patterns are as follows...
 `first([..])` is similar to `race([..])`, but ignores rejections and fulfills as soon as one of the passed Promises return a fulfillment.
 `last([..])` is similar to `first([..])`, but the last fulfillment "wins".
 Some Promise libraries provide these methods, but you can also add them yourself.
+
+-Concurrent Iterations-
+While you can iterate over a list of Promises and perform synchronous tasks, similarly to synchronous arrays (with `forEach(..)`, `map(..)`, etc.), you can use async versions of these utilities when performing asynchronous or concurrent tasks. These are provided by numerous async libraries.
