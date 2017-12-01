@@ -276,3 +276,7 @@ There are spec-compliant native Promise polyfills available for pre-ES6 browsers
 -new Promise(..) Constructor-
 The `Promise(..)` revealing constructor must be called with the `new` keyword, and also must be passed a function that is immediately synch invoked. It's passed two callbacks, usually named `resolve(..)` and `reject(..)` whose purpose is to provide resolution capability for the Promise.
 `reject(..)` will reject the Promise when called, but `resolve(..)` can either fulfill the promise or also reject it, depending on what it was passed. Sometimes a thenable or genuine Promise is passed the `resolve(..)` callback, unwrapped, and then resolved to a rejection state, which is then adopted by enclosing Promise as its return value.
+
+-Promise.resolve(..) and Promise.reject(..)-
+`Promise.reject(..)` is simply a shortcut for creating an already-rejected Promise. It is equivalent to creating a new Promise using the revealing constructor and invoking the `reject(..)` callback within the Promise's immediately-invoked callback.
+`Promise.resolve(..)` works similarly to its `Promise.reject(..)` counterpart, but also recursively "resolves" wrapped thenable values to get to a final "resolution" value that can be either a fulfillment or rejection, to be adopted and returned by the parent Promise. It simply directly returns values that are already genuine promise values.
