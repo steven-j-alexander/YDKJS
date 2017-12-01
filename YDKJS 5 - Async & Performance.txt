@@ -285,3 +285,8 @@ The `Promise(..)` revealing constructor must be called with the `new` keyword, a
 Every Promise instance has a `then(..)` and `catch(..)` method, allowing the registering of fulfillment/rejection handlers for it. Once the Promise resolves, one of these will be called as asynchronous Jobs.
 `catch(..)` takes only one parameter for the rejection callback, always substituting a default fulfillment callback, similar to the one availed to a`then(..)` when it is passed a `null` value for its fulfillment callback.
 These methods create and return a new Promise, allowing for Promise chain flow control. The Promise they return will be rejected if the fulfillment/reject callbacks threw an exception.
+
+-Promise.all([..]) and Promise.race([..])-
+`Promise.all([..])` functions as a gate, where all Promises passed to it must be fulfilled in order for the enclosing Promise to be fulfilled.
+`Promise.race([..])` works as a latch, where the first to get through determines the enclosing Promise fulfillment/rejection value.
+An empty array passed to `.all` will fulfill immediately, but one passed to `.race` will hang and never resolve.
