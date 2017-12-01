@@ -269,3 +269,10 @@ Some Promise libraries provide these methods, but you can also add them yourself
 
 -Concurrent Iterations-
 While you can iterate over a list of Promises and perform synchronous tasks, similarly to synchronous arrays (with `forEach(..)`, `map(..)`, etc.), you can use async versions of these utilities when performing asynchronous or concurrent tasks. These are provided by numerous async libraries.
+
+-Promise API Recap-
+There are spec-compliant native Promise polyfills available for pre-ES6 browsers.
+
+-new Promise(..) Constructor-
+The `Promise(..)` revealing constructor must be called with the `new` keyword, and also must be passed a function that is immediately synch invoked. It's passed two callbacks, usually named `resolve(..)` and `reject(..)` whose purpose is to provide resolution capability for the Promise.
+`reject(..)` will reject the Promise when called, but `resolve(..)` can either fulfill the promise or also reject it, depending on what it was passed. Sometimes a thenable or genuine Promise is passed the `resolve(..)` callback, unwrapped, and then resolved to a rejection state, which is then adopted by enclosing Promise as its return value.
