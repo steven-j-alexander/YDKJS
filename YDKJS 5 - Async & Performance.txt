@@ -299,3 +299,8 @@ This only notifies you of unhandled errors, similar to how `try..catch` can catc
 -Single Value-
 Promises can only be of a single fulfillment or rejection value/reason.
 You can construct a wrapper, in the form of an object or array, to hold multiple values/messages, although having to wrap and unwrap these messages along the Promise chain can be a cumbersome exercise.
+
+-Splitting Values-
+You can split multiple messages into their own individual promise wrapper.
+This does not do much to cut down on the verbosity of the syntax, but it does improve the ability to refactor and split those individual messages into separate functions for calculations and the like.
+Splitting into promises rather than simple values in an object/array wrapper also allows for greater flexibility and cleanliness in using them with Promise helper methods.
