@@ -290,3 +290,8 @@ These methods create and return a new Promise, allowing for Promise chain flow c
 `Promise.all([..])` functions as a gate, where all Promises passed to it must be fulfilled in order for the enclosing Promise to be fulfilled.
 `Promise.race([..])` works as a latch, where the first to get through determines the enclosing Promise fulfillment/rejection value.
 An empty array passed to `.all` will fulfill immediately, but one passed to `.race` will hang and never resolve.
+
+-Promise Limitations: Sequence Error Handling-
+Because a Promise chain is a sequence of Promises, with no way to refer to it as a single entity, there is no external way to observe errors that occur on it, necessitating the explicit addition of error handling.
+Referencing the last promise in a chain (referencing an entire chain will always result in a reference to the last promise of that chain) can be enough for a chain that has no error handling in it, as errors propagate down the chain. You can just register an rejection handler in the last step, or even on the reference itself, to be notified of any errors that occur in the chain.
+This only notifies you of unhandled errors, similar to how `try..catch` can catch and swallow up exceptions, which can be restrictive in certain cases.
