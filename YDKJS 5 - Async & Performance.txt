@@ -341,3 +341,8 @@ Generators
 Generators are a new ES6 function type that do not possess the typical run-to-completion behavior. They start and stop one or multiple times and don't need to finish.
 JS is not a pre-emptive or (presently) multithreaded language, so a particular call statement that is not present in a function cannot simply interrupt and run exactly between two statements. Instead, a cooperative form of such an interruption, called cooperative concurrency, is made possible when used in "cooperation" with an iterator and the `yield` keyword to indicate a pause at a particular point in code.
 You can declare generator functions as `function* foo(){..}`, `function*foo(){..}`, or `function *foo(){..}`. The author recommends the latter because it is the easiest form to use when searching for a specific generator.
+
+-Input and Output-
+When assigning a generator to a variable, you are not actually invoking that function, even though the right-hand syntax is the same. What you are doing is creating an iterator object and assigning your generator function to that object.
+Calling the `.next()` method on that iterator object will instruct the generator to advance from its current location to either the next `yield`, or the end of the function.
+The result of that call is an object containing both a `value` (containing your immediate return value, even if it was sent out in the middle of the function's execution) and `done` (completion boolean) property.
