@@ -354,3 +354,7 @@ Iterators possess I/O messaging capabilities. You can actually pass a value with
 Remember that there is a slight mismatch in that your second `.next()` will be the one to answer the first `yield`'s request for a result value, as the first `.next()`, merely takes your function's execution from the beginning to the next yield function before pausing the iteration.
 `yield` can also send messages out in response to `.next()` calls, creating a two-way messaging system.
 The `.next()` call receives a value from the `yield` it stops at, and the next `.next()` can return a value back to that `yield`. You can't pass a value to the start of the function from `.next()`, only from the start of a paused `yield`. Such an action would just result in that value being silently discarded.
+
+-Multiple Iterators-
+Each constructed iterator implicitly constructs an instance of the generator that you assigned to it, and that is what the iterator controls.
+Because iterators work in this fashion, you can create multiple iterators off of the same generator function, including ones that interact with one another.
