@@ -313,3 +313,9 @@ ES6 can actually perform this utility for you via usage of destructuring assignm
 -Single Resolution-
 Promises don't work well in an event or stream model where multiple instances of value resolution may occur, since a Promise can only resolve once.
 You can invert the sequential Promise design pattern, putting your async chain inside of your event handler, so that a new chain is created each time your event triggers. This can be awkward to do though in situations where you want to seperate your concerns further, such as dividing up your event response from your event handler.
+
+-Inertia-
+ES6 does not include a native means to easily convert callback-expecting functions into Promise-aware functions, although such a wrapper is availed in numerous Promise libraries and easily writeable by oneself.
+A Promise wrapper function for a callback-expection function works by taking a function that expects to receive a callback as its last parameter, and returning a new function that creates a Promise to return. This Promise substitutes the original callback parameter with one wired for Promise fulfillment/rejection.
+Since this does not produce a Promise itself, but rather a function that creates Promises, the author suggests this should be called "promisory wrapping" and the resultant function a "promisory". The act of wrapping a function in this way is also sometimes referred to as "lifting" or "promisifying".
+With this utility, you can maintain your callback-based code for compatibility with other parts of code, if need be, or modify them to use your new promisory.
