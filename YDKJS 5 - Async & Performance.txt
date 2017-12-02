@@ -324,3 +324,8 @@ With this utility, you can maintain your callback-based code for compatibility w
 Some Promise libraries provide the capability to externally cancel Promises, but this goes against future value trustability/external immutability and fits the "action at a distance" anti-pattern, which leads to similar frustrations that were found when just using callbacks.
 Since you cannot stop a Promise from resolving itself once it is created and registered with handlers, you can add conditionals flags/checks to your resolution callbacks that either prevent or allow the further execution of code further down that or other Promise chains (such as in a race condition). This is best avoidable though, as it is both verbose and, at that point, best left to a higher level of abstraction (such as a cancellation method in a Promise library).
 It is of little value to cancel a single Promise, but can be handy with a chain of multiple Promises since they represent a flow control expression that is appropriate for cancellation, especially seeing as an entire sequence is not itself equivalent to a single immutable value.
+
+-Promise Performance-
+Promises are slightly slower than using a basic callback-based async task, although the layer of guards and additional work provided by Promises makes the difference in comparison difficult to justify.
+The always-async aspect of Promises may also degrade speed slightly over basic callback usage.
+Author opines that Promises should always be the default choice over basic callbacks, as they are far superior, regardless of slight loss in speed, since they help to ensure trustability, avoid Zalgo unpredictability (race conditions), and composability.
