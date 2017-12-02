@@ -344,5 +344,8 @@ You can declare generator functions as `function* foo(){..}`, `function*foo(){..
 
 -Input and Output-
 When assigning a generator to a variable, you are not actually invoking that function, even though the right-hand syntax is the same. What you are doing is creating an iterator object and assigning your generator function to that object.
-Calling the `.next()` method on that iterator object will instruct the generator to advance from its current location to either the next `yield`, or the end of the function.
+Calling the `.next()` method on that iterator object will instruct the generator to advance from its current location to either the next `yield` (right before it), or the end of the function.
 The result of that call is an object containing both a `value` (containing your immediate return value, even if it was sent out in the middle of the function's execution) and `done` (completion boolean) property.
+
+-Iteration Messaging-
+Iterators possess I/O messaging capabilities. You can actually pass a value with a `.next()` call to your iterator, and it will execute from where it left off, returning the argument passed in your `.next()` argument as the result for your `yield` expression. This even works in the middle of a statement assignment.
