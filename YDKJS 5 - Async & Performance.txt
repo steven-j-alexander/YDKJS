@@ -329,3 +329,7 @@ It is of little value to cancel a single Promise, but can be handy with a chain 
 Promises are slightly slower than using a basic callback-based async task, although the layer of guards and additional work provided by Promises makes the difference in comparison difficult to justify.
 The always-async aspect of Promises may also degrade speed slightly over basic callback usage.
 Author opines that Promises should always be the default choice over basic callbacks, as they are far superior, regardless of slight loss in speed, since they help to ensure trustability, avoid Zalgo unpredictability (race conditions), and composability.
+
+-Review-
+Promises don't get rid of callbacks, they just redirect their execution to a trustable mechanism that lies in-between our code and another utility, resolving the inversion of control issues that taint the use of just using callbacks.
+They create a better way of addressing asynchronous code in a human, sequential fashion, although there is a better solution to that matter.
