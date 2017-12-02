@@ -370,3 +370,9 @@ Iterators are frequently used in the common design pattern of generating records
 You can automatically consume a standard iterator using native loop syntax with use of ES6's `for..of` loop. It will automatically call `next()` for each iteration and automatically terminate upon receiving a `done:true` property value. Be careful to add a break conditional in if your iterator never resolves to `done:true`, otherwise it will loop indefinitely.
 You can also manually loop over your iterators, calling next and checking that `done` is set to false before continuing to loop. The advantage of doing it this way is that you can pass values to the `next(..)` calls if you need.
 Many built-in data structures have iterators that can be looped over using `for..of`, such as `array`s. `object`s do not come with a default iterator, although you can use `Object.keys(obj)` in its place in a `for..of` loop to iterate over its (unordered) keys, similarly to `for..in`, but excluding enumerable properties from the [[Prototype]] chain.
+
+-Iterables-
+While an iterator has the `next()` method on its interface, an iterable is an `object` that contains an iterator able to iterate over its own values.
+As of ES6, the way to access the iterator on an iterable is via a special function with a name equal to the ES6 symbol value of `Symbol.iterator`. Each call should return a new iterator.
+When the `for..of` loop is called on an iterator, it automatically calls its `Symbol.iterator` function to construct an iterator. You can also call the function manually, and use the returned iterator to iterate and retrieve the next value.
+If you have a manually defined iterator function, you can also make that function iterable by assigning a function that returns `this` to `[Symbol.iterator]` within that iterator function. Now you can pass it to a `for..of` loop, which looks for an calls that newly-added and expected iterator function, essentially passing itself back.
