@@ -333,3 +333,11 @@ Author opines that Promises should always be the default choice over basic callb
 -Review-
 Promises don't get rid of callbacks, they just redirect their execution to a trustable mechanism that lies in-between our code and another utility, resolving the inversion of control issues that taint the use of just using callbacks.
 They create a better way of addressing asynchronous code in a human, sequential fashion, although there is a better solution to that matter.
+
+===========================================Chapter 4===========================================
+Generators
+
+-Breaking Run-to-Completion-
+Generators are a new ES6 function type that do not possess the typical run-to-completion behavior. They start and stop one or multiple times and don't need to finish.
+JS is not a pre-emptive or (presently) multithreaded language, so a particular call statement that is not present in a function cannot simply interrupt and run exactly between two statements. Instead, a cooperative form of such an interruption, called cooperative concurrency, is made possible when used in "cooperation" with an iterator and the `yield` keyword to indicate a pause at a particular point in code.
+You can declare generator functions as `function* foo(){..}`, `function*foo(){..}`, or `function *foo(){..}`. The author recommends the latter because it is the easiest form to use when searching for a specific generator.
