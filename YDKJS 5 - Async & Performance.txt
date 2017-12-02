@@ -362,3 +362,11 @@ Because iterators work in this fashion, you can create multiple iterators off of
 -Interleaving-
 Separate generators themselves can also run concurrently in the same scope and be interleaved with one another. To accomplish this, you can create a step function that takes a generator parameter, creates an iterator from that generator, and returns a function that, when called, advances the iterator of the passed generator by one step. It also takes the previously `yielded` value and returns that at the next step.
 When sharing variables between multiple generators that you then iterate in varying order via the `step()` function, you can get differing resulting values. This is not the most desirable pattern to accomplish this with, as it is confusing to read and understand.
+
+-Generator'ing Values: Producers and Iterators-
+An iterator is a well-defined interface used to step through a series of values availed by a producer. This interface, in JS and many other languages, is calling `next()` each time you want to get the next value from the producer.
+You can implement your own standard iterator interface by defining a function that returns an object containing your `next` method, which returns your next value as the `value` property and your iterator's completion status as the `done` boolean property.
+Iterators are frequently used in the common design pattern of generating records from a data source.
+You can automatically consume a standard iterator using native loop syntax with use of ES6's `for..of` loop. It will automatically call `next()` for each iteration and automatically terminate upon receiving a `done:true` property value. Be careful to add a break conditional in if your iterator never resolves to `done:true`, otherwise it will loop indefinitely.
+You can also manually loop over your iterators, calling next and checking that `done` is set to false before continuing to loop. The advantage of doing it this way is that you can pass values to the `next(..)` calls if you need.
+Many built-in data structures have iterators that can be looped over using `for..of`, such as `array`s. `object`s do not come with a default iterator, although you can use `Object.keys(obj)` in its place in a `for..of` loop to iterate over its (unordered) keys, similarly to `for..in`, but excluding enumerable properties from the [[Prototype]] chain.
