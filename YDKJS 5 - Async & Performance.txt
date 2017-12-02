@@ -358,3 +358,7 @@ The `.next()` call receives a value from the `yield` it stops at, and the next `
 -Multiple Iterators-
 Each constructed iterator implicitly constructs an instance of the generator that you assigned to it, and that is what the iterator controls.
 Because iterators work in this fashion, you can create multiple iterators off of the same generator function, including ones that interact with one another.
+
+-Interleaving-
+Separate generators themselves can also run concurrently in the same scope and be interleaved with one another. To accomplish this, you can create a step function that takes a generator parameter, creates an iterator from that generator, and returns a function that, when called, advances the iterator of the passed generator by one step. It also takes the previously `yielded` value and returns that at the next step.
+When sharing variables between multiple generators that you then iterate in varying order via the `step()` function, you can get differing resulting values. This is not the most desirable pattern to accomplish this with, as it is confusing to read and understand.
