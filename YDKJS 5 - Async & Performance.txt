@@ -382,3 +382,10 @@ While a generator itself is not an iterable, it does return an iterator back onc
 You can treat generators as producers of values that can be extracted one at a time through an iterator's `next()` calls.
 You can use a `while..true` loop (even without a `break` or `return`, since we pausing the generator each loop with `yield`) in a generator to produce infinite values. The state/scope of the function is preserved because the generator stays paused and waiting at each yield.
 When using generators in a `for..of` loop, you want to reference the `foo()` generator function as its parameter in order to call it, which constructs a producer to generate values and avail access to its iterator interface for the loop to use to iterate over these values.
+
+-Stopping the Generator-
+Early termination or "abnormal completion' of the `for..of` loop by a `break`, `return`, or uncaught exception results in a signal being send to the generator's iterator to tell it to break.
+The `for..of` loop also sends a signal at the normal completion of a loop, which is irrelevant for generators, but potentially useful for custom iterators.
+You can also manually send this termination signal from your `for..of` loop to an iterator by calling `return(..)` from the loop.
+When using `try..finally` inside your generator, it will always run, even when the generator is completed externally (such as in a `for..of` loop), which can be useful for clearing out used resources.
+Calling `.return(..)` on an generator's iterator instance, it also immediately terminates the generator, running its `finally` clause. It will also set the return value to whatever you pass into `.return(..)`. With that, the generator's iterator instance is set to `done:true`, and the `for..of` loop will automatically terminate on its following iteration.
