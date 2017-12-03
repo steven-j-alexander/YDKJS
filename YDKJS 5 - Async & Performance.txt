@@ -376,3 +376,9 @@ While an iterator has the `next()` method on its interface, an iterable is an `o
 As of ES6, the way to access the iterator on an iterable is via a special function with a name equal to the ES6 symbol value of `Symbol.iterator`. Each call should return a new iterator.
 When the `for..of` loop is called on an iterator, it automatically calls its `Symbol.iterator` function to construct an iterator. You can also call the function manually, and use the returned iterator to iterate and retrieve the next value.
 If you have a manually defined iterator function, you can also make that function iterable by assigning a function that returns `this` to `[Symbol.iterator]` within that iterator function. Now you can pass it to a `for..of` loop, which looks for an calls that newly-added and expected iterator function, essentially passing itself back.
+
+-Generator Iterator-
+While a generator itself is not an iterable, it does return an iterator back once executed, and that iterator has a `[Symbol.iterator]` function on it, making that iterator an iterable.
+You can treat generators as producers of values that can be extracted one at a time through an iterator's `next()` calls.
+You can use a `while..true` loop (even without a `break` or `return`, since we pausing the generator each loop with `yield`) in a generator to produce infinite values. The state/scope of the function is preserved because the generator stays paused and waiting at each yield.
+When using generators in a `for..of` loop, you want to reference the `foo()` generator function as its parameter in order to call it, which constructs a producer to generate values and avail access to its iterator interface for the loop to use to iterate over these values.
