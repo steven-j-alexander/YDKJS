@@ -389,3 +389,8 @@ The `for..of` loop also sends a signal at the normal completion of a loop, which
 You can also manually send this termination signal from your `for..of` loop to an iterator by calling `return(..)` from the loop.
 When using `try..finally` inside your generator, it will always run, even when the generator is completed externally (such as in a `for..of` loop), which can be useful for clearing out used resources.
 Calling `.return(..)` on an generator's iterator instance, it also immediately terminates the generator, running its `finally` clause. It will also set the return value to whatever you pass into `.return(..)`. With that, the generator's iterator instance is set to `done:true`, and the `for..of` loop will automatically terminate on its following iteration.
+
+-Iterating Generators Asynchronously-
+The `yield` used in generators allow you to have code that appears to be blocking, synchronous code, but it only pauses the code in the generator itself. The generator will only resume once the abstracted async function `yield` is waiting on completes.
+Instead of passing messages with `yield`, you are using it as a means of flow control. You can still pass return messages through external functions via the `.next()` used to iterate on your generator. This means you could, for example, only iterate and pass your message when an async call successfully completes.
+This means you can write reason-able code in an ordinary, sequential fashion that refers to its async elements in an abstracted manner.
