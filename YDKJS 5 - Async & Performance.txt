@@ -407,3 +407,9 @@ Once the promise value you're yielding from your generator resolves as your iter
 -Promise-Aware Generator Runner-
 The author recommends relying upon a library utility specifically designed to run Promise-yielding generators in a way that advances them automatically, so that you don't have to repeat the code ad nauseum.
 This utility method would essentially take a generator function, initialize an instance of it within the context of that function, and iterate through it. On each iteration, the utility takes the received Promise, handles it, and returns a Promise, if `it.next().done` is `false`, that asynchronously instructs then waits for the generator to iterate one more step, etcetera, on a loop. Once the iterator hits the end of the generator, the returned value is returned in a resolved Promise that wrapped the entire iteration process.
+
+-ES7: `async` and `await`?-
+Instead of directly using promises to control iteration of generators (or having to resort to a library utility to accomplish this in a recurrent manner), there is an ES7 proposal to add in `async function`s and `await` keyword.
+`async function`s automatically pause themselves until the promise it is `await`ing is resolved, before advancing to the next, if any. `async function`s return their own promise once they completely finish.
+This syntax is practically identical to that in C#.
+Browsers and tools like Babel already make use of this feature. It appears to have been finalized for ES8.
