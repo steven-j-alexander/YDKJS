@@ -394,3 +394,7 @@ Calling `.return(..)` on an generator's iterator instance, it also immediately t
 The `yield` used in generators allow you to have code that appears to be blocking, synchronous code, but it only pauses the code in the generator itself. The generator will only resume once the abstracted async function `yield` is waiting on completes.
 Instead of passing messages with `yield`, you are using it as a means of flow control. You can still pass return messages through external functions via the `.next()` used to iterate on your generator. This means you could, for example, only iterate and pass your message when an async call successfully completes.
 This means you can write reason-able code in an ordinary, sequential fashion that refers to its async elements in an abstracted manner.
+
+-Synchronous Error Handling-
+The pausing of a generator via `yield` allows for errors to be thrown to it by the called async function, catchable via `try..catch`, which normally only catches synchronous errors.
+You can also catch errors coming out of a generator as well, either exception or explicitly thrown, with `try..catch`. You can even catch the same error you threw into the generator, which means you can give the generator a chance to handle the error thrown to it and then handle it it in your iterator code if unhandled in the generator.
