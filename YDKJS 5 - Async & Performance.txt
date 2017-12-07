@@ -398,3 +398,8 @@ This means you can write reason-able code in an ordinary, sequential fashion tha
 -Synchronous Error Handling-
 The pausing of a generator via `yield` allows for errors to be thrown to it by the called async function, catchable via `try..catch`, which normally only catches synchronous errors.
 You can also catch errors coming out of a generator as well, either exception or explicitly thrown, with `try..catch`. You can even catch the same error you threw into the generator, which means you can give the generator a chance to handle the error thrown to it and then handle it it in your iterator code if unhandled in the generator.
+
+-Generators + Promises-
+The best usage of generators is to combine their readability with the composability and trustability of promises.
+To do this, you would write a function that returns a promise after making an async call, and then `yield` it from the generator, receiving it from your iterator control code. The iterator itself will then take the promise resolution and either resume the generator or throw an error to it based on the presence of a fulfillment/rejection state.
+Once the promise value you're yielding from your generator resolves as your iterator's `next().value`, the `.then()` for that promise is executed, handling the resolution as typical for promises, either continuing to iterate your generator or throwing it an error depending on the resolution state.
