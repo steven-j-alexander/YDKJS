@@ -418,3 +418,7 @@ Browsers and tools like Babel already make use of this feature. It appears to ha
 The way to fetch data from multiple sources before proceeding to the next action with generators is to keep your `yield` statements separate from your async requests, otherwise the requests will only resolve one at a time. You can separately reassign the resolved values using `yield`, after their concurrent resolution has taken place, in order to use the combined results for the next action, such as another request.
 You can handle multiple requests using `Promise.all([..])` as a gate.
 ES6 destructuring assignments can be used to assign your returned async results to multiple variables with just a single line of code.
+
+-Promises, Hidden-
+It's considered a best practice to minimize and abstract the Promise logic inside your generators.
+Try and put those details in separate functions, so that asynchrony doesn't muddy up the higher-level expressions of the task.
