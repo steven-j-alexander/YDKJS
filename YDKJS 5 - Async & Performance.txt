@@ -439,3 +439,7 @@ You can iterate any iterable, such as arrays. Be mindful though, as the array it
 -Excpetions Delegated, Too!-
 Errors can be passed both ways between delegated `yield`s the same way as messages.
 If passing an error to a `yield` delegator using your iterator control's `.throw(..)`, that `yield` will then pass (delegate) the error to the delegated generator's iterator that is currently controlled by your iterator control, to be handled by its error handler. Errors can also be returned in a similar manner.
+
+-Delegating 'Recursion'-
+You can use `yield` delegation in a recursive manner to have a generator `yield`-delegate to itself.
+`yield`ed values are propagated back through the recursive call-chain, in reverse order.
