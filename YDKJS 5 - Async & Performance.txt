@@ -435,3 +435,7 @@ You will often be iterating through multiple external async generator functions,
 -Delegating Messages-
 Iterators will handle messages to/from delegated generators in the same fashion as they would regular generator iteration.
 You can iterate any iterable, such as arrays. Be mindful though, as the array iterator and other potential iterators do not handle messages by default.
+
+-Excpetions Delegated, Too!-
+Errors can be passed both ways between delegated `yield`s the same way as messages.
+If passing an error to a `yield` delegator using your iterator control's `.throw(..)`, that `yield` will then pass (delegate) the error to the delegated generator's iterator that is currently controlled by your iterator control, to be handled by its error handler. Errors can also be returned in a similar manner.
