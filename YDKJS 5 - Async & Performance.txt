@@ -431,3 +431,7 @@ An easier way to do this is to use `yield` delegation syntax (simply add a `*` b
 -Why Delegation?-
 `yield`-delegation allows for your generator/async code to remain symmetrical with normal function calling.
 You will often be iterating through multiple external async generator functions, and this syntax eliminates the need for having to call upon multiple instances of the same automatic generator runner utility you're already employing from primary generator, for each generator function it `yield`s.
+
+-Delegating Messages-
+Iterators will handle messages to/from delegated generators in the same fashion as they would regular generator iteration.
+You can iterate any iterable, such as arrays. Be mindful though, as the array iterator and other potential iterators do not handle messages by default.
