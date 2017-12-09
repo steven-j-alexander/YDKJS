@@ -422,3 +422,8 @@ ES6 destructuring assignments can be used to assign your returned async results 
 -Promises, Hidden-
 It's considered a best practice to minimize and abstract the Promise logic inside your generators.
 Try and put those details in separate functions, so that asynchrony doesn't muddy up the higher-level expressions of the task.
+
+-Generator Delegation-
+You can call generators from other generators by calling them with the same iteration helper utility.
+An easier way to do this is to use `yield` delegation syntax (simply add a `*` before the generator function identifier you are `yield`ing to).
+`yield` delegation works by creating an iterator for the called generator, and then delegating the calling generator's iterator control over to the called generator's iterator. Once the iterator control finishes with that generator's iterator, it will return back to the calling generator's iterator.
