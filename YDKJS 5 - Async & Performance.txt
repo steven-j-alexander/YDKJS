@@ -413,3 +413,8 @@ Instead of directly using promises to control iteration of generators (or having
 `async function`s automatically pause themselves until the promise it is `await`ing is resolved, before advancing to the next, if any. `async function`s return their own promise once they completely finish.
 This syntax is practically identical to that in C#.
 Browsers and tools like Babel already make use of this feature. It appears to have been finalized for ES8.
+
+-Promise Concurrency in Generators-
+The way to fetch data from multiple sources before proceeding to the next action with generators is to keep your `yield` statements separate from your async requests, otherwise the requests will only resolve one at a time. You can separately reassign the resolved values using `yield`, after their concurrent resolution has taken place, in order to use the combined results for the next action, such as another request.
+You can handle multiple requests using `Promise.all([..])` as a gate.
+ES6 destructuring assignments can be used to assign your returned async results to multiple variables with just a single line of code.
