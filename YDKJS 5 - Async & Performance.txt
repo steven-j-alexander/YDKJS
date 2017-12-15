@@ -463,3 +463,11 @@ Because they function similarly (although not the same, as thunks don't offer th
 -Pre-ES6 Generators-
 You cannot polyfill generators in a simple manner since they are dependent on new syntax, but you can transpile the new syntax into (much messier) pre-ES6 code if need be.
 `yield` can be transpiled to pre-ES6 with the use of closure-based iterators.
+
+-Manual Transformation-
+You can utilize function scope closure to emulate the behavior of suspended generator state, by declaring a state and "generator-wide" variable in the scope that closes over an inner state-handling function.
+Each state is essentially every piece of code in a generator, broken down in-between the start of the generator, each yield, the end, and any sections specifically designed to handle errors.
+Each time the state-handling function is called, it checks and switches to the currently-assigned state case, running the code assigned to that state (not too dissimilar from ASM game loop state handling).
+Any variables that are only used by a particular state will be block-scoped to the state handler.
+Each state simply replaces `yield` with a return statement, passing along any messages when necessary.
+Each iteration of a transpiled generator returns an object with a boolean completion property, as well as a return value property to either be passed back into the generator, handled outside, or received as a final return at the generator's completion.
