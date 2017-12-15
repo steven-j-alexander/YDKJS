@@ -475,3 +475,7 @@ Each iteration of a transpiled generator returns an object with a boolean comple
 -Automatic Transpilation-
 Several tools exist to transpile ES6 generators automatically, such as Facebook's regenerator.
 Regenerator uses its own runner utility to manage generator iteration called `regeneratorRuntime`, and carries many similarities to the previously-outlined manual transpilation.
+
+-Review-
+Only the generator has the capability to pause itself, and only the iterator that controls it has the power to resume it (using `.next(..)`).
+Generator asynchrony is hidden behind the `yield` keyword, so that any potentially asynchronous code is handled where iteration is controlled. This allows for a more synchronous style of code pattern, allowing for much greater readability than callback-oriented async code.
