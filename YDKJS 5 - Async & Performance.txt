@@ -455,3 +455,7 @@ You could expand such a utility even further by providing an inner variable spac
 A thunk is an old concept that is expressed in JS as a function void of any parameters that calls another function that has been defined with parameters ahead of time. The wrapper function is the thunk.
 For async thunks, you can add a callback function as a parameter. You'd want to write or use a utility that automatically wraps functions into thunks for you. You would provide this utility your function and arguments, and it would slice the arguments into an array and then return a function that takes a callback and returns a thunk function with those pre-defined arguments applied.
 The author refers to a function that produces thunks from a thunkify utility call a "thunkory", similar to "promisory". These allow you hide your thunkification as an intermediary step, allowing you to use the thunkory to create thunks from their pre-associated function.
+
+-s/promise/thunk-
+The thunkory is comparable to the promisory in that they both pose a question (for a value), and their respective thunks/promises represent a future answer to those questions.
+Because they function similarly (although not the same, as thunks don't offer the same safeguards or composability of promises), you can use them interchangably in your generators, only requiring some minor modification to your generator runner utility to call promisories or thunkories to `yield` any promises or thunks, as encountered.
