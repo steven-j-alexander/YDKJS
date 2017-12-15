@@ -479,3 +479,9 @@ Regenerator uses its own runner utility to manage generator iteration called `re
 -Review-
 Only the generator has the capability to pause itself, and only the iterator that controls it has the power to resume it (using `.next(..)`).
 Generator asynchrony is hidden behind the `yield` keyword, so that any potentially asynchronous code is handled where iteration is controlled. This allows for a more synchronous style of code pattern, allowing for much greater readability than callback-oriented async code.
+
+===========================================Chapter 5===========================================
+Program Performance
+
+The most important point of asynchronous design patterns is leveraging them for performance.
+Concurrent requests are generally going to be faster than serial gated requests, and interleaved concurrency can also improve user perception of performance, both of which are extremely important in achieving a satisfying user experience.
