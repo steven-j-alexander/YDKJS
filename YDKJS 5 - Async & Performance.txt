@@ -443,3 +443,10 @@ If passing an error to a `yield` delegator using your iterator control's `.throw
 -Delegating 'Recursion'-
 You can use `yield` delegation in a recursive manner to have a generator `yield`-delegate to itself.
 `yield`ed values are propagated back through the recursive call-chain, in reverse order.
+
+-Generator Concurrency-
+With generator concurrency, instead of having to sort out response array assignments manually, you can coordinate your ordering so that your responses always push in the desired sequence.
+You can iterate concurrent generators (multiple instances or different generators) using a Promise-centric approach, by making your Promise-returning requests first, and then using a `.then()` chain to resume each generator instance in the desired order when their respective Promise responses are returned.
+A somewhat cleaner way to accomplish this is to incorporate the use of `Promise.all(..)` to await all responses before `.then()`'ing to iterations of your generators to return or push data in the desired order.
+Even better would be to create a reusable utility that performs much of the same functionality behind the scenes, concurrently initializing any promise requests, returning the resolved promise back to the `yield`ed generator that supplied it, and only resuming the proceeding generator once the one before it has completed.
+You could expand such a utility even further by providing an inner variable space, such as an empty data object, to share between generator instances, and to support the ability to pass messages between generators when conducting control transfer. Such communication is the basis for an advanced async technique called Communicating Sequential Processes, or CSP.
