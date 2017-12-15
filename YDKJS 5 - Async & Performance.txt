@@ -471,3 +471,7 @@ Each time the state-handling function is called, it checks and switches to the c
 Any variables that are only used by a particular state will be block-scoped to the state handler.
 Each state simply replaces `yield` with a return statement, passing along any messages when necessary.
 Each iteration of a transpiled generator returns an object with a boolean completion property, as well as a return value property to either be passed back into the generator, handled outside, or received as a final return at the generator's completion.
+
+-Automatic Transpilation-
+Several tools exist to transpile ES6 generators automatically, such as Facebook's regenerator.
+Regenerator uses its own runner utility to manage generator iteration called `regeneratorRuntime`, and carries many similarities to the previously-outlined manual transpilation.
