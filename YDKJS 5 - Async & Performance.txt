@@ -499,3 +499,8 @@ Workers won't necessarily have their own thread/core if the system either does n
 Global vars and resources such as the page DOM are not availed to Workers, although it does have access to a copy of some, such as `navigator`, `location`, `JSON`, and `applicationCache`. You can also still perform network operations and set timers inside of Workers. You can even load additional scripts inside of them using `importScripts(..)` (keep in mind they load in a synchronous, blocking manner).
 Exposure of the `<canvas>` API to Workers is also something to likely become the norm in the future, in order to improve WebGL performance for gaming and other functions. Chrome and Firefox already support the experimental `OffscreenCanvas` interface, although other browsers currently do not.
 Web Workers are also used for intensive math, sorting large sets of data, compression, and high-traffic network communication.
+
+-Data Transfer-
+Transferring data to/from workers used to require tolling (both on speed and memory from copying the data before transfer) string serialization.
+When passing an object, the "Structured Cloning Algorithm" can be used, which avoids the speed penalty of serialization, but still incurs the tax of duplicating the objects in memory. This algorithm can copy some fairly sophisticated objects, even ones containing circular references.
+A more preferable option is to use "Transferable Objects", which doesn't duplicate the data or move it around in memory, only changing its ownership from one Worker (or the main thread) to another. Browsers such as Firefox and Chrome automatically apply this methodology with data structures that implement the interface. ES6 typed arrays function as "Transferables" by design.
