@@ -523,3 +523,7 @@ Such code (data existing in typed vector arrays) would map directly to the appro
 asm.js is a subset of JS that avoids a lot of parts of the language that are difficult to optimize, such as garbage collection, coercion, standard JS library methods, etc. Such code can be recognized by the engine and given more aggressive optimizations.
 Instead of adding new syntax, asm.js focuses on keeping the subset as minimal as possible to keep optimizability high (the AOT/ahead-of-time strategy), leaving the actual optimizations to be handled by future engine implementations.
 asm.js code must explicitly denote itself as such, using `"use asm"`, not dissimilar from the `"use strict"` label.
+
+-How to Optimize with asm.js-
+asm.js is usually not written by hand, instead being intended as a compilation target from other tools such as Emscripten.
+You can avoid type divergence and enforce types in your asm.js-aware engine by using implicit tricks such as adding the bitwise OR (`| 0`) to the end of var assignments or enclosed operation expressions to ensure values are always treated as 32-bit ints (avoiding the resource toll of tracking coercion) and that mathematical operations are limited to the more performant integer math, versus floating point.
