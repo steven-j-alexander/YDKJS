@@ -504,3 +504,8 @@ Web Workers are also used for intensive math, sorting large sets of data, compre
 Transferring data to/from workers used to require tolling (both on speed and memory from copying the data before transfer) string serialization.
 When passing an object, the "Structured Cloning Algorithm" can be used, which avoids the speed penalty of serialization, but still incurs the tax of duplicating the objects in memory. This algorithm can copy some fairly sophisticated objects, even ones containing circular references.
 A more preferable option is to use "Transferable Objects", which doesn't duplicate the data or move it around in memory, only changing its ownership from one Worker (or the main thread) to another. Browsers such as Firefox and Chrome automatically apply this methodology with data structures that implement the interface. ES6 typed arrays function as "Transferables" by design.
+
+-Shared Workers-
+Creating a single, centralized Worker that multiple page instances or app tabs can share is useful, since browsers limit the number of socket network connections to a single host, and fewer connections to your server will keep your resources requirements optimal.
+You can do this using Shared Workers, which can connect from/to multiple program instances, giving each instance a unique "port" ID for messaging.
+The only other difference between shared and dedicated Workers is that you need to have an event handler for `"connect"` inside of your shared Worker, which provides a `port` object for the connection-calling program to listen and transmit on. A shared Worker will also not terminate if other connections are still established, with `terminate` only terminating the entire Worker if the final connection was ended.
