@@ -485,3 +485,12 @@ Program Performance
 
 The most important point of asynchronous design patterns is leveraging them for performance.
 Concurrent requests are generally going to be faster than serial gated requests, and interleaved concurrency can also improve user perception of performance, both of which are extremely important in achieving a satisfying user experience.
+
+-Web Workers-
+While JS does not currently have any features that directly support multi-threaded environment, host browsers added a feature with HTML5 called "Web Workers", which can provide multiple instances of the JS engine, each running on its own thread.
+Each threaded piece is called a `Worker(..)`, and they can execute their own different program. This is called "task parallelism", which means to split a program into chunks in order to run them in parallel.
+You can create a "Dedicated Worker" by pointing your worker instance to a JS file, or an "Inline Worker" by providing an HTML5 Blob URL for an inline file.
+Workers use a basic messaging event system to communicate with one another. Each worker object is both an event listener and trigger.
+Dedicated workers have a 1-1 relationship with the program that created them. They can also create their own "subworkers".
+Separate tabs or pages in a browser that create the same Workers will create their own separate ones by default, rather than sharing them.
+Workers won't necessarily have their own thread/core if the system either does not or will not avail it.
