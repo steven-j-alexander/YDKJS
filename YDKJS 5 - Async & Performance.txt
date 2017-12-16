@@ -518,3 +518,8 @@ Since JS async happens through the event loop queue, you can use timers to force
 SIMD (Single Instruction, Multiple Data) is a form of data parallelism that parallels task parallelism in that rather than program chunks operating separately, data (bits) itself is processed in parallel, using vectors at the CPU level.
 Primarily being pushed by Intel (in conjunction with Google and Mozilla), this would increase efficiency of mathematical, graphical, and compression applications.
 Such code (data existing in typed vector arrays) would map directly to the appropriate CPU registers on compatible hardware when used in conjunction with SIMD operations, reverting to the less performant non-parallel code otherwise.
+
+-asm.js-
+asm.js is a subset of JS that avoids a lot of parts of the language that are difficult to optimize, such as garbage collection, coercion, standard JS library methods, etc. Such code can be recognized by the engine and given more aggressive optimizations.
+Instead of adding new syntax, asm.js focuses on keeping the subset as minimal as possible to keep optimizability high (the AOT/ahead-of-time strategy), leaving the actual optimizations to be handled by future engine implementations.
+asm.js code must explicitly denote itself as such, using `"use asm"`, not dissimilar from the `"use strict"` label.
