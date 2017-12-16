@@ -509,3 +509,7 @@ A more preferable option is to use "Transferable Objects", which doesn't duplica
 Creating a single, centralized Worker that multiple page instances or app tabs can share is useful, since browsers limit the number of socket network connections to a single host, and fewer connections to your server will keep your resources requirements optimal.
 You can do this using Shared Workers, which can connect from/to multiple program instances, giving each instance a unique "port" ID for messaging.
 The only other difference between shared and dedicated Workers is that you need to have an event handler for `"connect"` inside of your shared Worker, which provides a `port` object for the connection-calling program to listen and transmit on. A shared Worker will also not terminate if other connections are still established, with `terminate` only terminating the entire Worker if the final connection was ended.
+
+-Polyfilling Web Workers-
+Workers are an API and not a syntax, and while you can't fake multithreading if the host browser doesn't support it, the Worker API can still be partially polyfilled.
+Since JS async happens through the event loop queue, you can use timers to force your polyfilled Workers to be async. On the other hand, you cannot fake synchronous blocking, so you would either need to disallow `importScripts(..)`, potentially creating your own async form of the utility method.
