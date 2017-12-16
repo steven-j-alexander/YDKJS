@@ -494,3 +494,8 @@ Workers use a basic messaging event system to communicate with one another. Each
 Dedicated workers have a 1-1 relationship with the program that created them. They can also create their own "subworkers".
 Separate tabs or pages in a browser that create the same Workers will create their own separate ones by default, rather than sharing them.
 Workers won't necessarily have their own thread/core if the system either does not or will not avail it.
+
+-Worker Environment-
+Global vars and resources such as the page DOM are not availed to Workers, although it does have access to a copy of some, such as `navigator`, `location`, `JSON`, and `applicationCache`. You can also still perform network operations and set timers inside of Workers. You can even load additional scripts inside of them using `importScripts(..)` (keep in mind they load in a synchronous, blocking manner).
+Exposure of the `<canvas>` API to Workers is also something to likely become the norm in the future, in order to improve WebGL performance for gaming and other functions. Chrome and Firefox already support the experimental `OffscreenCanvas` interface, although other browsers currently do not.
+Web Workers are also used for intensive math, sorting large sets of data, compression, and high-traffic network communication.
