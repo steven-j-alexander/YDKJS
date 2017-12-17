@@ -544,3 +544,10 @@ Benchmarking & Tuning
 
 Performance can be optimized as a coding pattern (async and concurrency), the macro program architecture level (multi-threading, hardware optimization /w data parallelism, etc.), and at the micro level of single expressions and statements.
 It is important to be able to tell what types of optimizations matter and what have minimal impact, if any.
+
+-Benchmarking-
+Many are tempted to check the speed of an operation by simply measuring the time difference between the beginning and end of the operation, which is not very accurate.
+One reason is that some host platforms only report time in imprecise 15-millisecond increments, meaning if the operation took less than that, you would get a result of `0`.
+Another reason is that you can't really run a single operation and expect it to occur in complete isolation from the rest of your environment/machine. It is highly possible you will get different results each time as the operation does not occur in isolation. There could also have been other delays in-between obtaining your starting and ending timestamps.
+It's also possible that JS optimized your test case in a way that would be handled differently in a production scenario.
+Because of these factors, benchmarking in this manner is pretty much useless.
