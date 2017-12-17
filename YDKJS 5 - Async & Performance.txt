@@ -527,3 +527,7 @@ asm.js code must explicitly denote itself as such, using `"use asm"`, not dissim
 -How to Optimize with asm.js-
 asm.js is usually not written by hand, instead being intended as a compilation target from other tools such as Emscripten.
 You can avoid type divergence and enforce types in your asm.js-aware engine by using implicit tricks such as adding the bitwise OR (`| 0`) to the end of var assignments or enclosed operation expressions to ensure values are always treated as 32-bit ints (avoiding the resource toll of tracking coercion) and that mathematical operations are limited to the more performant integer math, versus floating point.
+
+-asm.js Modules-
+The asm.js "module" avoids the use of globals shared via perfomance-knocking scope, instead requiring a more tightly-conformed and explicit namespace, referred to as `stdlib` in the spec, to import symbols.
+The spec also has you declare a heap, which is simply a reserved block of memory for your variables that does not change size, similar to variable space in 6502 ASM (usually a reserved `ArrayBuffer`). This means no further memory allocation or garbage collection occurs in your shared variable namespace for the asm.js code once it initializes. Your heap buffer can then be used for storing and retrieving values.
