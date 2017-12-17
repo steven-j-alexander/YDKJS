@@ -531,3 +531,10 @@ You can avoid type divergence and enforce types in your asm.js-aware engine by u
 -asm.js Modules-
 The asm.js "module" avoids the use of globals shared via perfomance-knocking scope, instead requiring a more tightly-conformed and explicit namespace, referred to as `stdlib` in the spec, to import symbols.
 The spec also has you declare a heap, which is simply a reserved block of memory for your variables that does not change size, similar to variable space in 6502 ASM (usually a reserved `ArrayBuffer`). This means no further memory allocation or garbage collection occurs in your shared variable namespace for the asm.js code once it initializes. Your heap buffer can then be used for storing and retrieving values.
+
+-Review-
+While async patterns are generally more performant than sync ones, they are still, on their own, only limited to a single thread in JS.
+Web Workers take advantage of the host environment's ability to assign multiple program chunks to threads, using async events to message between them.
+SIMD takes advantage of data parallelism at the hardware level to execute operations and assignments using vector-based typed arrays.
+asm.js uses a strict subset of the JS language to minimize elements of the language that tax performance more heavily, such as lexical scoping, garbage collection, coercion, and memory allocation. It is typically used as a target language for compilation of tasks that involve heavy mathematical calculations and transpiling C and C++ code to JS.
+The future of JS may avail more direct control over threading, rather than just exposing it through APIs.
