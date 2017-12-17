@@ -538,3 +538,9 @@ Web Workers take advantage of the host environment's ability to assign multiple 
 SIMD takes advantage of data parallelism at the hardware level to execute operations and assignments using vector-based typed arrays.
 asm.js uses a strict subset of the JS language to minimize elements of the language that tax performance more heavily, such as lexical scoping, garbage collection, coercion, and memory allocation. It is typically used as a target language for compilation of tasks that involve heavy mathematical calculations and transpiling C and C++ code to JS.
 The future of JS may avail more direct control over threading, rather than just exposing it through APIs.
+
+===========================================Chapter 6===========================================
+Benchmarking & Tuning
+
+Performance can be optimized as a coding pattern (async and concurrency), the macro program architecture level (multi-threading, hardware optimization /w data parallelism, etc.), and at the micro level of single expressions and statements.
+It is important to be able to tell what types of optimizations matter and what have minimal impact, if any.
