@@ -551,3 +551,8 @@ One reason is that some host platforms only report time in imprecise 15-millisec
 Another reason is that you can't really run a single operation and expect it to occur in complete isolation from the rest of your environment/machine. It is highly possible you will get different results each time as the operation does not occur in isolation. There could also have been other delays in-between obtaining your starting and ending timestamps.
 It's also possible that JS optimized your test case in a way that would be handled differently in a production scenario.
 Because of these factors, benchmarking in this manner is pretty much useless.
+
+-Repetition-
+It is not enough to simply loop through an operation a set number of times, as uncommon yet extremely fast/slow test results can skew your overall average.
+It's better to loop for a set amount of time that is long enough to minimize the inaccuracy of your timer and these extreme cases.
+You don't just want to know the average, but how disparate the results are, how far apart extremely high/low speeds were, etc., so that you can also measure the trustability of your average.
