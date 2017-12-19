@@ -564,3 +564,7 @@ http://calendar.perfplanet.com/2010/bulletproof-javascript-benchmarks/
 http://monsur.hossa.in/2012/12/11/benchmarkjs.html
 You can also run multiple tests in a "suite" and then compare their resultant statistics to get an idea of which is the most performant.
 Benchmark.js allows you to run regression tests to compare performance against previous benchmarks to see if application performance is degrading or speeding up.
+
+-Setup/Teardown-
+The `setup` and `teardown` options in Benchmark.js allow you to define functions to be called before and after running your test case loops, in an outer loop for each set of test case iterations.
+It's important to keep in mind that these functions don't run each iteration, but rather for each case, so that inner-loop behaviors such as concatenation of variables initialized in `setup` will not reset until a new case is ran.
