@@ -578,3 +578,7 @@ One reason why testing on the micro-level can be a useless endeavor is that engi
 Such optimizations that can fudge your test results, by doing things such as inlining variable values, coercing them ahead of time, or even removing them if they aren't actually used.
 Engine optimizations can vary greatly outside of testing conditions, where the same code won't be ran thousands of times.
 Because of engine optimizations, it's important to test real code snippets in conditions they would actually be used, rather than test for trivial things like micro-performance.
+
+-jsPerf.com-
+It's important to test across multiple browser and hardware environments under multiple use-case conditions (such as low battery on mobile), as results can greatly differ.
+jsPerf.com uses the Benchmark.js library to test under such varying environments and conditions. You can add as many test cases as you need, and can specify your `setup` and `teardown` code as needed.
