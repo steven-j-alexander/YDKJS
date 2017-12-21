@@ -596,3 +596,9 @@ It's important to isolate and minimize the amount of variability across your tes
 Ensure your test case differences are intentional. Also be sure to make the intent clear for anyone who may be reading your tests.
 Be sure to document all intentional differences down to extreme detail. That way, you or someone else can look at it later and easily identify unintentional differences.
 Pre-declare anything that is not relevant to your test in order to isolate your test factors and increase both accuracy and readability. Benchmarks are more accurate when you include them in a larger context from what you are working with, so you should definitely be taking advantage of page setup, `setup`, and `teardown` in your tests.
+
+-Microperformance-
+Engines don't just reorder statements during compilation, but in fact sometimes compile code differently than how it was written.
+Because of the fact that JS code is moreso a "suggestion" to the engine of what you would like to accomplish, rather than an explicit program set in stone and ran exactly as written, benchmarking minute differences is frequently of little to no utility.
+Some engines practice what is called "unrolling recursion", where recursive function calls are actually transformed into loops in order to be more optimal in execution.
+Another commonly tested micro benchmark of little consequence is a comparison of pre-caching variable lengths versus referencing them each loop iteration. Modern JS engines are smart enough to handle things like this in the best manner.
