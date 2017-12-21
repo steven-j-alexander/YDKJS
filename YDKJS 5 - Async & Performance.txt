@@ -582,3 +582,12 @@ Because of engine optimizations, it's important to test real code snippets in co
 -jsPerf.com-
 It's important to test across multiple browser and hardware environments under multiple use-case conditions (such as low battery on mobile), as results can greatly differ.
 jsPerf.com uses the Benchmark.js library to test under such varying environments and conditions. You can add as many test cases as you need, and can specify your `setup` and `teardown` code as needed.
+
+-Sanity Check-
+Some common mistakes that developers make when writing test cases for Benchmark.js/jsPerf.com are:
+1. Putting your own loops into test cases when the library already handles that.
+2. Declaring and initializing variables in every case when it can be better handled in `setup` (this depends on the intent of your tests).
+3. Declaring a function inside some cases, which you may have wanted handled in the page setup if you were merely trying to compare the execution of the cases using that function, as creating a new function with each iteration will also tax performance.
+4. Writing test cases that don't produce the exact same results under all potential conditions, which invalidates even conducting the test.
+5. Neglecting to assign a value to a variable in only some of your test cases when comparing coercion/non-coercion expressions, which results in more of a performance hit for your cases with assignments.
+It's important to isolate and minimize the amount of variability across your tests.
