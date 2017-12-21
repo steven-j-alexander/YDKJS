@@ -591,3 +591,8 @@ Some common mistakes that developers make when writing test cases for Benchmark.
 4. Writing test cases that don't produce the exact same results under all potential conditions, which invalidates even conducting the test.
 5. Neglecting to assign a value to a variable in only some of your test cases when comparing coercion/non-coercion expressions, which results in more of a performance hit for your cases with assignments.
 It's important to isolate and minimize the amount of variability across your tests.
+
+-Writing Good Tests-
+Ensure your test case differences are intentional. Also be sure to make the intent clear for anyone who may be reading your tests.
+Be sure to document all intentional differences down to extreme detail. That way, you or someone else can look at it later and easily identify unintentional differences.
+Pre-declare anything that is not relevant to your test in order to isolate your test factors and increase both accuracy and readability. Benchmarks are more accurate when you include them in a larger context from what you are working with, so you should definitely be taking advantage of page setup, `setup`, and `teardown` in your tests.
