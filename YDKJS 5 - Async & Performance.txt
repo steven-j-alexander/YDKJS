@@ -602,3 +602,12 @@ Engines don't just reorder statements during compilation, but in fact sometimes 
 Because of the fact that JS code is moreso a "suggestion" to the engine of what you would like to accomplish, rather than an explicit program set in stone and ran exactly as written, benchmarking minute differences is frequently of little to no utility.
 Some engines practice what is called "unrolling recursion", where recursive function calls are actually transformed into loops in order to be more optimal in execution.
 Another commonly tested micro benchmark of little consequence is a comparison of pre-caching variable lengths versus referencing them each loop iteration. Modern JS engines are smart enough to handle things like this in the best manner.
+
+-Not All Engines Are Alike-
+Even though all engines for the various browsers can be spec compliant, they can still drastically differ in how they handle optimizations, as the spec does not specify how such optimizations, other than ES6 TCOs, should be handled.
+Some devs (especially those who use Node.js) have analyzed the v8 JS engine and determined some implementation details cause certain ways of writing code to be more performant than others. Some examples include avoiding passing the `arguments` variable from one function to another, and avoiding using `try...catch` anyhwere other than inside its own function, as these can greatly de-optimize your code.
+More examples can be found here: https://github.com/petkaantonov/bluebird/wiki/Optimization-killers
+Author states that this is still a wasteful practice in the longterm, as both the engine and the server-side platform you are using can change, rendering such optimizations useless or even possibly harmful.
+JS used to process string concatenation using `.join()` on an array of strings faster than using the `+` operator with your strings, until using the `+` operator was optimized as a response to its popular usage.
+Such practice of optimizing or standardizing a particular approach due to its popularity is called "paving the cowpath".
+Author opines that code written as a temporary fix for a performance bug in one particular browser or engine implementation will likely outlive the bug itself, so try to code for the norm when given the option.
