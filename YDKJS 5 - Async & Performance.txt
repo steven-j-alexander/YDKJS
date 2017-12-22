@@ -623,3 +623,8 @@ A tail call is a function that appears at the end of another function, meaning t
 Returning a statement that modifies the value returned by a function is not a tail call, as there are still operations left to occur after the enclosed function returns its call.
 The reason TCO is important is that each new function call requires extra space in memory for what is called a "stack frame". TCO allows for the tail call function to use the stack frame memory that was previously allocated to the calling function. When running recursive functions, this results in substantial memory savings, as each recursive function call can simply reuse the same stack frame, allowing for boundless recursion.
 This was added to the ES6 spec because without a TCO standardization for engines to follow, people were avoiding writing certain algorithms that utilized recursion to circumvent code hitting call stack limits, and there was no built-in way to gracefully degrade such code to work around those potential circumstances.
+
+===========================================Appendix A===========================================
+asynquence Library
+
+The premise of the asynquence library is that it is focused on combining the best of ES6-capable async patterns into a single library, allowing for easier composition of interwoven async patterns for increasingly-complex async sequences.
