@@ -617,3 +617,9 @@ It's important to pass up premature optimization for non-critical parts of your 
 Some examples of the critical path are pieces of code that will be used frequently (such as loading/aggregating data) and UX-critical components where users will notice performance optimizations/degradations, especially in the front-end.
 `parseInt(..)` both parses and coerces string values into numbers, which can be useful if you need to parse a number out of a string, but if you'd never need to, the `Number(..)` function or (maybe slightly better) unary operators would be a better option for simple coercion.
 If there is minimal differences in performance between often, it's best to go for what is most comprehendable.
+
+-Tail Call Optimization (TCO)-
+A tail call is a function that appears at the end of another function, meaning that there is nothing left to do in the enclosing function after the "tail" function is called, except potentially returning its resulting value.
+Returning a statement that modifies the value returned by a function is not a tail call, as there are still operations left to occur after the enclosed function returns its call.
+The reason TCO is important is that each new function call requires extra space in memory for what is called a "stack frame". TCO allows for the tail call function to use the stack frame memory that was previously allocated to the calling function. When running recursive functions, this results in substantial memory savings, as each recursive function call can simply reuse the same stack frame, allowing for boundless recursion.
+This was added to the ES6 spec because without a TCO standardization for engines to follow, people were avoiding writing certain algorithms that utilized recursion to circumvent code hitting call stack limits, and there was no built-in way to gracefully degrade such code to work around those potential circumstances.
