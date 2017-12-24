@@ -628,3 +628,9 @@ This was added to the ES6 spec because without a TCO standardization for engines
 asynquence Library
 
 The premise of the asynquence library is that it is focused on combining the best of ES6-capable async patterns into a single library, allowing for easier composition of interwoven async patterns for increasingly-complex async sequences.
+
+-Sequences, Abstraction Design-
+asynquence abstracts a series of sync and async tasks into a "sequence", which represents a task. Every step creates a promise to control it, which makes every single step asynchronous, even if completed synchronously.
+Sequences are similar to promise chains, although unlike those, you have a way to reference the entire chain. This allows you to abort entire sequences without breaking the immutable design of promises.
+With the sequence abstraction, your step functions as a wrapper around a promise, allowing you to handle them in more complex ways (loops, in a `try..catch`) that are easier to code compared to just working with exposed promises.
+Even though sequences are controlled by promises, they allow for more easily composable abstraction of numerous async patterns, not limited to promises and generators.
