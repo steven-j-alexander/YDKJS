@@ -645,3 +645,8 @@ With asynquence, errors thrown at any point in the sequence will ignore the rema
 You can use the `.try(..)` method or the `.until(..)` loop to compose steps that recover from errors. `pThen(..)` and `pCatch(..)` are API methods designed to be used as traditional Promise `then(..)` and `catch(..)` methods,  allowing you to define your own error handling mid-sequence.
 To handle sequence error notifications, you can use the `or(..)` sequence method, or its alias, `onerror(..)`. You can register multiple handlers wherever you want in the sequence.
 Errors that go unhandled in the moment are reported to `console` by default. Such reporting will stop as soon as an error handler is registered against that error's sequence. This creates a "pit of success" for error handling, in contrast to promise's default "pit of failure" error-handling mechanism. You can also opt a sequence out of error reporting by using the `defer(..)` method on it.
+
+-Parallel Steps-
+To run steps in parallel, just like promise's `all([..])` method, you can either use `gate(..)` or the `all(..)` alias.
+Once all steps in a gate complete, a success message is passed to the next step. If any steps generate an error, the entire sequence will go into an error state.
+Parallel steps in asynquence greatly reduce boilerplate overhead found when performing similar operations using promise's `all([..])` method.
