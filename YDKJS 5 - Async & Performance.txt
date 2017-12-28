@@ -668,3 +668,7 @@ With `try(..)`, success steps produce messages and proceed as normal, but failur
 -Promise-Style Steps-
 `pThen(..)` and `pCatch(..)` allow you to write promise-style code inside of your sequences, behaving as a normal promise chain.
 You can resolve genuine promises or asynquence sequences from the `pThen(..)` fulfillment handler, and catch errors in traditional promise fashion using `pCatch(..)`.
+
+-Forking Sequences-
+Promises can by forked by using multiple `then(..)` handler registrations on the same promise.
+The same can be achieved with much cleaner syntax in asynquence using `fork(..)` to declare a new sequence variable and designate it to be a fork of another sequence, free to be ran in its own isolated sequence.
