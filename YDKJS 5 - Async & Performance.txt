@@ -660,3 +660,7 @@ Parallel steps in asynquence greatly reduce boilerplate overhead found when perf
 `none(..)` only proceeds if all segments fail (all error messages will be passed as success messages and vice versa).
 `map(..)` allows you to asynchronously map elements of an array to new values using a single defined callback to operate on them. It can receive the array or callback as a message from the previous step.
 `waterfall(..)` collects the success messages from each step in its segment into an array.
+
+-Error Tolerance-
+With `try(..)`, success steps produce messages and proceed as normal, but failure also results in a success message formatted as a `{ catch: ... }` object containing your error message(s).
+`until(..)` tries and retries a step until it succeeds, although you can also call the `break()` flag to put the main sequence into an error state.
