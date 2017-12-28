@@ -650,3 +650,13 @@ Errors that go unhandled in the moment are reported to `console` by default. Suc
 To run steps in parallel, just like promise's `all([..])` method, you can either use `gate(..)` or the `all(..)` alias.
 Once all steps in a gate complete, a success message is passed to the next step. If any steps generate an error, the entire sequence will go into an error state.
 Parallel steps in asynquence greatly reduce boilerplate overhead found when performing similar operations using promise's `all([..])` method.
+
+-Step Variations-
+(available on contributed plug-ins)
+`any(..)` is like `gate(..)` but only one segment has to succeed to advance to the next step on the main sequence.
+`first(..)` is similar to `any(..)`, but ignores subsequent segment results after the first one succeeds.
+`race(..)` is symmetric with promise's `race([..])`, where the first result to succeed or fail causes the main sequence to proceed.
+`last(..)` will cause the latest succeeding segment to be the only one to pass its message forward to the next step in the main sequence.
+`none(..)` only proceeds if all segments fail (all error messages will be passed as success messages and vice versa).
+`map(..)` allows you to asynchronously map elements of an array to new values using a single defined callback to operate on them. It can receive the array or callback as a message from the previous step.
+`waterfall(..)` collects the success messages from each step in its segment into an array.
