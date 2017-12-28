@@ -664,3 +664,7 @@ Parallel steps in asynquence greatly reduce boilerplate overhead found when perf
 -Error Tolerance-
 With `try(..)`, success steps produce messages and proceed as normal, but failure also results in a success message formatted as a `{ catch: ... }` object containing your error message(s).
 `until(..)` tries and retries a step until it succeeds, although you can also call the `break()` flag to put the main sequence into an error state.
+
+-Promise-Style Steps-
+`pThen(..)` and `pCatch(..)` allow you to write promise-style code inside of your sequences, behaving as a normal promise chain.
+You can resolve genuine promises or asynquence sequences from the `pThen(..)` fulfillment handler, and catch errors in traditional promise fashion using `pCatch(..)`.
