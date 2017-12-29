@@ -672,3 +672,7 @@ You can resolve genuine promises or asynquence sequences from the `pThen(..)` fu
 -Forking Sequences-
 Promises can by forked by using multiple `then(..)` handler registrations on the same promise.
 The same can be achieved with much cleaner syntax in asynquence using `fork(..)` to declare a new sequence variable and designate it to be a fork of another sequence, free to be ran in its own isolated sequence.
+
+-Combining Sequences-
+You can subsume one sequence into another via usage of the `seq(..)` method. This method can accept another sequence or a function that returns one.
+You can also manually `pipe(..)` a sequence into a continuation callback in order to subsume it.
