@@ -676,3 +676,8 @@ The same can be achieved with much cleaner syntax in asynquence using `fork(..)`
 -Combining Sequences-
 You can subsume one sequence into another via usage of the `seq(..)` method. This method can accept another sequence or a function that returns one.
 You can also manually `pipe(..)` a sequence into a continuation callback in order to subsume it.
+
+-Value and Error Sequences-
+Using a normal value as a sequence step will result in that value being passed as that step's completion message.
+You can use `ASQ.failed(..)` to create sequences that are in an automatic error state.
+Using the `after` and `failAfter` plugins, you can create delayed value and error sequences. You can also insert an `after(..)` delay into the middle of a sequence.
