@@ -681,3 +681,9 @@ You can also manually `pipe(..)` a sequence into a continuation callback in orde
 Using a normal value as a sequence step will result in that value being passed as that step's completion message.
 You can use `ASQ.failed(..)` to create sequences that are in an automatic error state.
 Using the `after` and `failAfter` plugins, you can create delayed value and error sequences. You can also insert an `after(..)` delay into the middle of a sequence.
+
+-Promises and Callbacks-
+You can subsume a promise using the `promise(..)` method and passing it either a promise object, or a function that returns one.
+You can fork a promise from a sequence step by using the `toPromise(..)` plugin method.
+To generate an error-first style callback from your sequence, use the `errfcb()` method.
+`ASQ.wrap(..)` is used to create a sequence-wrapped utility for producing sequences, similar to that of a promisory or a thunkory ("sequory").
