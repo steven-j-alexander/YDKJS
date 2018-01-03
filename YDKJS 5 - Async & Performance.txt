@@ -695,3 +695,9 @@ This is useful in scenarios where such externalization is necessary, such as whe
 -Running Generators-
 asynquence has its own generator-style `run(..)` utility, called `runner(..)`.
 This allows you to pass generator functions as sequence steps, to be asynchronously resumed by `yield`ed Promises or completed functions containing asynquence sequences.
+
+-Wrapped Generators-
+You can also wrap a generator function inside of a normal function using `.wrap(..)`, allowing you to call it by reference variable and treat it as a returned sequence upon its completion.
+
+-Review-
+asynquence provides a sequential abstraction on top of the promise mechanism in a more simplistic manner, while still providing you with the same level of control and quality within a single library.
