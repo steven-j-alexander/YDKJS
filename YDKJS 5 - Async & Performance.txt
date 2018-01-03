@@ -687,3 +687,7 @@ You can subsume a promise using the `promise(..)` method and passing it either a
 You can fork a promise from a sequence step by using the `toPromise(..)` plugin method.
 To generate an error-first style callback from your sequence, use the `errfcb()` method.
 `ASQ.wrap(..)` is used to create a sequence-wrapped utility for producing sequences, similar to that of a promisory or a thunkory ("sequory").
+
+-Iterable Sequences-
+asynquence provides `.iterable()` sequences, which allow you to externalize control capability.
+This is useful in scenarios where such externalization is necessary, such as when waiting on your DOM content to load using an event listener before proceeding to the next step.
