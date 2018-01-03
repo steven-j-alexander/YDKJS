@@ -691,3 +691,7 @@ To generate an error-first style callback from your sequence, use the `errfcb()`
 -Iterable Sequences-
 asynquence provides `.iterable()` sequences, which allow you to externalize control capability.
 This is useful in scenarios where such externalization is necessary, such as when waiting on your DOM content to load using an event listener before proceeding to the next step.
+
+-Running Generators-
+asynquence has its own generator-style `run(..)` utility, called `runner(..)`.
+This allows you to pass generator functions as sequence steps, to be asynchronously resumed by `yield`ed Promises or completed functions containing asynquence sequences.
