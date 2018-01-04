@@ -701,3 +701,10 @@ You can also wrap a generator function inside of a normal function using `.wrap(
 
 -Review-
 asynquence provides a sequential abstraction on top of the promise mechanism in a more simplistic manner, while still providing you with the same level of control and quality within a single library.
+
+===========================================Appendix B===========================================
+Advanced Async Patterns
+
+-Iterable Sequences (Revisited)-
+Since iterable sequences are standards-compliant iterators, you can iterate them with `for..of` loops just like any other iterable.
+Iterable sequences are so similar to promise chains and generators that they can function as a (less clean) transpilation target for certain pre-ES6 generators.
