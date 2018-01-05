@@ -708,3 +708,8 @@ Advanced Async Patterns
 -Iterable Sequences (Revisited)-
 Since iterable sequences are standards-compliant iterators, you can iterate them with `for..of` loops just like any other iterable.
 Iterable sequences are so similar to promise chains and generators that they can function as a (less clean) transpilation target for certain pre-ES6 generators.
+
+-Extending Iterable Sequences-
+While generators, asynquence sequences, and promise chains are "eagerly evaluated" to the fixed flow that is initially expressed, iterable sequences are "lazily evaluated", meaning you can extend the sequence with more steps (only at the end of the sequence).
+You can conditionally add steps to sequences based on returned values. You can also use generator functions to express iterable sequences, although the nature of generators means your extendable iterable conditionals have to be properly ordered in generator fashion, which can make them appear awkward.
+You can use a promise chain to iterate your sequence, but because promise chains are eagerly evaluated, it will create a race condition where multiple sequences could be pointed to if your steps create an alternate extended sequence. Whichever one is currently being pointed to by the promise chain will be the one returned upon the return call.
