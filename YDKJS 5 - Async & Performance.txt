@@ -722,3 +722,12 @@ Functional reactive programming applies concepts of immutability and referential
 -ES7 Observables-
 ES7 Observables allow you to subscribe to events from a stream by passing in a generator function to be used when iterating each event occurance.
 You can pass in pretty much any iterable, such as ASQ iterable sequences. There are also proposed adapters to easily construct Observables from certain types of streams, like DOM Events.
+
+-Reactive Sequences-
+Asynquence allows you to create Observables by using the `ASQ.react(..)` plug-in utility.
+Using Functional/Reactive Programming (F/RP), you can simply chain off your already-defined `react(..)` Observable when defining your sequence.
+The stream of events in F/RP will normally travel through a set of transform methods like `.map(..)`, but with reactive sequences, each event travels through its own instance of the sequence.
+Reactive sequences will continue to initialize new sequences as events continue to fire, unless you call `stop()` on it. You can also define a `registerTeardown( .. )` handler inside of your `ASQ.react(..)` function that will `.removeEventListener(..)`, which will be invoked upon use of `stop()` on the reactive sequence.
+You can add a listener inside of your setup function that `.stop()`s the sequence by having it trigger `this.stop`.
+You can pipe data from another stream such as node streams using `onStream(..)` and can also listen for their end before invoking `unStream(..)`.
+Reactive sequences are usually good enough for simple reactive uses.
