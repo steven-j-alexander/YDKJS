@@ -718,3 +718,7 @@ You can use a promise chain to iterate your sequence, but because promise chains
 Promises and plain sequences lack the ability to effectively handle streams of events, as you'd have to create a new promise or sequence chain every time you want to trigger a series of steps in response to an event occurance.
 You can separate the listening from the response logic by creating an observable variable equal to the listener stream, and then later chaining `.then(..)` logic to that observable variable. The observable can be observed multiple times and will update it's value whenever the listened event occurs.
 Functional reactive programming applies concepts of immutability and referential integrity to streams of data, allowing for continuously observable data while spreading it out over time in response to further events. These observables 'react' to events.
+
+-ES7 Observables-
+ES7 Observables allow you to subscribe to events from a stream by passing in a generator function to be used when iterating each event occurance.
+You can pass in pretty much any iterable, such as ASQ iterable sequences. There are also proposed adapters to easily construct Observables from certain types of streams, like DOM Events.
