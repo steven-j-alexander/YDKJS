@@ -737,3 +737,8 @@ Reactive sequences are usually good enough for simple reactive uses.
 `token.messages` is an array of messages passed from the previous sequence step, and can also be used to share messages between coroutines.
 `yield`ing another promise or sequence does not transfer control to the next coroutine, but rather simply pauses it until the value is ready.
 The final value to be returned or yielded from `runner` will be passed onto the next step of the sequence.
+
+-State Machines-
+You can create a state machine with the help of `ASQ#runner` by creating a state utility that returns a generator which accepts a `token` and runs a loop until the state machine reaches its final state.
+Your `ASQ#runner` will call this utility for each state, passing along the state value and generator handler function. This handler function takes a `transition` argument that is invoked to complete the finish the current state and invoke whatever state is passed to it.
+State generator handlers can be paused by the usual use of promise/sequence/thunk `yield`s. The coroutine handlers produced by the state utility continue to run concurrently during the lifespan of the state machine, allowing for the `yield`ing of control from one to the next.
