@@ -731,3 +731,9 @@ Reactive sequences will continue to initialize new sequences as events continue 
 You can add a listener inside of your setup function that `.stop()`s the sequence by having it trigger `this.stop`.
 You can pipe data from another stream such as node streams using `onStream(..)` and can also listen for their end before invoking `unStream(..)`.
 Reactive sequences are usually good enough for simple reactive uses.
+
+-Generator Coroutine-
+`ASQ#runner(..)` allows you to concurrently run multiple generators to completion, using the provided `token` argument to yield to the next coroutine.
+`token.messages` is an array of messages passed from the previous sequence step, and can also be used to share messages between coroutines.
+`yield`ing another promise or sequence does not transfer control to the next coroutine, but rather simply pauses it until the value is ready.
+The final value to be returned or yielded from `runner` will be passed onto the next step of the sequence.
