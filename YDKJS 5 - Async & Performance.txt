@@ -742,3 +742,12 @@ The final value to be returned or yielded from `runner` will be passed onto the 
 You can create a state machine with the help of `ASQ#runner` by creating a state utility that returns a generator which accepts a `token` and runs a loop until the state machine reaches its final state.
 Your `ASQ#runner` will call this utility for each state, passing along the state value and generator handler function. This handler function takes a `transition` argument that is invoked to complete the finish the current state and invoke whatever state is passed to it.
 State generator handlers can be paused by the usual use of promise/sequence/thunk `yield`s. The coroutine handlers produced by the state utility continue to run concurrently during the lifespan of the state machine, allowing for the `yield`ing of control from one to the next.
+
+-Communicating Sequential Processes (CSP)-
+CSP is a process in which concurrent "processes" can interact with one another.
+
+-Message Passing-
+With CSP, message passing must occur synchronously, so that both sender and receiver are mutually ready for it.
+With two generators, you would `yield` the message from one to another, waiting for the other generator to be ready to accept it. Once the message is accepted and a message is received in response, both generators can resume.
+A common use of CSP message passing exists in ClojureScript's core.async library and the Go language. These use a "channel" in-between processes as a means to communicate, as multiple values can be sent at once into the channel buffer, similar to a stream.
+Each channel has a method called `take(..)`, which blocks the process to receive a value, and `put(..)`, which blocks to send a value.
