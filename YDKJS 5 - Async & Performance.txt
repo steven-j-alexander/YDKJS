@@ -751,3 +751,11 @@ With CSP, message passing must occur synchronously, so that both sender and rece
 With two generators, you would `yield` the message from one to another, waiting for the other generator to be ready to accept it. Once the message is accepted and a message is received in response, both generators can resume.
 A common use of CSP message passing exists in ClojureScript's core.async library and the Go language. These use a "channel" in-between processes as a means to communicate, as multiple values can be sent at once into the channel buffer, similar to a stream.
 Each channel has a method called `take(..)`, which blocks the process to receive a value, and `put(..)`, which blocks to send a value.
+
+-asynquence CSP Emulation-
+asynquence offers an optional layer on top of `ASQ#runner` generator handling to emulate CSP API behavior.
+`ASQ.csp.go(..)` takes a go/core.async-style generator (aka a "goroutine"), and returns a new generator that has been adapted to work with `ASQ#runner(..)`.
+The goroutine receives a channel instead of a token, which is shared amongst other goroutines in the run, and blocked on instead of the usual waiting for promises, sequences, or thunks to complete.
+You can also create additional channels to use via the `ASQ.csp.chan(..)` method.
+Your goroutine will return a channel that you will `take(..)` a value from.
+`ASQ.csp.putAsync` is a version of `put(..)` that can be used outside of a generator. Once the operation completes, it returns a promise.
