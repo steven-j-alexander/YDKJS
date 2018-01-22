@@ -4,8 +4,8 @@ What is Scope?
 -Compiler Theory-
 JS is technically a compiled language. Here is a broad, simplified version of what the JS engine is doing during compilation:
 Tokenizing/lexing: A compiled language is tokenized/lexed, which breaks each string of characters into chunks called tokens. If the tokenizer invokes stateful parsing rules to check if a token should be considered distinct or part of another token, this would be called lexing.
-Parsing: Takes a stream (array) of tokens and turning them into a tree of nested elements that represent the grammatical structure of the program. The tree is called an AST (Abstract Syntax Tree).
-Code-Generation: This process takes the AST and turns into into executable code. This will vary greatly between language used and target platform. This step would create the actual variables in memory on the host machine, store values, run machine code, etc.
+Parsing: Takes a stream (array) of tokens and turns them into a tree of nested elements that represent the grammatical structure of the program. The tree is called an AST (Abstract Syntax Tree).
+Code-Generation: This process takes the AST and turns it into executable code. This will vary greatly between language used and target platform. This step would create the actual variables in memory on the host machine, store values, run machine code, etc.
 JS doesn't have plenty of time to optimize, as it is compiled right before being used, so it uses a lot of tricks (like JITs) to ensure the fastest possible performance.
 
 -Understanding Scope-
@@ -45,7 +45,7 @@ return a
 -Errors-
 When conducting an RHS lookup, if no matching variable is found in the nested scopes, the engine will throw a ReferenceError (of type ReferenceError).
 If you cannot find a matching var when using an LHS lookup while not in strict mode (which disables automatic implicit global var creation), a global variable of the same name will be created automatically by the global scope before passing it back to the JS engine.
-If you find a variable using an RHS lookup, but do something with the value that is impossible such as trying to run a non-function value as a function or reference a property on a null/undefined val, the JS engine will throw a TypeError.
+If you find a variable using an RHS lookup, but do something with the value that is impossible, such as trying to run a non-function value as a function or reference a property on a null/undefined val, the JS engine will throw a TypeError.
 ReferenceError = Scope-level failure
 TypeError = Scope-level success, illegal action occurred
 
@@ -59,7 +59,7 @@ Reference lookups start at the currently-executed scope and work their way up th
 Lexical Scope
 
 -Lex-Time-
-Lexical scope is scope that is defined during lexing, which means it is based on where variables are blocks of scope are authored during writing. Scope is mostly set in stone by the time the code is being lexed.
+Lexical scope is scope that is defined during lexing, which means it is based on where variables in blocks of scope are authored during writing. Scope is mostly set in stone by the time the code is being lexed.
 There are ways to modify scope after lexing, but it is best practice to avoid this and stick to lex-scoping.
 Function parameters are included in the nested scope contained within that function.
 
@@ -67,7 +67,7 @@ Function parameters are included in the nested scope contained within that funct
 Shadowing is when the same identifier is specified in multiple levels of nested scope (the inner identifier shadows the outer one).
 Global variables are automatically properties of the global object ('window' in browsers), so can be referenced as properties of that global object. This allows access to global properties that may otherwise be shadowed by identifiers of the same name located in deeper layers of scope.
 Non-global shadowed vars cannot be accessed.
-Lexical scope of functions are only defined by their location
+Lexical scope of functions are only defined by their location.
 The lexical scope lookup process is only applied to first-class identifiers like a, b, c, etc. Referencing identifiers as properties like foo.bar.baz will result in the first identifier being looked up using lexical scope, with the remaining sub-identifiers being accessed as properties using object-property access rules.
 
 -Cheating Lexical: eval-
@@ -77,13 +77,13 @@ You essentially modify a layer or multiple layers of lexical scope by calling a 
 In strict mode, eval only modifies the scope contained within the eval itself, and does not modify its enclosing scope.
 setTimeout() and setInterval() also allow for the usage of the first argument to be a string which will then be eval'ed, which could be put towards the modification of scope, but these are deprecated behaviors.
 The new Function() function takes the last argument as a string to be turned into dynamically-generated code. It's a function constructor that is somewhat safer to use than eval, but should still be avoided.
-The use cases for these are very rare, as the performance degredation involved is not worth it.
+The use cases for these are very rare, as the performance degradation involved is not worth it.
 
 -Cheating Lexical: with-
 The (now-deprecated) 'with' keyword allows one to reference multiple properties of an object without repeating the object reference itself each time.
 If you pass an object to a function and modify its properties (existent or not) on that passed object using 'with', that object will be treated as its own lexical scope. This does not apply to normal var declarations, which will just be scoped to the containing function.
 Instead of modifying existing lexical scope at runtime as when using the eval function, the with keyword allows you to create an entirely new scope using passed objects.
-When using with, if you run a lookup on an identifier in that newly-created scope does not already exist in the object used, normal lexical scope rules apply. In non-strict mode, you would travel up the layers of scope until you either found a match or you did not, resulting in the automatic creation of that identifier as a new global variable. The with keyword is outright disallowed in strict mode.
+When using with, if you run a lookup on an identifier in that newly-created scope that does not already exist in the object used, normal lexical scope rules apply. In non-strict mode, you would travel up the layers of scope until you either found a match or you did not, resulting in the automatic creation of that identifier as a new global variable. The with keyword is outright disallowed in strict mode.
 
 -Cheating Lexical: Performance-
 The JS engine performs several performance optimizations during compilation, such as pre-determining where function and variable declarations are located. Most optimizations would be pointless and need to be disregarded by the engine if it were to come across a use of lexical perversions such as with and eval() during runtime.
@@ -124,12 +124,12 @@ According to author, the best practice for inline functions or functions as call
 -Invoking Function Expressions Immediately-
 You execute a function expression by immediately adding another ( ) pair on the end. This pattern is called an IIFE (Immediately Invoked Function Expression).
 You can include the invoking ( ) pair on the inside or outside of the outer ( ) wrapping pair. It makes no difference.
-You can pass arguments into the invoking parenthesis just as you would any standard function declaration.
+You can pass arguments into the invoking parenthesis just as you would any standard function call.
 One usage of the IIFE pattern is that you can name a parameter 'undefined' and pass no argument to it in order to protect your function from any incorrect overwriting of the default undefined variable that may have taken place outside of the function. This guarantees that undefined identifier actually resolves to the unidentified value in your block of code.
 The UMD (Universal Module Definition) pattern is similar to IIFE but differs in that it is slightly more verbose but also a bit more readable. The function to execute is given after its invocation and passing of parameters. You define your function expression in the second half of the snippet (enclosed in its own ( ) pair), passing it as a parameter to the IIFE function in the first half. Within that initial function, you invoke the parameter function, passing any arguments as defined by the passed function you are referencing.
 
 -Blocks As Scopes-
-For loops, if statements, etc. scope themselves to the enclosing scope. For example, if you declare a var inside of an if statement, it still belongs to the enclosing scope of that if statement. Same for the head of a for loop. It is only stylistic, fake block-scoping, and requires self-enforcement to not accidentally use that variable in another place within that enclosing scope.
+For loops, if statements, etc's conditional statements will scope themselves to the enclosing scope. For example, if you declare a var inside of an if conditional statement, it still belongs to the enclosing scope of that if statement. Same for the head of a for loop. It is only stylistic, fake block-scoping, and requires self-enforcement to not accidentally use that variable in another place within that enclosing scope.
 Block scoping extends the Principle of Least Exposure to hide information in blocks of code rather than only functions.
 
 -with-
@@ -158,7 +158,7 @@ ES6 also introduced const, which creates a block-scoped variable whose value is 
 -Review-
 Functions are the most common unit of scope in JS, but you can also use block-scoping to hide variables and functions within an arbitrary block.
 You can hide variables from enclosing scope in blocks by using keywords such as let and const.
-According to author, block scope should not entirely replace the use of vars and function scope. Use what produces better and more readable/maintanable code in the given situation.
+According to the author, block scope should not entirely replace the use of vars and function scope. Use what produces better and more readable/maintanable code in the given situation.
 
 ===========================================Chapter 4===========================================
 Hoisting
@@ -188,12 +188,12 @@ A more complete example of closure as an observable exercise is when you take a 
 Closure gives functions continued access to the scope it was defined in at author-time. Closures can be observed when a function relying on an enclosing scope is passed as a value and invoked in another location. No matter how the inner function is transported outside of its lexical scope, it will maintain a scope reference to where it was originally declared, and the closure will be exercised when executed.
 
 -Now I Can See-
-Whenever functions that access their own lexical scope are passed as first-class values, you will likely see them exercise closure. This applies to anything where you pass a callback function, such as timers, event handlers, Ajax requests, cross-window messaging, web workers, and asynch/synchronous tasks.
+Whenever functions that access their own lexical scope are passed as first-class values, you will likely see them exercise closure. This applies to anything where you pass a callback function, such as timers, event handlers, Ajax requests, cross-window messaging, web workers, and async/synchronous tasks.
 IIFEs that take a parameter from the same scope are not a complete example of closure, as the function is not executed outside of its lexical scope and does not provide a strictly observable example of closure. They are heavily related though, as they create scope, and it's a common tool to be used to create scope to be closed over.
 
 -Loops + Closure-
 Linters often complain when you put functions inside of loops, as their developers often do not understand closures.
-Since simple for loops take barely any time to run, running a setTimeout function with a delay inside the loop that iterates through and prints an index will most likely result in them all outputting once the loop terminates, returning the same result for each timeout function callback, rather than printing its own unique copy of the index. This is because each of those functions is closed over the same scope, which contains only one copy of the index at any given time. All the for loop is doing is updating the value of the lone index variable after each iteration.
+Since simple for loops take barely any time to run, running a setTimeout function with a delay inside the loop that iterates and prints an index will most likely result in them all outputting once the loop terminates, returning the same result for each timeout function callback, rather than printing its own unique copy of the index. This is because each of those functions is closed over the same scope, which contains only one copy of the index at any given time. All the for loop is doing is updating the value of the lone index variable after each iteration.
 In order to get separate returning values from the for loop as desired, you would need to close each iteration of the function call in its own scope. A good way to do this is to use an IIFE in order to create scope, and then pass it the index variable. This way, closures are formed for each iteration of the IIFE, which gives each timeout function its own scope iteration to access when called, each containing their own correct and unique iteration index value.
 
 -Block Scoping Revisited-
@@ -203,11 +203,11 @@ Even more simply, the let keyword has a special behavior defined when it is used
 -Modules-
 The most common way of implementing the module pattern is often called "Revealing Module". It consists of an outer function containing variables used by inner functions and ends with a return object containing references to each inner function to be accessed as properties of the outer function. The outer function has to then be invoked for a module instance to be created (you assign the invocation to a variable for later access). Without the execution of the outer function, the creation of inner scope and closures will not occur.
 This pattern keeps your inner data variables hidden and private and only gives access to inner functions via the return object properties that reference them, not unlike a public API. The return value object is assigned to the outer variable that you use to invoke the outer function. You can then access the inner variables using a property accessor such as dot or bracket notation.
-You do not necessarily need to return an actual object literal from a module. You can directly return an inner function. JQuery displays a good example of this. JQuery and its $ identifiers are just functions exposed by the public API for the JQuery module that are called as properties (since technically all functions are objects as well).
+You do not necessarily need to return an actual object literal from a module. You can directly return an inner function. JQuery displays a good example of this. jQuery and its $ identifiers are just functions exposed by the public API for the jQuery module that are called as properties (since technically all functions are objects as well).
 The inner functions exposed by the return object are have closure over the inner scope of the module instance once the module is invoked. Once you access those functions outside of lexical scope by means of property references on the return object, the condition is now set up for closure to be observed and exercised.
 Two requirements for the module pattern to be exercised:
 1. There must be an outer enclosing function, and it must be invoked at least once, creating at least one module instance.
-2. The enclosing function must return at least one inner function, so that it has closure over the inner scope, allowing it to access and the ability to modify its private state.
+2. The enclosing function must return at least one inner function, so that it has closure over the inner scope, allowing it access and the ability to modify its private state.
 A slight variation of this is a sort of singleton pattern style where you immediately invoke your module as a function expression. Turning the module into an IIFE essentially restricts instantion to one, assigning its return value to the instance identifier used for invocation.
 A powerful variation of the module pattern is to name the return object as your public API and return that. By retaining an inner reference to your return object, you now can now modify it from the inside by ways such as adding/removing methods/properties and changing their values.
 
@@ -216,13 +216,13 @@ A simple illustration of how modern module dependency loaders/managers work is t
 In simpler words, you maintain the module pattern while invoking a function definition wrapper and keep its return values as the API for that module.
 
 -Future Modules-
-ES6 adds first-class syntax support for modules. When loaded via this syntax, ES6 treats files as seperate modules. These modules can import other modules or specific API members as dependencies and expose their own public API members.
+ES6 adds first-class syntax support for modules. When loaded via this syntax, ES6 treats files as separate modules. These modules can import other modules or specific API members as dependencies and expose their own public API members.
 The compiler doesn't recognize function-based modules (they aren't statically recognized), so their semantics are not considered until run-time. This means you can modify a module's API during run-time.
 With ES6-specific syntax, modules are static and do not change at run-time. Because of this, the compiler will actually check (during file loading and compilation) to ensure that members referenced in module imports actually exist. If one isn't found, it will throw an earlier compile-time error, rather than relying upon dynamic run-time resolution to handle it.
 Since there is no inline-format supported, you must define each module in a separate file. Browser engines have a default module loader (overridable) that synchronously loads a module file when imported.
 To import a specific member, you would use the syntax: import boundVarName from "moduleFileName";
 To load an entire module, you would use the syntax: module boundModuleName from "moduleFileName";
-To avail a module or its specific members to be accessible and loaded externally using the import or module keywords, its identifiers would need to exported internally using the export keyword.
+To avail a module or its specific members to be accessible and loaded externally using the import or module keywords, its identifiers would need to be exported internally using the export keyword.
 The import keyword imports one or more members from a module's API into the current scope, each to a bound variable. The module keyword does the same for an entire module API.
 The contents inside the module file are treated as an enclosed scope closure, just like the previously seen function-closure modules.
 
@@ -238,7 +238,7 @@ Instead of using nested scoping rules typical to lexical scoping in order to det
 Dynamic scoping rules are simply to follow back up the call-stack from that particular execution of code up until you reach the start of your global scope.
 Lexical scope: Write-time. Scope hierarchy is determined by where a function was declared in relation to other enclosing scopes.
 Dynamic scope: Run-time. Scope hierarchy is determined by where a function was executed/called from, tracing its way back up the call stack and its series of jumps into and across various scopes.
-The 'this' keyword is also run-time, but cares how a function was called.
+The 'this' keyword is also run-time, but also takes into consideration how a function was called.
 
 ===========================================Appendix B===========================================
 Polyfilling Block Scope
@@ -246,10 +246,9 @@ Polyfilling Block Scope
 If you want to use block-scoping in pre-ES6 environments, you can use try/catch to forcibly throw an error by passing your undefined variable identifier to catch, call that variable, and have the try throw an error value equal to that which you want to assign to your undefined variable. It will do so while keeping that variable enclosed in the try/catch block scope, essentially allowing this to be used as a polyfill for the ES6 block-scoping funtionality using the let keyword. This is a way that a transpiler can take ES6 code and produce something usable in a pre-ES6 environment when deployed.
 
 -Traceur-
-Traceur is a Google-maintained transpiler that is an example of a tool that will convert your ES6 let block-scope syntax into try/catch style pre-ES6 snippets.
+Traceur is a Google-maintained transpiler that is an example of a tool that will convert your ES6 let block-scope syntax into try/catch-style pre-ES6 snippets.
 
 -Implicit vs. Explicit Blocks-
-
 let blocks/statements allow you to explicitly create a block to bind let to, rather than implicitly hijacking the block enclosing the let variable. This makes its scope more explicitly readable and generally easier to refactor, forcing all declarations to the top of the block like so:
 
 let (a = 2) {
@@ -260,9 +259,9 @@ This mirrors the approach used in function-scoping patterns where all var declar
 let blocks are not natively supported in ES6 or with transpilation tools such as Traceur. You can either go back to using blocks and write more disciplined ES6-valid code, ensuring your let declarations are kept at the top of the block, or you can use the tool that the book author craftily plugged called let-er, which will transpile let blocks into valid pre-ES6 or ES6 code, depending on how it's configured.
 
 -Performance-
-According the the author, the performance of try/catch is currently slower than just using an IIFE, but it may not necessarily remain that way. The official TC-39-approved ES6 transpiler uses try/catch, and the Traceur team has asked Google to improve its performance in Chrome, so there is a strong motivation for this to change. It's also not a 1:1 comparison, seeing that using an IIFE would change the meaning of that code to some degrees when using keywords such as this, return, break, and continue. It could only be used manually in certain cases.
+According the the author, the performance of try/catch is currently slower than just using an IIFE, but it may not necessarily remain that way. The official TC-39-approved ES6 transpiler uses try/catch, and the Traceur team has asked Google to improve its performance in Chrome, so there is a strong motivation for this to change. It's also not a 1:1 comparison, seeing that using an IIFE would change the meaning of that code to some degree when using keywords such as this, return, break, and continue. It could only be used manually in certain cases.
 
 ===========================================Appendix C===========================================
 Lexical-this
 
-ES6 includes the ability to use arrow functions, which introduces a new behavior called lexical-this that changes the way the 'this' keyword binds. Instead of the usual 'this' binding rules, scopes will automatically take on the 'this' keyword of its immediately enclosing lexical scope. While this makes for shorter code, the author opines that adding lexical scoping rules to the 'this' keyword confounds the point of using it in the first place, recommending the avoidance of fat arrow functions along with the continued use of the old bind method in order to avoid this confusion and to avoid the pitfalls of using anonymous functions.
+ES6 includes the ability to use arrow functions, which introduces a new behavior called lexical-this that changes the way the 'this' keyword binds. Instead of the usual 'this' binding rules, scopes will automatically take on the 'this' keyword of its immediately-enclosing lexical scope. While this makes for shorter code, the author opines that adding lexical scoping rules to the 'this' keyword confounds the point of using it in the first place, recommending the avoidance of fat arrow functions in lieu of the continued use of the old bind method in order to avoid confusion and the pitfalls of using anonymous functions.
