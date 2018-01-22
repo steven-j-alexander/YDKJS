@@ -5,7 +5,7 @@ var = prompt("Prompt message") will query the user for input and save in var. sh
 2 is a literal value expression
 b is a variable expression
 b * 2 is an arithmetic expression
-a = b * 2 is an assignment expressions
+a = b * 2 is an assignment expression
 math operators are + - * /
 compound assignment operators are += -= *=/=
 inc/dec operators are ++ --
@@ -29,10 +29,10 @@ unlike most other statements like console.log(amount); , a block statement does 
 certain values are considered "falsy" because they become false when coerced to a boolean, such as 0 and "". Any value not on the "falsy" list is automatically "truthy".
 a loop includes a test condition as well as a block, typically as { .. }. each time a loop block executes, that's called in iteration
 the for loop has 3 clauses, the initialization clause, the conditional test clause, and the update clause to be ran after each loop block iteration
-functions can optional take arguments (aka paramaters)
+functions can optionally take arguments (aka paramaters)
 scope (technically called lexical scope) is basically a collection of variables as well as the rules for how those variables are accessed by name
 each function gets its own scope. only code inside that function can access its scoped variables
-lexical scope rules say that code in one scope can access variables of either that scope or any scope outside of it
+lexical scoping rules say that code in one scope can access variables of either that scope or any scope outside of it
 
 ---CHAPTER 2---
 typeof a is not getting the type of the variable, but of the value it contains. variables themselves do not have types.
@@ -61,14 +61,14 @@ if you try to set a variable that hasn't been declared, you'll either end up cre
 the ES6 let keyword allows you to declare variables to belong to the individual { blocks } they are contained in, with scoping rules roughly the same as that of functions.
 one key difference with strict mode is that it disallows implicit automatic global variable declaration when you assign a value to a var without using "var"
 a function is basically just a variable declared in the outer enclosing that's given a reference to the function being declared. that function is a value itself, just like any other value, so it can be assigned to variables or passed to/returned from other functions
-immediately invoked function expressions (IIFE) are called by declaring the function inside parenthesis and then falling it up with an immediate call using another set of parenthesis like this:
+immediately invoked function expressions (IIFE) are called by declaring the function inside parenthesis and then following it up with an immediate call using another set of parenthesis like this:
 	(function IIFE(){
 		console.log( "test" );
 	})();
 IIFEs are frequently used to declare variables that won't affect the surrounding code outside of the IIFE unless via return values
 you can think of closures as a way to remember and continue to access a function's scope (variables) even after the function finished running
 with the module pattern (which use closures), you can define private implementation variables and functions that are hidden from the outside, as well as a public API.
-if a function has a 'this' reference in it, it usually points to an object, but the object it points to depends on the functino that was called. it does not refer to the function itself
+if a function has a 'this' reference in it, it usually points to an object, but the object it points to depends on the function that was called. it does not refer to the function itself
 calling a function that references a 'this' var that only exists outside of function scope will work in non-strict mode, but would be undefined in strict mode
 if you reference a property that doesn't exist on an object, JS will use that object's internal prototype reference to find a different object to locate that property. prototype linkage is commonly used (abused) to emulate or fake a class mechanism with inheritance. a more natural way of applying prototypes is to use a pattern called behavior delegation, where linked objects are designed with the ability to delegate from one to the other for parts of the needed behavior.
 polyfilling is a term used to refer to the taking of a newer feature definition and creating a snippet of code that is the equivalent in behavior to be used in older JS environments.
@@ -76,4 +76,3 @@ Vetted set of polyfills: (https://github.com/es-shims/es5-shim) and ES6-Shim (ht
 Babel (https://babeljs.io) (formerly 6to5): Transpiles ES6+ into ES5
 Traceur (https://github.com/google/traceur-compiler): Transpiles ES6, ES7, and beyond into ES5
 the 'document' variable exists as a global variable when your code is running in a browser. it's a special object, often called a host object, that allows access to built-in methods provided by the DOM API in your browser. 'alert' and 'console.log' are also provided by the browser, rather than the js engine itself.
-
